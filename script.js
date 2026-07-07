@@ -71,6 +71,36 @@ function triggerToast(message) {
         toast.classList.remove('show');
     }, 3000);
 }
+/* --- PRODUCT CARDS INTERACTIVE LOGIC --- */
+document.querySelectorAll('.product-card').forEach(card => {
+    const productName = card.getAttribute('data-product');
+    const featuresBtn = card.querySelector('.btn-features');
+    const inquiryBtn = card.querySelector('.btn-inquiry');
+    const dropdown = card.querySelector('.features-dropdown');
+
+    // Toggle dropdown features view
+    featuresBtn.addEventListener('click', () => {
+        dropdown.classList.toggle('open');
+        if (dropdown.classList.contains('open')) {
+            featuresBtn.textContent = "Hide Specs";
+        } else {
+            featuresBtn.textContent = "Features";
+        }
+    });
+
+    // Handle inquiry button and auto-fill target requirement message form
+    inquiryBtn.addEventListener('click', () => {
+        const messageField = document.getElementById('message');
+        if (messageField) {
+            messageField.value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${productName}". Please send structural specifications layout details.`;
+            // Focus on input to highlight field instantly for the visitor
+            messageField.focus();
+        }
+        // Seamlessly scroll user straight to booking view using existing function
+        scrollToSec('contact');
+        triggerToast(`Inquiry initiated for ${productName}`);
+    });
+});
 
 // Call button feedback
 document.getElementById('call-action-btn').addEventListener('click', () => {

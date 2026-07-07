@@ -430,6 +430,86 @@ header.scrolled {
     font-size: 15px;
     line-height: 1.6;
 }
+/* --- PRODUCT CARD INTERACTIVE ADDITIONS --- */
+.product-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-card-action {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-features {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-white);
+}
+
+.btn-features:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-white);
+}
+
+.btn-inquiry {
+    background-color: var(--brand-blue);
+    border: none;
+    color: var(--text-white);
+}
+
+.btn-inquiry:hover {
+    background-color: var(--brand-blue-hover);
+}
+
+/* Features dropdown container code */
+.features-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, margin-top 0.4s ease;
+    margin-top: 0;
+}
+
+.features-dropdown.open {
+    max-height: 200px; /* Expands smoothly */
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 15px;
+}
+
+.features-dropdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features-dropdown ul li {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Styling for the new More button */
+.btn-more {
+    background-color: transparent;
+    border: 1px solid var(--brand-blue);
+    color: var(--brand-blue);
+}
+
+.btn-more:hover {
+    background-color: rgba(0, 118, 223, 0.1);
+    color: var(--text-white);
+}
 
 /* --- ABOUT US SECTION --- */
 .about-split {
