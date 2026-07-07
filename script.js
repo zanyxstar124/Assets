@@ -45,27 +45,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // FIX: Call button now seamlessly scrolls down to the company details block
+    // Handle Call button scrolling based on what page the user is on
     const callBtn = document.getElementById('call-action-btn');
     if (callBtn) {
-        callBtn.addEventListener('click', () => {
-            scrollToSec('contact'); 
-            triggerToast("Scrolling to Contact Details & Consultation Request...");
-        });
+        // Only run scroll prevention on the homepage where 'contact' actually exists
+        if (document.getElementById('contact')) {
+            callBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop page jumping or reloading
+                scrollToSec('contact'); 
+                triggerToast("Scrolling to Contact Details & Consultation Request...");
+            });
+        }
     }
 
-    // FIX: Profile portal button now flashes feedback and directs employees to their external link
+    // Handle Profile button fallback notice before the native href switches pages
     const profileBtn = document.getElementById('profile-action-btn');
     if (profileBtn) {
         profileBtn.addEventListener('click', () => {
             triggerToast("Loading Secure BMS Employee Portal...");
-            
-            // Delays the popup slightly so the visitor can comfortably read the toast status notice
-            setTimeout(() => {
-                // Change this URL string to your active domain address when ready to deploy
-                window.location.href("https://www.mybms.com.ph/WebLogin.aspx", "_blank");
-            }, 800); 
         });
+    }
+
+    // Check URL parameters when a page loads (Handles auto-scroll from products page)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('scroll') === 'contact') {
+        // Wait 400ms for the browser layout to cleanly render before firing the scroll
+        setTimeout(() => {
+            scrollToSec('contact');
+        }, 400);
     }
 
     // Form submission intercept (prevents page reloading)
@@ -120,6 +127,10 @@ function scrollToSec(id) {
 function detectActiveSection() {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
+    
+    // Only parse section changes if section tracking maps exist on the active screen
+    if (sections.length === 0 || navItems.length === 0) return;
+
     let currentActive = 'home';
 
     sections.forEach(section => {
@@ -163,8 +174,21 @@ document.querySelectorAll('.product-card').forEach(card => {
             if (messageField) {
                 messageField.value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${productName}". Please send structural specifications layout details.`;
                 messageField.focus();
+                scrollToSec('contact');
+            } else {
+                // If on products-page, route to homepage and pass the inquiry text via storage
+                localStorage.setItem('pendingInquiry', productName);
+                window.location.href = "Index.html?scroll=contact";
             }
-            scrollToSec('contact');
         });
     }
 });
+
+// Auto-inject values into form if redirected from products-page inquiry
+if (document.getElementById('message')) {
+    const pendingInquiry = localStorage.getItem('pendingInquiry');
+    if (pendingInquiry) {
+        document.getElementById('message').value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${pendingInquiry}". Please send structural specifications layout details.`;
+        localStorage.removeItem('pendingInquiry'); // Clear storage after inserting
+    }
+}
