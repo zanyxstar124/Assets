@@ -178,7 +178,7 @@ document.querySelectorAll('.product-card').forEach(card => {
             } else {
                 // If on products-page, route to homepage and pass the inquiry text via storage
                 localStorage.setItem('pendingInquiry', productName);
-                window.location.href = "Index.html?scroll=contact";
+                window.location.href = "index.html?scroll=contact";
             }
         });
     }
