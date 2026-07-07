@@ -81,20 +81,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* --- SMART DESKTOP & MOBILE EMAIL FORWARDING ROUTER --- */
-    const emailLink = document.getElementById('smart-email-link');
-    if (emailLink) {
-        emailLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            const emailAddress = "brothersmsc.sales@gmail.com";
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const emailLinks = ['smart-email-link', 'smart-footer-email-link'];
+    
+    emailLinks.forEach(id => {
+        const link = document.getElementById(id);
+        if (link) {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const emailAddress = "brothersmsc.sales@gmail.com";
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-            if (isMobile) {
-                window.location.href = "mailto:" + emailAddress;
-            } else {
-                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
-            }
-        });
-    }
+                if (isMobile) {
+                    window.location.href = "mailto:" + emailAddress;
+                } else {
+                    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
+                }
+            });
+        }
+    });
 });
 
 /* --- GLOBAL SCROLL-TO FUNCTIONALITY (Kept global for inline HTML onclick hooks) --- */
