@@ -510,6 +510,37 @@ header.scrolled {
     background-color: rgba(0, 118, 223, 0.1);
     color: var(--text-white);
 }
+/* Centers the button horizontally below the cards */
+.more-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px; /* Adjusts spacing below the cards */
+}
+
+/* Styles the "More" button to match your "FEATURES" style */
+.btn-more {
+    display: inline-block;
+    padding: 10px 24px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 1px;
+    
+    /* The border and rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 6px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Subtle hover effect */
+.btn-more:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
 
 /* --- ABOUT US SECTION --- */
 .about-split {
