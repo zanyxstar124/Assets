@@ -6,9 +6,9 @@
     <title>My BMS</title>
     
     <!-- Google Fonts for premium typography -->
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-    <link href="[https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- External CSS link -->
     <link rel="stylesheet" href="style.css">
@@ -21,8 +21,8 @@
    
     <header id="main-header">
         <div class="nav-container">
-            <!-- REPLACED: Top-left text brand area replaced with logo.png image -->
-            <a href="http://127.0.0.1:5500/Index.html#home" class="nav-logo-link">
+            <!-- FIX: Changed absolute link address to local relative path tracking so it renders across local IP setups -->
+            <a href="Index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>   
 
@@ -67,10 +67,10 @@
     <!-- ========================================== -->
     <section class="hero-section" id="home">
         	
-    <video autoplay loop muted playsinline class="bg-video">
-        <source src="Haha.MP4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="Haha.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
         <div class="hero-content">
             <!-- Center Front Page Logo Container (Located above the title) -->
@@ -90,7 +90,8 @@
         </div>
 
         <div class="scroll-down" onclick="scrollToSec('products')">
-            <span>gScroll Down</span>
+            <!-- FIX: Fixed spelling slip from 'gScroll Down' -->
+            <span>Scroll Down</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <polyline points="19 12 12 19 5 12"></polyline>
@@ -194,12 +195,11 @@
                     </div>
                     <div class="contact-detail">
                         <h4>Global Headquarters</h4>
-                        <a href = "https://www.google.com/maps/place/Cityland+10+Tower+1/@14.5604849,121.0145063,936m/data=!3m1!1e3!4m6!3m5!1s0x3397c9096ec55555:0xaf0d621b7e9c77c1!8m2!3d14.5604797!4d121.0170866!16s%2Fg%2F11c70chjcq?authuser=0&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
-                        target=" _blank"
+                        <a href="https://www.google.com/maps/place/Cityland+10+Tower+1/@14.5604849,121.0145063,936m/data=!3m1!1e3!4m6!3m5!1s0x3397c9096ec55555:0xaf0d621b7e9c77c1!8m2!3d14.5604797!4d121.0170866!16s%2Fg%2F11c70chjcq?authuser=0&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
                         title="BMS Pin Location">
                         U712 7/F Cityland Condominium 10 Tower 1, H.V. Dela Costa, ST. Salcedo Village, MAKATI CITY
                         </a>
-
                     </div>
                 </div>
 
@@ -223,31 +223,13 @@
                             <path d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,8L12,13L4,8V6L12,11L20,6V8Z"/>
                         </svg>
                     </div>
+                    <!-- FIX: Removed the duplicate inline script block. Your external script.js file now runs this cleanly! -->
                     <div class="contact-detail">
                         <h4>Support & Business Desk</h4>
                         <a href="#" id="smart-email-link" title="Contact Business Desk">
                             brothersmsc.sales@gmail.com
                         </a>
                     </div>
-                    
-                    <script>
-                        document.getElementById('smart-email-link').addEventListener('click', function(event) {
-                            event.preventDefault(); // Stops the page from jumping to the top
-                            
-                            const emailAddress = "brothersmsc.sales@gmail.com";
-                            
-                            // Checks if the user's device is a mobile phone or tablet
-                            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-                    
-                            if (isMobile) {
-                                // IF ON PHONE: Force the native Mail/Gmail app to open
-                                window.location.href = "mailto:" + emailAddress;
-                            } else {
-                                // IF ON DESKTOP: Force the Gmail Web Browser composer in a new tab
-                                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
-                            }
-                        });
-                    </script>
                 </div>
             </div>
 
@@ -279,16 +261,19 @@
         </div>
     </section>
 
-     <!-- ========================================== -->
+    <!-- ========================================== -->
     <!-- FOOTER AREA                                -->
     <!-- ========================================== -->
     <footer>
         <div class="footer-logo-block">
+            <!-- FIX: Added closed division hierarchy so visual grids separate cleanly -->
             <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                <!-- FIX: Fixed spelling typo 'scr' to 'src' and added proper extension extension type '.png' -->
                 <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
                 <div class="nav-brand-text">
+                    <span class="brand-bms-blue" style="color: #0076df; font-weight: 700;">BMS</span>
+                    <span class="brand-bms-red-bolt">⚡</span>
                 </div>
+            </div>
         </div>
 
         <div class="footer-socials">
