@@ -225,13 +225,30 @@
                     </div>
                     <div class="contact-detail">
                         <h4>Support & Business Desk</h4>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=brothersmsc.sales@gmail.com"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           title="Goes to gmail">
-                           brothersmsc.sales@gmail.com
+                        <!-- Notice we changed the href to "#" because the script will handle the routing -->
+                        <a href="#" id="smart-email-link" title="Contact Business Desk">
+                            brothersms.careers@gmail.com
                         </a>
                     </div>
+                    
+                    <script>
+                        document.getElementById('smart-email-link').addEventListener('click', function(event) {
+                            event.preventDefault(); // Stops the page from jumping to the top
+                            
+                            const emailAddress = "brothersms.careers@gmail.com";
+                            
+                            // Checks if the user's device is a mobile phone or tablet
+                            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                    
+                            if (isMobile) {
+                                // IF ON PHONE: Force the native Mail/Gmail app to open
+                                window.location.href = "mailto:" + emailAddress;
+                            } else {
+                                // IF ON DESKTOP: Force the Gmail Web Browser composer in a new tab
+                                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
+                            }
+                        });
+                    </script>
                 </div>
             </div>
 
