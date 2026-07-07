@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Delays the popup slightly so the visitor can comfortably read the toast status notice
             setTimeout(() => {
                 // Change this URL string to your active domain address when ready to deploy
-                window.open("https://www.mybms.com.ph/WebLogin.aspx", "_blank");
+                window.location.href("https://www.mybms.com.ph/WebLogin.aspx", "_blank");
             }, 800); 
         });
     }
