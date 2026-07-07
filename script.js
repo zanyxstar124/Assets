@@ -45,19 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Call button feedback
+    // FIX: Call button now seamlessly scrolls down to the company details block
     const callBtn = document.getElementById('call-action-btn');
     if (callBtn) {
         callBtn.addEventListener('click', () => {
-            triggerToast("Connecting with direct dispatch desk: +63 (02) 8888-MEGA");
+            scrollToSec('contact'); 
+            triggerToast("Scrolling to Contact Details & Consultation Request...");
         });
     }
 
-    // Profile portal feedback
+    // FIX: Profile portal button now flashes feedback and directs employees to their external link
     const profileBtn = document.getElementById('profile-action-btn');
     if (profileBtn) {
         profileBtn.addEventListener('click', () => {
-            triggerToast("Loading Secure BMS Client Portal Environment...");
+            triggerToast("Loading Secure BMS Employee Portal...");
+            
+            // Delays the popup slightly so the visitor can comfortably read the toast status notice
+            setTimeout(() => {
+                // Change this URL string to your active domain address when ready to deploy
+                window.open("https://www.mybms.com.ph/WebLogin.aspx", "_blank");
+            }, 800); 
         });
     }
 
@@ -78,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (emailLink) {
         emailLink.addEventListener('click', (event) => {
             event.preventDefault();
-            const emailAddress = "brothersms.careers@gmail.com";
+            const emailAddress = "brothersmsc.sales@gmail.com";
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
             if (isMobile) {
@@ -125,6 +132,7 @@ function detectActiveSection() {
         }
     });
 }
+
 /* --- PRODUCT CARDS INTERACTIVE LOGIC --- */
 document.querySelectorAll('.product-card').forEach(card => {
     const productName = card.getAttribute('data-product');
@@ -133,25 +141,26 @@ document.querySelectorAll('.product-card').forEach(card => {
     const dropdown = card.querySelector('.features-dropdown');
 
     // Toggle dropdown features view
-    featuresBtn.addEventListener('click', () => {
-        dropdown.classList.toggle('open');
-        if (dropdown.classList.contains('open')) {
-            featuresBtn.textContent = "Hide Specs";
-        } else {
-            featuresBtn.textContent = "Features";
-        }
-    });
+    if (featuresBtn && dropdown) {
+        featuresBtn.addEventListener('click', () => {
+            dropdown.classList.toggle('open');
+            if (dropdown.classList.contains('open')) {
+                featuresBtn.textContent = "Hide Specs";
+            } else {
+                featuresBtn.textContent = "Features";
+            }
+        });
+    }
 
     // Handle inquiry button and auto-fill target requirement message form
-    inquiryBtn.addEventListener('click', () => {
-        const messageField = document.getElementById('message');
-        if (messageField) {
-            messageField.value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${productName}". Please send structural specifications layout details.`;
-            // Focus on input to highlight field instantly for the visitor
-            messageField.focus();
-        }
-        // Seamlessly scroll user straight to booking view using existing function
-        scrollToSec('contact');
-        triggerToast(`Inquiry initiated for ${productName}`);
-    });
+    if (inquiryBtn) {
+        inquiryBtn.addEventListener('click', () => {
+            const messageField = document.getElementById('message');
+            if (messageField) {
+                messageField.value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${productName}". Please send structural specifications layout details.`;
+                messageField.focus();
+            }
+            scrollToSec('contact');
+        });
+    }
 });
