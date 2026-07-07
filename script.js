@@ -124,18 +124,6 @@ function detectActiveSection() {
             item.classList.add('active');
         }
     });
-<<<<<<< HEAD
-}
-
-/* --- INTERACTIVE ACTIONS & TOAST FEEDBACK --- */
-const toast = document.getElementById('toast');
-
-function triggerToast(message) {
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
 }
 /* --- PRODUCT CARDS INTERACTIVE LOGIC --- */
 document.querySelectorAll('.product-card').forEach(card => {
@@ -167,24 +155,3 @@ document.querySelectorAll('.product-card').forEach(card => {
         triggerToast(`Inquiry initiated for ${productName}`);
     });
 });
-
-// Call button feedback
-document.getElementById('call-action-btn').addEventListener('click', () => {
-    triggerToast("Connecting with direct dispatch desk: +63 (02) 8888-MEGA");
-});
-
-// Profile portal feedback
-document.getElementById('profile-action-btn').addEventListener('click', () => {
-    triggerToast("Loading Secure BMS Client Portal Environment...");
-});
-
-// Form submission intercept (prevents page reloading)
-document.getElementById('consultationForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('firstName').value;
-    triggerToast(`Thank you, ${name}! Your request was successfully submitted.`);
-    document.getElementById('consultationForm').reset();
-});
-=======
-}
->>>>>>> a61e92495dbb9956e939b00682b5716100cd6a31
