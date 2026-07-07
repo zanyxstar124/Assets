@@ -225,12 +225,30 @@
                     </div>
                     <div class="contact-detail">
                         <h4>Support & Business Desk</h4>
-                        <a href = "mailto:brothersms.careers@gmail.com"
-                        target=" _blank"
-                        title="Goes to gmail">
-                        brothersms.careers@gmail.com
+                        <!-- Notice we changed the href to "#" because the script will handle the routing -->
+                        <a href="#" id="smart-email-link" title="Contact Business Desk">
+                            brothersms.careers@gmail.com
                         </a>
                     </div>
+                    
+                    <script>
+                        document.getElementById('smart-email-link').addEventListener('click', function(event) {
+                            event.preventDefault(); // Stops the page from jumping to the top
+                            
+                            const emailAddress = "brothersms.careers@gmail.com";
+                            
+                            // Checks if the user's device is a mobile phone or tablet
+                            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                    
+                            if (isMobile) {
+                                // IF ON PHONE: Force the native Mail/Gmail app to open
+                                window.location.href = "mailto:" + emailAddress;
+                            } else {
+                                // IF ON DESKTOP: Force the Gmail Web Browser composer in a new tab
+                                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
+                            }
+                        });
+                    </script>
                 </div>
             </div>
 
@@ -267,13 +285,11 @@
     <!-- ========================================== -->
     <footer>
         <div class="footer-logo-block">
-            <div class="nav-logo-group" style="justify-content: center;">
-                <img scr="bmsclogo"></img>
+            <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <!-- FIX: Fixed spelling typo 'scr' to 'src' and added proper extension extension type '.png' -->
+                <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
                 <div class="nav-brand-text">
-                    <span class="brand-bms-blue">BMS</span>
-                    <span class="brand-bms-red-bolt">⚡</span>
                 </div>
-            </div>
         </div>
 
         <div class="footer-socials">
