@@ -152,55 +152,50 @@ header.scrolled {
 }
 
 /* --- HERO SECTION --- */
-/* Container for the whole hero section */
 .hero-section {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Takes full window height */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: #0b0f19; /* Fallback color while video loads */
+    background-color: #0b0f19;
 }
 
-/* Styling the video to stretch and cover the container */
 .bg-video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Forces video to behave like a background cover */
-    z-index: 1; /* Puts it at the bottom layer */
+    object-fit: cover;
+    z-index: 1;
 }
 
-/* Content Container sitting on top of the video */
 .hero-content {
-    position: absolute; /* Changed from relative to absolute */
-    top: 0;             /* Anchors it to the top edge */
-    left: 0;            /* Anchors it to the left edge */
-    z-index: 2;         /* Keeps it above the video track */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
     width: 100%;
     height: 100%;
-    
-    background: rgba(0, 0, 0, 0.4); /* Your original 40% dark tint */
-    
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers your titles and logo vertically */
-    align-items: center;     /* Centers everything horizontally */
+    justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
-/* Quick styling for buttons alignment */
 .hero-buttons {
     margin-top: 25px;
     display: flex;
     gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* Large Centered Custom BMS Logo Container */
 .hero-logo-container {
     margin-bottom: 30px;    
     display: inline-flex;
@@ -208,7 +203,6 @@ header.scrolled {
     align-items: center;
 }
 
-/* Responsive styling for bmsclogo.png image */
 .hero-logo-img {
     max-width: 470px;
     width: 100%;
@@ -223,17 +217,16 @@ header.scrolled {
     filter: drop-shadow(0 12px 30px rgba(0, 118, 223, 0.45));
 }
 
-/* Corporate Headings matching image */
 .hero-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.8rem;
     font-weight: 800;
     letter-spacing: 1.25px;
-    justify-content: center;
     text-transform: uppercase;
     line-height: 1.25;
     margin-bottom: 15px;
     color: var(--text-white);
+    text-align: center;
 }
 
 .hero-subtitle {
@@ -243,14 +236,7 @@ header.scrolled {
     letter-spacing: 0.5px;
     margin-bottom: 40px;
     opacity: 0.95;
-}
-
-/* CTA Interactive Buttons */
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    text-align: center;
 }
 
 .btn {
@@ -289,40 +275,24 @@ header.scrolled {
     transform: translateY(-2px);
 }
 
-/* Scroll Down Indicator animation */
 .scroll-down {
     position: absolute;
-    bottom: 20px;       /* Distance from the very bottom edge of the hero section */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    
-    /* Layout styling */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    
-    /* Typography & Appearance */
     font-size: 11px;
     font-weight: 600;
     color: var(--text-gray);
     text-transform: uppercase;
     letter-spacing: 2px;
-    z-index: 15;        /* Makes sure it sits above all background elements */
+    z-index: 15;
     cursor: pointer;
-    
-    /* Subtle text shadow to keep it visible over busy video backgrounds */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    
-    /* Animation trigger */
     animation: bounce 2s infinite;
-}
-
-/* Ensure the arrow icon scales cleanly */
-.scroll-down .arrow {
-    font-size: 16px;
-    line-height: 1;
-    margin-top: 2px;
 }
 
 /* --- CONTENT SECTION GENERAL STYLES --- */
@@ -368,6 +338,7 @@ header.scrolled {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    align-items: start; /* FIXED: Keeps neighboring cards cleanly aligned at the top layer when one expands */
 }
 
 .product-card {
@@ -378,6 +349,9 @@ header.scrolled {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: auto; /* FIXED: Permits card bodies to scale naturally without pushing out parent boundaries */
 }
 
 .product-card::before {
@@ -431,11 +405,12 @@ header.scrolled {
     font-size: 15px;
     line-height: 1.6;
 }
-/* --- PRODUCT CARD INTERACTIVE ADDITIONS --- */
+
 .product-actions {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: auto; /* FIXED: Automatically pins option action row down evenly against lengthy specifications text */
+    padding-top: 20px;
 }
 
 .btn-card-action {
@@ -480,46 +455,36 @@ header.scrolled {
 }
 
 .features-dropdown.open {
-    max-height: 200px; /* Expands smoothly */
+    max-height: 300px; /* FIXED: Boosted target limit space to fully reveal specs blocks elegantly */
     margin-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 15px;
 }
 
 .features-dropdown ul {
-    list-style: none;
+    list-style: none; /* FIXED: Removed base markdown bullet layouts to solve overlapping layouts */
     padding: 0;
+    margin: 0;
 }
 
 .features-dropdown ul li {
     font-size: 14px;
     color: var(--text-gray);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start; /* FIXED: Keeps multi-line sentences cleanly aligned with emojis */
+    gap: 10px;
+    line-height: 1.4;
+    text-align: left;
 }
 
-/* Styling for the new More button */
-.btn-more {
-    background-color: transparent;
-    border: 1px solid var(--brand-blue);
-    color: var(--brand-blue);
-}
-
-.btn-more:hover {
-    background-color: rgba(0, 118, 223, 0.1);
-    color: var(--text-white);
-}
-/* Centers the button horizontally below the cards */
 .more-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 40px; /* Adjusts spacing below the cards */
+    margin-top: 40px;
 }
 
-/* Styles the "More" button to match your "FEATURES" style */
 .btn-more {
     display: inline-block;
     padding: 10px 24px;
@@ -529,15 +494,12 @@ header.scrolled {
     font-weight: 600;
     text-decoration: none;
     letter-spacing: 1px;
-    
-    /* The border and rounded corners */
     border: 1px solid rgba(255, 255, 255, 0.2); 
     border-radius: 6px;
     background-color: transparent;
     transition: all 0.3s ease;
 }
 
-/* Subtle hover effect */
 .btn-more:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #ffffff;
@@ -651,7 +613,6 @@ header.scrolled {
     font-size: 15px;
 }
 
-/* Premium Form fields */
 .contact-form {
     background-color: var(--bg-card);
     padding: 40px;
@@ -742,7 +703,6 @@ footer {
     color: #64748b;
 }
 
-/* Message toast popups */
 .toast-message {
     position: fixed;
     bottom: 30px;
@@ -763,11 +723,6 @@ footer {
 }
 
 /* --- ANIMATIONS --- */
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.9; }
-    100% { transform: scale(1.15); opacity: 1; }
-}
-
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
     40% { transform: translateY(-10px) translateX(-50%); }
@@ -777,7 +732,7 @@ footer {
 /* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 968px) {
     .nav-menu {
-        display: none; /* Toggle handled in mobile menu responsive logic */
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 71px;
