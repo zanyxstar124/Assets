@@ -1,5 +1,7 @@
-/* --- RESET & GLOBAL VARIABLES --- */
-* {
+/* ==========================================================================
+   1. RESET, BASELINE & VARIABLES
+   ========================================================================== */
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -30,8 +32,9 @@ a {
     color: inherit;
 }
 
-/* --- HEADER & NAVIGATION --- */
-
+/* ==========================================================================
+   2. HEADER & NAVIGATION ARCHITECTURE
+   ========================================================================== */
 header {
     position: fixed;
     top: 0;
@@ -59,7 +62,6 @@ header.scrolled {
     justify-content: space-between;
 }
 
-/* Nav Logo Link and Image Styling (Top-Left) */
 .nav-logo-link {
     display: flex;
     align-items: center;
@@ -77,7 +79,6 @@ header.scrolled {
     transform: scale(1.05);
 }
 
-/* Menu Links */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -99,7 +100,6 @@ header.scrolled {
     color: var(--text-white);
 }
 
-/* Active Menu Underline matching original image styling */
 .nav-item.active a {
     color: var(--text-white);
 }
@@ -115,7 +115,6 @@ header.scrolled {
     border-radius: 2px;
 }
 
-/* Action Icons (Phone, Profile) */
 .nav-actions {
     display: flex;
     align-items: center;
@@ -142,7 +141,6 @@ header.scrolled {
     fill: currentColor;
 }
 
-/* Mobile Menu Toggle Button */
 .menu-toggle {
     display: none;
     background: none;
@@ -151,7 +149,9 @@ header.scrolled {
     cursor: pointer;
 }
 
-/* --- HERO SECTION --- */
+/* ==========================================================================
+   3. HERO BANNER ENVIRONMENT
+   ========================================================================== */
 .hero-section {
     position: relative;
     width: 100%;
@@ -186,14 +186,6 @@ header.scrolled {
     justify-content: center;
     align-items: center;
     padding: 20px;
-}
-
-.hero-buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 .hero-logo-container {
@@ -239,40 +231,12 @@ header.scrolled {
     text-align: center;
 }
 
-.btn {
-    padding: 14px 32px;
-    font-size: 15px;
-    font-weight: 700;
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition);
-    cursor: pointer;
-    border: none;
-}
-
-.btn-primary {
-    background-color: var(--brand-blue);
-    color: var(--text-white);
-    box-shadow: 0 4px 15px rgba(0, 118, 223, 0.4);
-}
-
-.btn-primary:hover {
-    background-color: var(--brand-blue-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 118, 223, 0.5);
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-white);
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    border-color: var(--text-white);
-    transform: translateY(-2px);
+.hero-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .scroll-down {
@@ -295,7 +259,9 @@ header.scrolled {
     animation: bounce 2s infinite;
 }
 
-/* --- CONTENT SECTION GENERAL STYLES --- */
+/* ==========================================================================
+   4. LAYOUT COMPONENTS & GLOBAL CORE SECTIONS
+   ========================================================================== */
 .section-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -333,12 +299,51 @@ header.scrolled {
     border-radius: 2px;
 }
 
-/* --- PRODUCTS/SERVICES GRID --- */
+/* Global Buttons UI */
+.btn {
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--brand-blue);
+    color: var(--text-white);
+    box-shadow: 0 4px 15px rgba(0, 118, 223, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 118, 223, 0.5);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-white);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. INTERACTIVE PRODUCT & CATLOG SHOWCASE
+   ========================================================================== */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    align-items: start; /* FIXED: Keeps neighboring cards cleanly aligned at the top layer when one expands */
+    align-items: start; /* FIXED: Prevents expansion of one card from dragging neighbors down layout bounds */
 }
 
 .product-card {
@@ -351,7 +356,7 @@ header.scrolled {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: auto; /* FIXED: Permits card bodies to scale naturally without pushing out parent boundaries */
+    height: auto; /* FIXED: Allows containers to expand dynamically without causing layout collision issues */
 }
 
 .product-card::before {
@@ -404,13 +409,14 @@ header.scrolled {
     color: var(--text-gray);
     font-size: 15px;
     line-height: 1.6;
+    flex-grow: 1; /* Pushes the card action buttons nicely to the bottom */
 }
 
 .product-actions {
     display: flex;
     gap: 12px;
-    margin-top: auto; /* FIXED: Automatically pins option action row down evenly against lengthy specifications text */
-    padding-top: 20px;
+    padding-top: 25px;
+    margin-top: auto;
 }
 
 .btn-card-action {
@@ -446,7 +452,7 @@ header.scrolled {
     background-color: var(--brand-blue-hover);
 }
 
-/* Features dropdown container code */
+/* Feature Dropdown Layouts */
 .features-dropdown {
     max-height: 0;
     overflow: hidden;
@@ -455,14 +461,14 @@ header.scrolled {
 }
 
 .features-dropdown.open {
-    max-height: 300px; /* FIXED: Boosted target limit space to fully reveal specs blocks elegantly */
+    max-height: 400px; /* Enhanced headroom space to display extensive item logs clean */
     margin-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 15px;
 }
 
 .features-dropdown ul {
-    list-style: none; /* FIXED: Removed base markdown bullet layouts to solve overlapping layouts */
+    list-style: none; /* FIXED: Strips browser markers to clean up overlapping visual layouts */
     padding: 0;
     margin: 0;
 }
@@ -470,11 +476,11 @@ header.scrolled {
 .features-dropdown ul li {
     font-size: 14px;
     color: var(--text-gray);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: flex;
-    align-items: flex-start; /* FIXED: Keeps multi-line sentences cleanly aligned with emojis */
+    align-items: flex-start; /* FIXED: Keeps multi-line descriptions perfectly structured with icons */
     gap: 10px;
-    line-height: 1.4;
+    line-height: 1.5;
     text-align: left;
 }
 
@@ -492,12 +498,11 @@ header.scrolled {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 600;
-    text-decoration: none;
     letter-spacing: 1px;
     border: 1px solid rgba(255, 255, 255, 0.2); 
     border-radius: 6px;
     background-color: transparent;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .btn-more:hover {
@@ -505,7 +510,40 @@ header.scrolled {
     border-color: #ffffff;
 }
 
-/* --- ABOUT US SECTION --- */
+/* ==========================================================================
+   6. RESPONSIVE PARTNERS / CLIENTS SHEET (FIXED FOR MOBILE APP)
+   ========================================================================== */
+.client-grid {
+    display: grid;
+    /* FIXED: Automatically handles scaling and column adjustments on thin viewports natively */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    align-items: stretch;
+}
+
+.client-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.client-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-blue) !important;
+    box-shadow: 0 8px 20px rgba(0, 118, 223, 0.2);
+}
+
+.client-card img {
+    width: 100%;
+    max-width: 70px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   7. ABOUT US STRUCTURAL GRIDS
+   ========================================================================== */
 .about-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -560,7 +598,9 @@ header.scrolled {
     font-weight: 600;
 }
 
-/* --- CONTACT & FOOTER SECTION --- */
+/* ==========================================================================
+   8. CONSULTATION FORM & CONTACT DESIGN
+   ========================================================================== */
 .contact-section {
     background-color: #090c10;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -608,9 +648,14 @@ header.scrolled {
     margin-bottom: 5px;
 }
 
-.contact-detail p {
+.contact-detail p, .contact-detail a {
     color: var(--text-gray);
     font-size: 15px;
+    transition: var(--transition);
+}
+
+.contact-detail a:hover {
+    color: var(--text-white);
 }
 
 .contact-form {
@@ -660,7 +705,9 @@ header.scrolled {
     min-height: 120px;
 }
 
-/* --- FOOTER --- */
+/* ==========================================================================
+   9. FOOTER LAYER BUILD
+   ========================================================================== */
 footer {
     background-color: var(--bg-dark);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -703,6 +750,7 @@ footer {
     color: #64748b;
 }
 
+/* UI Feedback System Message Toast */
 .toast-message {
     position: fixed;
     bottom: 30px;
@@ -722,14 +770,16 @@ footer {
     transform: translateY(0);
 }
 
-/* --- ANIMATIONS --- */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-    40% { transform: translateY(-10px) translateX(-50%); }
-    60% { transform: translateY(-5px) translateX(-50%); }
+/* ==========================================================================
+   10. MEDIA QUERIES & RESPONSIVE SYSTEMS
+   ========================================================================== */
+@media (min-width: 1200px) {
+    .client-grid {
+        /* Locks catalog format into 6 static rows on desktop view screens */
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
-/* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 968px) {
     .nav-menu {
         display: none;
@@ -784,22 +834,10 @@ footer {
         width: 100%;
     }
 }
-/* Forces all cards to take up equal height in the grid and arranges content vertically */
-.product-grid, .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    align-items: stretch; /* Ensures columns stretch to match the tallest item */
-}
 
-.product-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Forces the card to fill the grid height */
-}
-
-/* Pushes the actions/buttons to the absolute bottom of the card uniformly */
-.product-desc {
-    flex-grow: 1; 
-    margin-bottom: 20px; /* Keeps consistent spacing above the buttons */
+/* Scroll bounce keyframe tracking macro */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-10px) translateX(-50%); }
+    60% { transform: translateY(-5px) translateX(-50%); }
 }
