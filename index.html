@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My BMS</title>
     
-    <!--Website Icon-->
+    <!-- Website Icon -->
     <link rel="icon" type="image/png" sizes="32x32" href="bmslogo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="bmslogo.png">
     <link rel="icon" sizes="180x180" href="bmslogo.png">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,17 +22,17 @@
 <body>
 
     <!-- ========================================== -->
-    <!-- HEADER / NAVIGATION                       -->
+    <!-- HEADER / NAVIGATION                        -->
     <!-- ========================================== -->
    
     <header id="main-header">
         <div class="nav-container">
             <!-- Points to the home section of your landing page -->
-            <a href="Index.html#home" class="nav-logo-link">
+            <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>   
 
-            <!-- Desktop Menu Structure inside Index.html -->
+            <!-- Desktop Menu Structure inside index.html -->
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item active" data-sec="home"><a href="#home">Home</a></li>
                 <!-- Points directly to your new page within the same tab -->
@@ -50,7 +50,6 @@
                     </svg>
                 </div>
                 
-                <!-- FIX: Converted from a <div> to an <a> tag to open the portal link inside the SAME browser tab -->
                 <a href="https://www.mybms.com.ph/WebLogin.aspx" target="_self" class="nav-icon" id="profile-action-btn" title="Client Portal">
                     <svg viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
@@ -82,7 +81,6 @@
         <div class="hero-content">
             <!-- Center Front Page Logo Container (Located above the title) -->
             <div class="hero-logo-container">
-                <!-- bmsclogo.png image perfectly centered above the company name -->
                 <img src="bmsclogo.png" alt="Brothers Megawork Systems Corporation Logo" class="hero-logo-img" onerror="this.style.display='none'; console.warn('bmsclogo.png not found, place your logo file inside your project folder')">
             </div>
 
@@ -116,14 +114,16 @@
         </div>
 
       <div class="products-grid">
-            <div class="product-card" data-product="Enterprise Infrastructure">
+            
+            <!-- Key Product 1: BCSAS -->
+            <div class="product-card" data-product="BCSAS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18H8V16H10V12H9V10H13V16H15V18H12Z"/>
                     </svg>
                 </div>
-                <h3 class="product-name">Enterprise Infrastructure</h3>
-                <p class="product-desc">Custom high-performance cloud databases, localized server configurations, and networking architectures developed to sustain demanding corporate workflows safely.</p>
+                <h3 class="product-name">BCSAS</h3>
+                <p class="product-desc">BASIC Credit and Savings with Accounting System. Tailored financial ledger utilities developed specifically for tracking institutional microloans, member deposits, equity accounts, and automated trial balance sheets.</p>
                 
                 <div class="product-actions">
                     <button class="btn-card-action btn-features">Features</button>
@@ -131,21 +131,45 @@
                 </div>
                 <div class="features-dropdown">
                     <ul>
-                        <li>⚡ High-Performance Cloud Databases</li>
-                        <li>🛡️ Localized Server Configurations</li>
-                        <li>🌐 Secure Networking Architectures</li>
+                        <li>📈 Comprehensive Credit & Savings Ledger Management</li>
+                        <li>📊 Automated Balance Sheets & General Journals</li>
+                        <li>🛡️ Auditable Transaction Tracking & Ledger Controls</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="product-card" data-product="BMS Managed Software">
+            <!-- Key Product 2: B-HRIS-PTMS -->
+            <div class="product-card" data-product="B-HRIS-PTMS">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                </div>
+                <h3 class="product-name">B-HRIS-PTMS</h3>
+                <p class="product-desc">BASIC Human Resource Information System with Payroll and Time-Keeping System. An all-in-one suite tracking personnel metrics, multi-tier biometric shift scheduling, compensation rules, and automated tax calculations.</p>
+                
+                <div class="product-actions">
+                    <button class="btn-card-action btn-features">Features</button>
+                    <button class="btn-card-action btn-inquiry">Inquiry</button>
+                </div>
+                <div class="features-dropdown">
+                    <ul>
+                        <li>📅 Unified Employee Profile & Matrix Directories</li>
+                        <li>⏱️ Biometric Integration with Real-Time Timekeeping</li>
+                        <li>💸 Automated Payroll, Government Deductions & Payslip Generation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Product 3: B-AIMS -->
+            <div class="product-card" data-product="B-AIMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,15.39L8.24,11.63L9.66,10.22L12,12.56L14.34,10.22L15.76,11.63L12,15.39M19,3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
                     </svg>
                 </div>
-                <h3 class="product-name">BMS Managed Software</h3>
-                <p class="product-desc">Advanced business control interfaces and localized ERP applications designed to empower daily logistics management, personnel scheduling, and financial auditing processes.</p>
+                <h3 class="product-name">B-AIMS</h3>
+                <p class="product-desc">BASIC Accounting with Inventory Management System. Synchronizes background supply lines with general corporate ledgers, producing real-time structural audits on stock quantities alongside asset depreciation profiles.</p>
                 
                 <div class="product-actions">
                     <button class="btn-card-action btn-features">Features</button>
@@ -153,37 +177,15 @@
                 </div>
                 <div class="features-dropdown">
                     <ul>
-                        <li>📊 Advanced Business Control Interfaces</li>
-                        <li>🚚 Localized ERP Applications</li>
-                        <li>📅 Personnel & Financial Auditing Systems</li>
+                        <li>📊 Double-Entry General Ledger Integration</li>
+                        <li>📦 Real-Time Stock Tracking & Reorder Point Alerts</li>
+                        <li>📝 Asset Value, Depreciation & Profit-Loss Calculations</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="product-card" data-product="Smart Security Systems">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12,2L1,21H23L12,2M12,6L19.53,19H4.47L12,6M11,10V14H13V10H11M11,16V18H13V16H11Z"/>
-                    </svg>
-                </div>
-                <h3 class="product-name">Smart Security Systems</h3>
-                <p class="product-desc">High-grade security ecosystems integration. Featuring advanced authorization terminals, real-time spatial monitoring, and robust system perimeter defense mechanics.</p>
-                
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>🔒 High-Grade Security Ecosystems</li>
-                        <li>📟 Advanced Authorization Terminals</li>
-                        <li>👁️ Real-Time Spatial Monitoring & Perimeter Defense</li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="more-container">
-            <!-- FIX: Target set to _self to keep navigation inside the same browser window tab -->
             <a href="products-page.html" target="_self" class="btn-more">More</a>
         </div>
     </section>
@@ -311,23 +313,19 @@
         <div class="footer-logo-block">
             <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                 <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
-                <!-- FIX: Restored the brand details typography structure to cleanly align your design -->
-                <div class="nav-brand-text">
-                </div>
+                <div class="nav-brand-text"></div>
             </div>
         </div>
 
         <div class="footer-socials">
-            <!-- FIX: Set target back to _self to completely implement single-tab tracking -->
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
-            <!-- Clean Email Icon linked with unified script selector logic -->
             <a href="#" id="smart-footer-email-link" class="social-icon" title="Email Us">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61573913107560" target="_blank" class="social-icon" title="Facebook">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10 Anglo-10 10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
             </a>
         </div>
 
