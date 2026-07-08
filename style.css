@@ -841,3 +841,22 @@ footer {
     40% { transform: translateY(-10px) translateX(-50%); }
     60% { transform: translateY(-5px) translateX(-50%); }
 }
+/* Forces all cards to take up equal height in the grid and arranges content vertically */
+.product-grid, .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch; /* Ensures columns stretch to match the tallest item */
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Forces the card to fill the grid height */
+}
+
+/* Pushes the actions/buttons to the absolute bottom of the card uniformly */
+.product-desc {
+    flex-grow: 1; 
+    margin-bottom: 20px; /* Keeps consistent spacing above the buttons */
+}
