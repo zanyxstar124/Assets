@@ -1,194 +1,174 @@
-/* --- APPLICATION INITIALIZATION GUARD --- */
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * BROTHERS MEGAWORK SYSTEMS CORPORATION
+ * Core Frontend UI Controller Logic (Unified Script)
+ * Year: 2026
+ */
+
+document.addEventListener("DOMContentLoaded", () => {
     
-    /* --- NAVIGATION HAMBURGER BEHAVIOR --- */
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
+    // ==========================================
+    // 1. DYNAMIC NAVIGATION NAVBAR SCROLL
+    // ==========================================
+    const mainHeader = document.getElementById("main-header");
+    
+    function checkScroll() {
+        // If we are on a subpage that forces the solid background, keep it solid
+        if (mainHeader.classList.contains("scrolled") && 
+            (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
+            return;
+        }
+        
+        if (window.scrollY > 50) {
+            mainHeader.classList.add("scrolled");
+        } else {
+            mainHeader.classList.remove("scrolled");
+        }
+    }
+    
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Initial load check
+
+    // ==========================================
+    // 2. MOBILE HAMBURGER MENU TOGGLE
+    // ==========================================
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("open");
+            
+            // Toggle accessibility attribute
+            const isOpen = navMenu.classList.contains("open");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close menu automatically when a link is clicked (Mobile UX)
+        document.querySelectorAll(".nav-item a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("open");
+            });
         });
     }
 
-    // Close mobile nav when clicking a menu link
-    const navLinks = document.querySelectorAll('.nav-item a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu) navMenu.classList.remove('open');
-        });
-    });
+    // ==========================================
+    // 3. CROSS-PAGE AUTO-SCROLL PARAMETER MAPPING
+    // ==========================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const scrollTarget = urlParams.get("scroll");
 
-    /* --- SCROLLING EFFECT HEADER CLASS ADDITIONS --- */
-    const header = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-        if (header) {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+    if (scrollTarget) {
+        // Wait briefly for elements to render completely before scanning layout dimensions
+        setTimeout(() => {
+            const targetElement = document.getElementById(scrollTarget);
+            if (targetElement) {
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
             }
-        }
-        detectActiveSection();
-    });
-
-    /* --- INTERACTIVE ACTIONS & TOAST FEEDBACK --- */
-    const toast = document.getElementById('toast');
-
-    function triggerToast(message) {
-        if (toast) {
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+        }, 300);
     }
 
-    // Handle Call button scrolling based on what page the user is on
-    const callBtn = document.getElementById('call-action-btn');
-    if (callBtn) {
-        // Only run scroll prevention on the homepage where 'contact' actually exists
-        if (document.getElementById('contact')) {
-            callBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop page jumping or reloading
-                scrollToSec('contact'); 
-                triggerToast("Scrolling to Contact Details & Consultation Request...");
+    // ==========================================
+    // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS
+    // ==========================================
+    document.querySelectorAll(".product-card").forEach(card => {
+        const featureBtn = card.querySelector(".btn-features");
+        const dropdown = card.querySelector(".features-dropdown");
+
+        if (featureBtn && dropdown) {
+            featureBtn.addEventListener("click", (e) => {
+                e.stopPropagation(); // Prevents grid layout events from clashing
+
+                // Toggle local target class state
+                const isOpen = dropdown.classList.toggle("open");
+                
+                // Dynamically update context wording to match state change
+                featureBtn.textContent = isOpen ? "Hide Specs" : "Features";
             });
         }
-    }
+    });
 
-    // Handle Profile button fallback notice before the native href switches pages
-    const profileBtn = document.getElementById('profile-action-btn');
-    if (profileBtn) {
-        profileBtn.addEventListener('click', () => {
-            triggerToast("Loading Secure BMS Employee Portal...");
+    // ==========================================
+    // 5. INTERACTIVE INQUIRY REDIRECT ROUTING
+    // ==========================================
+    document.querySelectorAll(".btn-inquiry").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const card = btn.closest(".product-card");
+            const productName = card ? card.getAttribute("data-product") : "";
+            
+            // Locate local contact form message text box instance
+            const messageInput = document.getElementById("message");
+
+            if (messageInput) {
+                // If on homepage, pre-fill text box and focus view
+                messageInput.value = `I am interested in requesting an enterprise consultation regarding your product: ${productName}. Please provide additional technical specifications.`;
+                messageInput.focus();
+                messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+                // If on a subpage, route down cleanly using lowercase index.html bounds
+                window.location.href = `index.html?scroll=contact`;
+            }
+        });
+    });
+
+    // ==========================================
+    // 6. CONTACT CONSULTATION FORM VALIDATION & TOAST INTERACTIVES
+    // ==========================================
+    const consultationForm = document.getElementById("consultationForm");
+    const toastBox = document.getElementById("toast");
+
+    if (consultationForm && toastBox) {
+        consultationForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Suspend default browser reload sequences
+
+            // Show confirmation system feedback toast notice
+            toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
+            toastBox.classList.add("show");
+
+            // Clear input metrics securely
+            consultationForm.reset();
+
+            // Diminish tracking banner visibility automatically after time delay limits
+            setTimeout(() => {
+                toastBox.classList.remove("show");
+            }, 4500);
         });
     }
 
-    // Check URL parameters when a page loads (Handles auto-scroll from products page)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('scroll') === 'contact') {
-        // Wait 400ms for the browser layout to cleanly render before firing the scroll
-        setTimeout(() => {
-            scrollToSec('contact');
-        }, 400);
-    }
+    // ==========================================
+    // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK
+    // ==========================================
+    const businessEmail = "brothersmsc.sales@gmail.com";
+    const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
 
-    // Form submission intercept (prevents page reloading)
-    const contactForm = document.getElementById('consultationForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const firstNameInput = document.getElementById('firstName');
-            const name = firstNameInput ? firstNameInput.value : "there";
-            triggerToast(`Thank you, ${name}! Your request was successfully submitted.`);
-            contactForm.reset();
-        });
-    }
-
-    /* --- SMART DESKTOP & MOBILE EMAIL FORWARDING ROUTER --- */
-    const emailLinks = ['smart-email-link', 'smart-footer-email-link'];
-    
-    emailLinks.forEach(id => {
-        const link = document.getElementById(id);
-        if (link) {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const emailAddress = "brothersmsc.sales@gmail.com";
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-                if (isMobile) {
-                    window.location.href = "mailto:" + emailAddress;
-                } else {
-                    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + emailAddress, "_blank");
-                }
+    emailSelectors.forEach(selector => {
+        const emailLink = document.querySelector(selector);
+        if (emailLink) {
+            emailLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = `mailto:${businessEmail}?subject=BMS Enterprise Consultation Inquiry&body=Describe your system scaling targets here...`;
             });
         }
     });
 });
 
-/* --- GLOBAL SCROLL-TO FUNCTIONALITY (Kept global for inline HTML onclick hooks) --- */
-function scrollToSec(id) {
-    const element = document.getElementById(id);
-    if (element) {
-        const headerOffset = 70;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
+// Native globally scope helper macro for standard interactive click events
+window.scrollToSec = function(sectionId) {
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerOffset;
+
         window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
+            behavior: "smooth"
         });
     }
-}
-
-/* --- HIGHLIGHT ACTIVE SECTION BAR --- */
-function detectActiveSection() {
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    // Only parse section changes if section tracking maps exist on the active screen
-    if (sections.length === 0 || navItems.length === 0) return;
-
-    let currentActive = 'home';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.pageYOffset >= sectionTop) {
-            currentActive = section.getAttribute('id');
-        }
-    });
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('data-sec') === currentActive) {
-            item.classList.add('active');
-        }
-    });
-}
-
-/* --- PRODUCT CARDS INTERACTIVE LOGIC --- */
-document.querySelectorAll('.product-card').forEach(card => {
-    const productName = card.getAttribute('data-product');
-    const featuresBtn = card.querySelector('.btn-features');
-    const inquiryBtn = card.querySelector('.btn-inquiry');
-    const dropdown = card.querySelector('.features-dropdown');
-
-    // Toggle dropdown features view
-    if (featuresBtn && dropdown) {
-        featuresBtn.addEventListener('click', () => {
-            dropdown.classList.toggle('open');
-            if (dropdown.classList.contains('open')) {
-                featuresBtn.textContent = "Hide Specs";
-            } else {
-                featuresBtn.textContent = "Features";
-            }
-        });
-    }
-
-    // Handle inquiry button and auto-fill target requirement message form
-    if (inquiryBtn) {
-        inquiryBtn.addEventListener('click', () => {
-            const messageField = document.getElementById('message');
-            if (messageField) {
-                messageField.value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${productName}". Please send structural specifications layout details.`;
-                messageField.focus();
-                scrollToSec('contact');
-            } else {
-                // If on products-page, route to homepage and pass the inquiry text via storage
-                localStorage.setItem('pendingInquiry', productName);
-                window.location.href = "index.html?scroll=contact";
-            }
-        });
-    }
-});
-
-// Auto-inject values into form if redirected from products-page inquiry
-if (document.getElementById('message')) {
-    const pendingInquiry = localStorage.getItem('pendingInquiry');
-    if (pendingInquiry) {
-        document.getElementById('message').value = `I am interested in acquiring details regarding your corporate tier deployment options for: "${pendingInquiry}". Please send structural specifications layout details.`;
-        localStorage.removeItem('pendingInquiry'); // Clear storage after inserting
-    }
-}
+};
