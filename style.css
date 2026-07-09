@@ -8,9 +8,6 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-
-
-
 :root {
     --bg-dark: #0c0f14;
     --bg-card: #161b22;
@@ -23,9 +20,6 @@
     --transition: all 0.3s ease;
 }
 
-
-
-
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
@@ -33,16 +27,10 @@ body {
     overflow-x: hidden;
 }
 
-
-
-
 a {
     text-decoration: none;
     color: inherit;
 }
-
-
-
 
 /* ==========================================================================
    2. HEADER & NAVIGATION ARCHITECTURE
@@ -60,16 +48,10 @@ header {
     transition: var(--transition);
 }
 
-
-
-
 header.scrolled {
     background-color: #0c0f14;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
-
-
-
 
 .nav-container {
     max-width: 1200px;
@@ -80,17 +62,11 @@ header.scrolled {
     justify-content: space-between;
 }
 
-
-
-
 .nav-logo-link {
     display: flex;
     align-items: center;
     height: 44px;
 }
-
-
-
 
 .nav-left-logo {
     height: 100%;
@@ -99,24 +75,15 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .nav-logo-link:hover .nav-left-logo {
     transform: scale(1.05);
 }
-
-
-
 
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 40px;
 }
-
-
-
 
 .nav-item a {
     font-size: 14px;
@@ -129,22 +96,13 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .nav-item a:hover {
     color: var(--text-white);
 }
 
-
-
-
 .nav-item.active a {
     color: var(--text-white);
 }
-
-
-
 
 .nav-item.active a::after {
     content: '';
@@ -157,17 +115,11 @@ header.scrolled {
     border-radius: 2px;
 }
 
-
-
-
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 25px;
 }
-
-
-
 
 .nav-icon {
     display: flex;
@@ -178,25 +130,16 @@ header.scrolled {
     cursor: pointer;
 }
 
-
-
-
 .nav-icon:hover {
     color: var(--text-white);
     transform: scale(1.1);
 }
-
-
-
 
 .nav-icon svg {
     width: 22px;
     height: 22px;
     fill: currentColor;
 }
-
-
-
 
 .menu-toggle {
     display: none;
@@ -205,9 +148,6 @@ header.scrolled {
     color: var(--text-white);
     cursor: pointer;
 }
-
-
-
 
 /* ==========================================================================
    3. HERO BANNER ENVIRONMENT
@@ -223,9 +163,6 @@ header.scrolled {
     background-color: #0b0f19;
 }
 
-
-
-
 .bg-video {
     position: absolute;
     top: 0;
@@ -235,9 +172,6 @@ header.scrolled {
     object-fit: cover;
     z-index: 1;
 }
-
-
-
 
 .hero-content {
     position: absolute;
@@ -254,18 +188,12 @@ header.scrolled {
     padding: 20px;
 }
 
-
-
-
 .hero-logo-container {
     margin-bottom: 30px;    
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 .hero-logo-img {
     max-width: 470px;
@@ -276,16 +204,10 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .hero-logo-img:hover {
     transform: translateY(-2px);
     filter: drop-shadow(0 12px 30px rgba(0, 118, 223, 0.45));
 }
-
-
-
 
 .hero-title {
     font-family: 'Montserrat', sans-serif;
@@ -299,9 +221,6 @@ header.scrolled {
     text-align: center;
 }
 
-
-
-
 .hero-subtitle {
     font-size: 1.35rem;
     font-weight: 400;
@@ -312,9 +231,6 @@ header.scrolled {
     text-align: center;
 }
 
-
-
-
 .hero-buttons {
     margin-top: 25px;
     display: flex;
@@ -322,9 +238,6 @@ header.scrolled {
     justify-content: center;
     flex-wrap: wrap;
 }
-
-
-
 
 .scroll-down {
     position: absolute;
@@ -346,9 +259,6 @@ header.scrolled {
     animation: bounce 2s infinite;
 }
 
-
-
-
 /* ==========================================================================
    4. LAYOUT COMPONENTS & GLOBAL CORE SECTIONS
    ========================================================================== */
@@ -358,16 +268,10 @@ header.scrolled {
     padding: 100px 24px;
 }
 
-
-
-
 .section-header {
     text-align: center;
     margin-bottom: 60px;
 }
-
-
-
 
 .section-tag {
     color: var(--brand-blue);
@@ -379,9 +283,6 @@ header.scrolled {
     margin-bottom: 10px;
 }
 
-
-
-
 .section-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.2rem;
@@ -390,9 +291,6 @@ header.scrolled {
     letter-spacing: 1px;
 }
 
-
-
-
 .section-divider {
     width: 60px;
     height: 4px;
@@ -400,9 +298,6 @@ header.scrolled {
     margin: 15px auto 0 auto;
     border-radius: 2px;
 }
-
-
-
 
 /* Global Buttons UI */
 .btn {
@@ -417,17 +312,11 @@ header.scrolled {
     border: none;
 }
 
-
-
-
 .btn-primary {
     background-color: var(--brand-blue);
     color: var(--text-white);
     box-shadow: 0 4px 15px rgba(0, 118, 223, 0.4);
 }
-
-
-
 
 .btn-primary:hover {
     background-color: var(--brand-blue-hover);
@@ -435,17 +324,11 @@ header.scrolled {
     box-shadow: 0 6px 20px rgba(0, 118, 223, 0.5);
 }
 
-
-
-
 .btn-outline {
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: var(--text-white);
 }
-
-
-
 
 .btn-outline:hover {
     background-color: rgba(255, 255, 255, 0.08);
@@ -453,21 +336,15 @@ header.scrolled {
     transform: translateY(-2px);
 }
 
-
-
-
 /* ==========================================================================
-   5. INTERACTIVE PRODUCT & CATLOG SHOWCASE
+   5. INTERACTIVE PRODUCT & CATALOG SHOWCASE
    ========================================================================== */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    align-items: start; /* FIXED: Prevents expansion of one card from dragging neighbors down layout bounds */
+    align-items: start;
 }
-
-
-
 
 .product-card {
     background-color: var(--bg-card);
@@ -479,11 +356,8 @@ header.scrolled {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: auto; /* FIXED: Allows containers to expand dynamically without causing layout collision issues */
+    height: auto;
 }
-
-
-
 
 .product-card::before {
     content: '';
@@ -497,24 +371,15 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .product-card:hover {
     transform: translateY(-5px);
     border-color: rgba(0, 118, 223, 0.25);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-
-
-
 .product-card:hover::before {
     opacity: 1;
 }
-
-
-
 
 .product-icon {
     width: 60px;
@@ -528,16 +393,10 @@ header.scrolled {
     margin-bottom: 25px;
 }
 
-
-
-
 .product-icon svg {
     width: 30px;
     height: 30px;
 }
-
-
-
 
 .product-name {
     font-size: 1.3rem;
@@ -546,18 +405,13 @@ header.scrolled {
     color: var(--text-white);
 }
 
-
-
-
 .product-desc {
     color: var(--text-gray);
     font-size: 15px;
     line-height: 1.6;
-    flex-grow: 1; /* Pushes the card action buttons nicely to the bottom */
+    flex-grow: 1;
+    margin-bottom: 20px;
 }
-
-
-
 
 .product-actions {
     display: flex;
@@ -565,9 +419,6 @@ header.scrolled {
     padding-top: 25px;
     margin-top: auto;
 }
-
-
-
 
 .btn-card-action {
     flex: 1;
@@ -581,25 +432,16 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .btn-features {
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--text-white);
 }
 
-
-
-
 .btn-features:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: var(--text-white);
 }
-
-
-
 
 .btn-inquiry {
     background-color: var(--brand-blue);
@@ -607,15 +449,9 @@ header.scrolled {
     color: var(--text-white);
 }
 
-
-
-
 .btn-inquiry:hover {
     background-color: var(--brand-blue-hover);
 }
-
-
-
 
 /* Feature Dropdown Layouts */
 .features-dropdown {
@@ -625,41 +461,29 @@ header.scrolled {
     margin-top: 0;
 }
 
-
-
-
 .features-dropdown.open {
-    max-height: 400px; /* Enhanced headroom space to display extensive item logs clean */
+    max-height: 400px;
     margin-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 15px;
 }
 
-
-
-
 .features-dropdown ul {
-    list-style: none; /* FIXED: Strips browser markers to clean up overlapping visual layouts */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
-
-
-
 
 .features-dropdown ul li {
     font-size: 14px;
     color: var(--text-gray);
     margin-bottom: 12px;
     display: flex;
-    align-items: flex-start; /* FIXED: Keeps multi-line descriptions perfectly structured with icons */
+    align-items: flex-start;
     gap: 10px;
     line-height: 1.5;
     text-align: left;
 }
-
-
-
 
 .more-container {
     display: flex;
@@ -667,9 +491,6 @@ header.scrolled {
     width: 100%;
     margin-top: 40px;
 }
-
-
-
 
 .btn-more {
     display: inline-block;
@@ -685,29 +506,27 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .btn-more:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #ffffff;
 }
 
-
-
-
-/* ==========================================================================
-   6. RESPONSIVE PARTNERS / CLIENTS SHEET (FIXED FOR MOBILE APP)
-   ========================================================================== */
-.client-grid {
+/* Grid Override Compatibility Settings */
+.product-grid, .products-grid {
     display: grid;
-    /* FIXED: Automatically handles scaling and column adjustments on thin viewports natively */
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     align-items: stretch;
 }
 
-
-
+/* ==========================================================================
+   6. RESPONSIVE PARTNERS / CLIENTS SHEET
+   ========================================================================== */
+.client-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    align-items: stretch;
+}
 
 .client-card {
     display: flex;
@@ -717,17 +536,11 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .client-card:hover {
     transform: translateY(-3px);
     border-color: var(--brand-blue) !important;
     box-shadow: 0 8px 20px rgba(0, 118, 223, 0.2);
 }
-
-
-
 
 .client-card img {
     width: 100%;
@@ -735,9 +548,6 @@ header.scrolled {
     height: auto;
     object-fit: contain;
 }
-
-
-
 
 /* ==========================================================================
    7. ABOUT US STRUCTURAL GRIDS
@@ -749,18 +559,12 @@ header.scrolled {
     align-items: center;
 }
 
-
-
-
 .about-image-container {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
-
-
-
 
 .about-image {
     width: 100%;
@@ -771,15 +575,9 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .about-image-container:hover .about-image {
     transform: scale(1.03);
 }
-
-
-
 
 .about-image-overlay {
     position: absolute;
@@ -791,17 +589,11 @@ header.scrolled {
     pointer-events: none;
 }
 
-
-
-
 .about-text h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     font-weight: 700;
 }
-
-
-
 
 .about-text p {
     color: var(--text-gray);
@@ -809,16 +601,10 @@ header.scrolled {
     font-size: 16px;
 }
 
-
-
-
 .highlight-accent {
     color: var(--brand-blue);
     font-weight: 600;
 }
-
-
-
 
 /* ==========================================================================
    8. CONSULTATION FORM & CONTACT DESIGN
@@ -828,17 +614,11 @@ header.scrolled {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-
-
-
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 60px;
 }
-
-
-
 
 .contact-info-block {
     display: flex;
@@ -846,17 +626,11 @@ header.scrolled {
     gap: 30px;
 }
 
-
-
-
 .contact-item {
     display: flex;
     gap: 20px;
     align-items: flex-start;
 }
-
-
-
 
 .contact-circle {
     width: 50px;
@@ -871,16 +645,10 @@ header.scrolled {
     flex-shrink: 0;
 }
 
-
-
-
 .contact-circle svg {
     width: 22px;
     height: 22px;
 }
-
-
-
 
 .contact-detail h4 {
     font-size: 16px;
@@ -888,24 +656,15 @@ header.scrolled {
     margin-bottom: 5px;
 }
 
-
-
-
 .contact-detail p, .contact-detail a {
     color: var(--text-gray);
     font-size: 15px;
     transition: var(--transition);
 }
 
-
-
-
 .contact-detail a:hover {
     color: var(--text-white);
 }
-
-
-
 
 .contact-form {
     background-color: var(--bg-card);
@@ -914,9 +673,6 @@ header.scrolled {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-
-
-
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -924,15 +680,9 @@ header.scrolled {
     margin-bottom: 20px;
 }
 
-
-
-
 .form-group {
     margin-bottom: 20px;
 }
-
-
-
 
 .form-label {
     display: block;
@@ -941,9 +691,6 @@ header.scrolled {
     color: #cbd5e1;
     margin-bottom: 8px;
 }
-
-
-
 
 .form-input, .form-textarea {
     width: 100%;
@@ -956,24 +703,15 @@ header.scrolled {
     transition: var(--transition);
 }
 
-
-
-
 .form-input:focus, .form-textarea:focus {
     border-color: var(--brand-blue);
     box-shadow: 0 0 10px rgba(0, 118, 223, 0.2);
 }
 
-
-
-
 .form-textarea {
     resize: vertical;
     min-height: 120px;
 }
-
-
-
 
 /* ==========================================================================
    9. FOOTER LAYER BUILD
@@ -985,15 +723,9 @@ footer {
     text-align: center;
 }
 
-
-
-
 .footer-logo-block {
     margin-bottom: 20px;
 }
-
-
-
 
 .footer-socials {
     display: flex;
@@ -1001,9 +733,6 @@ footer {
     gap: 20px;
     margin-bottom: 25px;
 }
-
-
-
 
 .social-icon {
     width: 40px;
@@ -1018,27 +747,17 @@ footer {
     transition: var(--transition);
 }
 
-
-
-
 .social-icon:hover {
     color: var(--text-white);
     background-color: var(--brand-blue);
     transform: translateY(-2px);
 }
 
-
-
-
 .footer-copyright {
     font-size: 14px;
     color: #64748b;
 }
 
-
-
-
-/* UI Feedback System Message Toast */
 .toast-message {
     position: fixed;
     bottom: 30px;
@@ -1054,28 +773,18 @@ footer {
     z-index: 2000;
 }
 
-
-
-
 .toast-message.show {
     transform: translateY(0);
 }
-
-
-
 
 /* ==========================================================================
    10. MEDIA QUERIES & RESPONSIVE SYSTEMS
    ========================================================================== */
 @media (min-width: 1200px) {
     .client-grid {
-        /* Locks catalog format into 6 static rows on desktop view screens */
         grid-template-columns: repeat(6, 1fr);
     }
 }
-
-
-
 
 @media (max-width: 968px) {
     .nav-menu {
@@ -1092,53 +801,32 @@ footer {
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
-
-
-
     .nav-menu.open {
         display: flex;
     }
-
-
-
 
     .nav-item.active a::after {
         bottom: -4px;
         height: 2px;
     }
 
-
-
-
     .menu-toggle {
         display: block;
     }
-
-
-
 
     .about-split, .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-
-
-
     .hero-title {
         font-size: 2rem;
     }
-
-
-
 
     .hero-subtitle {
         font-size: 1.1rem;
     }
 }
-
-
-
 
 @media (max-width: 576px) {
     .form-row {
@@ -1153,48 +841,15 @@ footer {
     }
 }
 
-
-
-
-/* Scroll bounce keyframe tracking macro */
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
     40% { transform: translateY(-10px) translateX(-50%); }
     60% { transform: translateY(-5px) translateX(-50%); }
 }
-/* Forces all cards to take up equal height in the grid and arranges content vertically */
-.product-grid, .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    align-items: stretch; /* Ensures columns stretch to match the tallest item */
-}
-
-
-
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Forces the card to fill the grid height */
-}
-
-
-
-
-/* Pushes the actions/buttons to the absolute bottom of the card uniformly */
-.product-desc {
-    flex-grow: 1;
-    margin-bottom: 20px; /* Keeps consistent spacing above the buttons */
-}
-
 
 /* ==========================================================================
-   LOGIN MENU BUTTON & LOGIN PAGE STYLES (ADDED DESIGN)
+   11. LOGIN STRUCTURAL INTERFACES WITH SKYLINE ENVIRONMENT MAP
    ========================================================================== */
-
-
-/* Navbar Login Styling Enhancement */
 .btn-login-nav {
     background-color: var(--brand-blue);
     padding: 6px 18px;
@@ -1204,32 +859,32 @@ footer {
     display: inline-block;
 }
 
-
 .btn-login-nav:hover {
     background-color: var(--brand-blue-hover);
     transform: translateY(-1px);
 }
 
-
-/* Full-Screen Login Page Layout */
+/* FIXED: Replaced static solid fallback color with the custom overlay linear-gradient mask */
 .login-page-body {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--bg-dark);
+    background: linear-gradient(
+          rgba(12, 15, 20, 0.78), 
+          rgba(12, 15, 20, 0.88)
+        ), 
+        url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
     padding: 20px;
     position: relative;
 }
 
-
-/* Back to Home Control */
 .back-home-container {
     position: absolute;
     top: 30px;
     left: 30px;
 }
-
 
 .back-home-btn {
     color: var(--text-gray);
@@ -1240,41 +895,37 @@ footer {
     align-items: center;
 }
 
-
 .back-home-btn:hover {
     color: var(--text-white);
 }
 
-
-/* Centered Glassmorphism Login Card Structure */
 .login-container {
     width: 100%;
     max-width: 450px;
     animation: fadeInLogin 0.5s ease-out;
 }
 
-
+/* Enhanced login card container contrast ratios */
 .login-card {
-    background-color: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(22, 27, 34, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 40px 35px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
-
 
 .login-header {
     text-align: center;
     margin-bottom: 30px;
 }
 
-
 .login-logo {
     height: 50px;
     margin-bottom: 15px;
     object-fit: contain;
 }
-
 
 .login-header h2 {
     font-family: 'Montserrat', sans-serif;
@@ -1284,27 +935,22 @@ footer {
     margin-bottom: 8px;
 }
 
-
 .login-header p {
     color: var(--text-gray);
     font-size: 0.9rem;
 }
 
-
-/* Form Fields */
 .login-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-
 .form-group-login {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
 
 .form-group-login label {
     font-size: 0.85rem;
@@ -1314,13 +960,11 @@ footer {
     letter-spacing: 0.5px;
 }
 
-
 .label-row-login {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 
 .forgot-pass-link {
     font-size: 0.8rem;
@@ -1328,12 +972,10 @@ footer {
     transition: var(--transition);
 }
 
-
 .forgot-pass-link:hover {
     text-decoration: underline;
     color: var(--brand-blue-hover);
 }
-
 
 .form-group-login input[type="email"],
 .form-group-login input[type="password"] {
@@ -1348,22 +990,18 @@ footer {
     transition: var(--transition);
 }
 
-
 .form-group-login input:focus {
     outline: none;
     border-color: var(--brand-blue);
     box-shadow: 0 0 0 3px rgba(0, 118, 223, 0.15);
 }
 
-
-/* Remember Me Checkbox styling */
 .remember-me-container {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-top: 2px;
 }
-
 
 .remember-me-container input[type="checkbox"] {
     accent-color: var(--brand-blue);
@@ -1372,7 +1010,6 @@ footer {
     height: 15px;
 }
 
-
 .remember-me-container label {
     font-size: 0.85rem;
     color: var(--text-gray);
@@ -1380,8 +1017,6 @@ footer {
     user-select: none;
 }
 
-
-/* Action Button */
 .btn-login-submit {
     background-color: var(--brand-blue);
     color: var(--text-white);
@@ -1395,19 +1030,15 @@ footer {
     margin-top: 10px;
 }
 
-
 .btn-login-submit:hover {
     background-color: var(--brand-blue-hover);
     transform: translateY(-1px);
 }
 
-
 .btn-login-submit:active {
     transform: translateY(1px);
 }
 
-
-/* Footer Info link styling */
 .login-footer {
     text-align: center;
     margin-top: 30px;
@@ -1417,19 +1048,15 @@ footer {
     color: var(--text-gray);
 }
 
-
 .login-footer a {
     color: var(--brand-blue);
     font-weight: 500;
 }
 
-
 .login-footer a:hover {
     text-decoration: underline;
 }
 
-
-/* Entrance Animation macro */
 @keyframes fadeInLogin {
     from {
         opacity: 0;
@@ -1441,8 +1068,6 @@ footer {
     }
 }
 
-
-/* Responsive Overrides */
 @media (max-width: 576px) {
     .login-card {
         padding: 30px 20px;
@@ -1452,4 +1077,3 @@ footer {
         left: 15px;
     }
 }
-
