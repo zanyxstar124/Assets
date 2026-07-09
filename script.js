@@ -1,11 +1,8 @@
 /**
  * BROTHERS MEGAWORK SYSTEMS CORPORATION
- * Core Frontend UI Controller Logic (Unified Script)
+ * Core Frontend UI Controller Logic (Unified Production Build)
  * Year: 2026
  */
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
    
@@ -15,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainHeader = document.getElementById("main-header");
    
     function checkScroll() {
-        // If we are on a subpage that forces the solid background, keep it solid
+        if (!mainHeader) return;
+
+        // Keep background solid if explicitly forced on standalone subpages
         if (mainHeader.classList.contains("scrolled") &&
             (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
             return;
@@ -31,17 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", checkScroll);
     checkScroll(); // Initial load check
 
-
-
-
     // ==========================================
     // 2. MOBILE HAMBURGER MENU TOGGLE
     // ==========================================
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
-
-
-
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
@@ -52,9 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
             menuToggle.setAttribute("aria-expanded", isOpen);
         });
 
-
-
-
         // Close menu automatically when a link is clicked (Mobile UX)
         document.querySelectorAll(".nav-item a").forEach(link => {
             link.addEventListener("click", () => {
@@ -63,17 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-
-
     // ==========================================
     // 3. CROSS-PAGE AUTO-SCROLL PARAMETER MAPPING
     // ==========================================
     const urlParams = new URLSearchParams(window.location.search);
     const scrollTarget = urlParams.get("scroll");
-
-
-
 
     if (scrollTarget) {
         // Wait briefly for elements to render completely before scanning layout dimensions
@@ -84,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
                 const offsetPosition = elementPosition - headerOffset;
 
-
-
-
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -95,37 +76,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
-
-
-
     // ==========================================
-    // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS
+    // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS (CRASH-PROOF)
     // ==========================================
     document.querySelectorAll(".product-card").forEach(card => {
         const featureBtn = card.querySelector(".btn-features");
         const dropdown = card.querySelector(".features-dropdown");
 
-
-
-
+        // CRASH-PROOF GUARDRAIL: Only execute logic if both elements exist inside this specific card
         if (featureBtn && dropdown) {
             featureBtn.addEventListener("click", (e) => {
                 e.stopPropagation(); // Prevents grid layout events from clashing
 
-
-
-
                 // Toggle local target class state
                 const isOpen = dropdown.classList.toggle("open");
                
-                // Dynamically update context wording to match state change
+                // Dynamically update text wording to match state change
                 featureBtn.textContent = isOpen ? "Hide Specs" : "Features";
             });
         }
     });
-
-
-
 
     // ==========================================
     // 5. INTERACTIVE INQUIRY REDIRECT ROUTING
@@ -138,12 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Locate local contact form message text box instance
             const messageInput = document.getElementById("message");
 
-
-
-
             if (messageInput) {
                 // If on homepage, pre-fill text box and focus view
-                messageInput.value = `I am interested in requesting an enterprise consultation regarding your product: ${productName}. Please provide additional technical specifications.`;
+                messageInput.value = `I am interested in requesting an enterprise consultation regarding your product: ${productName || "Solutions Ecosystem"}. Please provide additional technical specifications.`;
                 messageInput.focus();
                 messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
             } else {
@@ -153,37 +120,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-
-
     // ==========================================
     // 6. CONTACT CONSULTATION FORM VALIDATION & TOAST INTERACTIVES
     // ==========================================
     const consultationForm = document.getElementById("consultationForm");
     const toastBox = document.getElementById("toast");
 
-
-
-
     if (consultationForm && toastBox) {
         consultationForm.addEventListener("submit", (e) => {
             e.preventDefault(); // Suspend default browser reload sequences
-
-
-
 
             // Show confirmation system feedback toast notice
             toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
             toastBox.classList.add("show");
 
-
-
-
             // Clear input metrics securely
             consultationForm.reset();
-
-
-
 
             // Diminish tracking banner visibility automatically after time delay limits
             setTimeout(() => {
@@ -192,17 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-
-
     // ==========================================
     // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK
     // ==========================================
     const businessEmail = "brothersmsc.sales@gmail.com";
     const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
-
-
-
 
     emailSelectors.forEach(selector => {
         const emailLink = document.querySelector(selector);
@@ -215,10 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-
-// Native globally scope helper macro for standard interactive click events
+// Native globally scoped helper macro for standard interactive click events
 window.scrollToSec = function(sectionId) {
     const targetElement = document.getElementById(sectionId);
     if (targetElement) {
@@ -226,16 +169,9 @@ window.scrollToSec = function(sectionId) {
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
 
-
-
-
         window.scrollTo({
             top: offsetPosition,
             behavior: "smooth"
         });
     }
 };
-
-
-
-
