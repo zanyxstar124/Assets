@@ -1,9 +1,3 @@
-/**
- * BROTHERS MEGAWORK SYSTEMS CORPORATION
- * Core Frontend UI Controller Logic (Unified Production Build)
- * Year: 2026
- */
-
 document.addEventListener("DOMContentLoaded", () => {
    
     // ==========================================

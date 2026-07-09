@@ -511,12 +511,28 @@ header.scrolled {
     border-color: #ffffff;
 }
 
-/* Grid Override Compatibility Settings */
-.product-grid, .products-grid {
+/* ==========================================================================
+   GRID OVERRIDE COMPATIBILITY SETTINGS (FIXED ALIGNMENT)
+   ========================================================================== */
+   .product-grid, .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    align-items: stretch;
+    /* FIXED: Changed from 'stretch' to 'start' so neighboring cards don't deform */
+    align-items: start; 
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    /* FIXED: Let cards maintain their individual natural height bounds */
+    height: auto; 
+}
+
+.product-desc {
+    /* FIXED: Stripped flex-grow so text descriptions don't create artificial gaps */
+    flex-grow: 0; 
+    margin-bottom: 20px; 
 }
 
 /* ==========================================================================
