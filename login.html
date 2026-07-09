@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | BMS</title>
+   
+    <link rel="icon" type="image/png" sizes="32x32" href="bmslogo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page-body">
+
+
+    <div class="back-home-container">
+        <a href="index.html" class="back-home-btn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back to Home
+        </a>
+    </div>
+
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="bmslogo.png" alt="BMS Logo" class="login-logo" onerror="this.style.display='none'">
+                <h2>Welcome Back</h2>
+                <p>Access the BMS Enterprise Management Platform</p>
+            </div>
+           
+            <form id="bms-login-form" class="login-form">
+                <div class="form-group-login">
+                    <label for="login-email">Corporate Email Address</label>
+                    <input type="email" id="login-email" placeholder="name@company.com" required>
+                </div>
+               
+                <div class="form-group-login">
+                    <div class="label-row-login">
+                        <label for="login-password">Password</label>
+                        <a href="#" class="forgot-pass-link">Forgot Password?</a>
+                    </div>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+
+
+                <div class="remember-me-container">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Keep me logged in for 30 days</label>
+                </div>
+
+
+                <button type="submit" class="btn-login-submit">Sign In securely</button>
+            </form>
+           
+            <div class="login-footer">
+                <p>Authorized access only. Need system credentials? <a href="index.html#contact">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+
