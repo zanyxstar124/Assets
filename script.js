@@ -153,6 +153,76 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
+    // ==========================================
+    // 8. TOP BAR PHONE CALL ICON ANIMATION ROUTER
+    // ==========================================
+    const callActionBtn = document.getElementById("call-action-btn");
+    if (callActionBtn) {
+        callActionBtn.addEventListener("click", (e) => {
+            const contactSection = document.getElementById("contact");
+            
+            // If the contact section exists right on the current page (Homepage)
+            if (contactSection) {
+                e.preventDefault();
+                window.scrollToSec("contact");
+            } 
+            // Otherwise, let the anchor redirect cleanly to index.html?scroll=contact on subpages
+        });
+    }
+
+    // ==========================================
+    // 9. LIVE NAVBAR SCROLL SPY & SUBPAGE MAPPER (RED LINE TRACKER)
+    // ==========================================
+    const navItems = document.querySelectorAll(".nav-menu .nav-item");
+    const currentPath = window.location.pathname;
+
+    // Check if the user is on a standalone subpage file
+    const isProductsPage = currentPath.includes("products-page.html");
+    const isClientsPage = currentPath.includes("Clients.html");
+
+    if (isProductsPage || isClientsPage) {
+        // Subpage Execution: Lock highlight line to the explicit active tab
+        navItems.forEach(item => {
+            const targetSec = item.getAttribute("data-sec");
+            if ((isProductsPage && targetSec === "products") || (isClientsPage && targetSec === "clients")) {
+                item.classList.add("active");
+            } else {
+                item.classList.remove("active");
+            }
+        });
+    } else {
+        // Homepage Execution: Scan viewport offsets dynamically via IntersectionObserver
+        const sectionIds = ["home", "products", "clients", "about", "contact"];
+        const sections = sectionIds.map(id => document.getElementById(sectionId = id)).filter(el => el !== null);
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "-40% 0px -50% 0px", // Focus area set to center of display viewport
+            threshold: 0
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entries.some(e => e.isIntersecting)) { 
+                    // Process only if a transition state occurs
+                    if (entry.isIntersecting) {
+                        const activeId = entry.target.id;
+                        
+                        navItems.forEach(item => {
+                            if (item.getAttribute("data-sec") === activeId) {
+                                item.classList.add("active");
+                            } else {
+                                item.classList.remove("active");
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => sectionObserver.observe(section));
+    }
 });
 
 // Native globally scoped helper macro for standard interactive click events
