@@ -343,7 +343,7 @@ header.scrolled {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    align-items: start;
+    align-items: stretch; /* Forces all elements in a single row to share a uniform maximum height threshold */
 }
 
 .product-card {
@@ -356,7 +356,7 @@ header.scrolled {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100%; /* Dynamically fits the box to match the height of the tallest expanded item in the row */
 }
 
 .product-card::before {
@@ -409,15 +409,15 @@ header.scrolled {
     color: var(--text-gray);
     font-size: 15px;
     line-height: 1.6;
-    flex-grow: 1;
+    flex-grow: 1; /* Automatically absorbs remaining dead space to cleanly pin the buttons to the bottom row */
     margin-bottom: 20px;
 }
 
 .product-actions {
     display: flex;
     gap: 12px;
-    padding-top: 25px;
-    margin-top: auto;
+    padding-top: 15px;
+    margin-top: auto; /* Guarantees layout tracking remains perfectly aligned across unexpanded items */
 }
 
 .btn-card-action {
@@ -512,27 +512,30 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   GRID OVERRIDE COMPATIBILITY SETTINGS (FIXED ALIGNMENT)
-   ========================================================================== */
+   GRID OVERRIDE COMPATIBILITY SETTINGS (ISOLATED FLEX-AUTO FIX)
+   ========================================================================= */
    .product-grid, .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    /* FIXED: Changed from 'stretch' to 'start' so neighboring cards don't deform */
     align-items: start; 
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
-    /* FIXED: Let cards maintain their individual natural height bounds */
     height: auto; 
+    min-height: 440px;
 }
 
 .product-desc {
-    /* FIXED: Stripped flex-grow so text descriptions don't create artificial gaps */
     flex-grow: 0; 
     margin-bottom: 20px; 
+}
+
+.product-actions {
+    margin-top: auto; 
+    padding-top: 15px;
 }
 
 /* ==========================================================================
@@ -880,7 +883,6 @@ footer {
     transform: translateY(-1px);
 }
 
-/* FIXED: Replaced static solid fallback color with the custom overlay linear-gradient mask */
 .login-page-body {
     display: flex;
     align-items: center;
@@ -921,7 +923,6 @@ footer {
     animation: fadeInLogin 0.5s ease-out;
 }
 
-/* Enhanced login card container contrast ratios */
 .login-card {
     background-color: rgba(22, 27, 34, 0.88);
     border: 1px solid rgba(255, 255, 255, 0.08);

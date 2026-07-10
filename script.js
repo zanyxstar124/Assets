@@ -153,6 +153,23 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
+    // ==========================================
+    // 8. TOP BAR PHONE CALL ICON ANIMATION ROUTER
+    // ==========================================
+    const callActionBtn = document.getElementById("call-action-btn");
+    if (callActionBtn) {
+        callActionBtn.addEventListener("click", (e) => {
+            const contactSection = document.getElementById("contact");
+            
+            // If the contact section exists right on the current page (Homepage)
+            if (contactSection) {
+                e.preventDefault();
+                window.scrollToSec("contact");
+            } 
+            // Otherwise, let the anchor redirect cleanly to index.html?scroll=contact on subpages
+        });
+    }
 });
 
 // Native globally scoped helper macro for standard interactive click events
