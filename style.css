@@ -1110,7 +1110,7 @@ footer {
     display: flex;
     gap: 30px;
     width: max-content; /* Dynamically sizes to fit all original + cloned slides */
-    animation: scrollLeft 50s linear infinite;
+    animation: scrollLeft 80s linear infinite;
 }
 
 /* Pause the auto slider when users mouse over cards to read features */
