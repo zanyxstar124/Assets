@@ -239,3 +239,16 @@ window.scrollToSec = function(sectionId) {
         });
     }
 };
+
+// ==========================================
+// 8. DYNAMIC CLIENT CAROUSEL AUTO-DUPLICATION
+// ==========================================
+const sliderTrack = document.querySelector('.client-slider-track');
+if (sliderTrack) {
+    const originalSlides = Array.from(sliderTrack.children);
+    // Automatically clone each item and append it to form the loop backing
+    originalSlides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        sliderTrack.appendChild(clone);
+    });
+}
