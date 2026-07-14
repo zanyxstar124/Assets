@@ -5,35 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My BMS</title>
    
-    <!-- Website Icon -->
     <link rel="icon" type="image/png" sizes="32x32" href="bmslogo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="bmslogo.png">
     <link src="logo.png" sizes="180x180" href="bmslogo.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
 
-    <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- External CSS link -->
     <link rel="stylesheet" href="style.css">
     <link rel="html" href="Clients-page.html">
+
+    <style>
+        /* Floating Chat Bubble Launcher Position */
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--brand-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1500;
+            transition: all 0.3s ease;
+        }
+        .chatbot-launcher:hover {
+            transform: scale(1.05);
+            background-color: var(--brand-blue-hover);
+        }
+        .chatbot-launcher svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        /* Fixed Dimensions for Main Chat Panel Box Container */
+        .chatbot-window {
+            position: fixed;
+            bottom: 105px;
+            right: 30px;
+            width: 380px;
+            height: 520px;
+            background-color: #161b22;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: none; /* Managed smoothly via toggles in script */
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1500;
+        }
+        .chatbot-window.open {
+            display: flex;
+        }
+
+        /* Chat Top Branding Header Row Bar */
+        .chat-header {
+            background-color: #0c0f14;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .chat-header-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+        }
+        .chat-header-info span {
+            font-size: 11px;
+            color: #4cd137;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .chat-header-info span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #4cd137;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+        .chat-close-btn:hover {
+            color: white;
+        }
+
+        /* FIXED LOG: Isolated messages viewport container handles scroll logic exclusively */
+        .chat-messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: #11151c;
+        }
+
+        /* Individual Text Bubble Messaging Layout Elements */
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .chat-msg.system {
+            background-color: #1d2430;
+            color: #e2e8f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+        .chat-msg.user {
+            background-color: var(--brand-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        /* FIXED ALIGNMENT: Pinned Quick Inquiry Layout Tray Wrapper Container */
+        .chat-quick-replies-tray {
+            background-color: #0c0f14;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        /* Custom micro scrollbar layout for quick choices menu panel tray */
+        .chat-quick-replies-tray::-webkit-scrollbar {
+            height: 4px;
+        }
+        .chat-quick-replies-tray::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .quick-reply-btn {
+            background-color: #1d2430;
+            color: var(--brand-blue);
+            border: 1px solid rgba(0, 118, 223, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        .quick-reply-btn:hover {
+            background-color: var(--brand-blue);
+            color: white;
+            border-color: var(--brand-blue);
+        }
+
+        /* Bottom Raw Text Input Area Block Controls */
+        .chat-input-bar {
+            background-color: #0c0f14;
+            padding: 12px 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .chat-input-bar input {
+            flex: 1;
+            background-color: #161b22;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 13px;
+        }
+        .chat-input-bar input:focus {
+            border-color: var(--brand-blue);
+        }
+        .chat-send-submit {
+            background-color: var(--brand-blue);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .chat-send-submit:hover {
+            background-color: var(--brand-blue-hover);
+        }
+        .chat-send-submit svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Responsiveness properties override logic for thin viewport layouts */
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 95px;
+                height: 460px;
+            }
+            .chatbot-launcher {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ========================================== -->
-    <!-- HEADER / NAVIGATION                        -->
-    <!-- ========================================== -->
     <header id="main-header">
         <div class="nav-container">
-
-            <!-- Points to the home section of landing page -->
             <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>  
 
-            <!-- Desktop Menu Structure inside index.html -->
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item active" data-sec="home"><a href="#home">Home</a></li>
                 <li class="nav-item" data-sec="products"><a href="products-page.html">Products</a></li>
@@ -42,22 +253,12 @@
                 <li class="nav-item" data-sec="contact"><a href="#contact">Contact</a></li>
             </ul>
 
-
             <div class="nav-actions">
-
-            <div class="nav-actions">
-
-            <!-- Navigation Action Icons -->
-            <div class="nav-actions">
-
-                <!-- Phone / Action -->
-            <div class="nav-actions">
-
-                <a href="#contact" class="nav-icon" id="call-action-btn" title="Call Us">
+                <div class="nav-icon" id="call-action-btn" title="Call Us">
                     <svg viewBox="0 0 24 24">
                         <path d="M6.62,10.79C8.06,13.62 10.38,15.93 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
                     </svg>
-                </a>
+                </div>
                
                 <a href="login.html" target="_self" class="nav-icon" id="profile-action-btn" title="Client Portal">
                     <svg viewBox="0 0 24 24">
@@ -65,8 +266,6 @@
                     </svg>
                 </a>
 
-
-                <!-- Mobile Menu Hamburger Icon -->
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -78,23 +277,16 @@
         </div>
     </header>
 
-    <!-- ========================================== -->
-    <!-- HERO SECTION                               -->
-    <!-- ========================================== -->
     <section class="hero-section" id="home">
-
-        <!-- Background Video -->
         <video autoplay loop muted playsinline class="bg-video">
             <source src="bgfile1.mp4" type="video/mp4">
         </video>
 
-        <!-- Hero Content Overlay -->
         <div class="hero-content">
             <div class="hero-logo-container">
                 <img src="bmsclogo.png" alt="Brothers Megawork Systems Corporation Logo" class="hero-logo-img" onerror="this.style.display='none'">
             </div>
 
-            <!-- Corporation Name & Brand Slogan Matching Image -->
             <h1 class="hero-title">Brothers Megawork Systems Corporation</h1>
             <p class="hero-subtitle">Serving Business Solutions and Empowering Innovation.</p>
 
@@ -102,10 +294,8 @@
                 <button class="btn btn-primary" onclick="scrollToSec('products')">Explore Products</button>
                 <button class="btn btn-outline" onclick="scrollToSec('contact')">Get in Touch</button>
             </div>
-
-
-        <!-- Scroll Down Indicator -->
         </div>
+
         <div class="scroll-down" onclick="scrollToSec('products')">
             <span>Scroll Down</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -115,28 +305,21 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- PRODUCTS SECTION                           -->
-    <!-- ========================================== -->
     <section id="products" class="section-container">
-        
         <div class="section-header">
             <span class="section-tag">Premium Innovation</span>
             <h2 class="section-title">Our Key Products & Services</h2>
             <div class="section-divider"></div>
-
+        </div>
 
         <div class="products-grid">
            
-
             <div class="product-card" data-product="BCSAS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18H8V16H10V12H9V10H13V16H15V18H12Z"/>
                     </svg>
                 </div>
-
-
                 <h3 class="product-name">BCSAS</h3>
                 <p class="product-desc">BASIC Credit and Savings with Accounting System. Tailored financial ledger utilities developed specifically for tracking institutional microloans, member deposits, equity accounts, and automated trial balance sheets.</p>
                
@@ -152,7 +335,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <div class="product-card" data-product="B-HRIS-PTMS">
                 <div class="product-icon">
@@ -175,7 +357,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <div class="product-card" data-product="B-AIMS">
                 <div class="product-icon">
@@ -204,104 +385,97 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- CLIENTS SECTION                            -->
-    <!-- ========================================== -->
-
     <section id="clients" class="section-container">
         <div class="section-header">
-            <span class="section-tag">Enterprise Ecosystem</span>
+            <span class="section-tag">Trusted Partnerships</span>
             <h2 class="section-title">Our Valued Clients</h2>
-           
-  
-        <!-- The viewport container that crops the overflow -->
-        <div class="client-slider-container">
-            <!-- The moving track -->
-            <div class="client-slider-track">
-                
-                <!-- SET 1: ORIGINAL LOGOS -->
-                <div class="client-slide">
-                    <div class="product-card" data-product="Financial Cooperatives Partner">
-  
-                        <div class="product-icon-wrapper">
-                            <!-- Replace src with your actual logo file path -->
-                            <img src="bmslogo.png" alt="Financial Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Financial Cooperatives</h3>
-   
-                    </div>
-                </div>
-
-                <div class="client-slide">
-                    <div class="product-card" data-product="Agricultural Cooperatives Partner">
- 
-                        <div class="product-icon-wrapper">
-                            <!-- Replace src with your actual logo file path -->
-                            <img src="bmslogo.png" alt="Agricultural Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Agricultural Cooperatives</h3>
-
-                    </div>
-                </div>
-
-                <div class="client-slide">
-                    <div class="product-card" data-product="Transport Cooperatives Partner">
-    
-                        <div class="product-icon-wrapper">
-                            <!-- Replace src with your actual logo file path -->
-                            <img src="bmslogo.png" alt="Transport Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Transport Cooperatives</h3>
-  
-                    </div>
-                </div>
-
-                <!-- SET 2: DUPLICATED LOGOS FOR SEAMLESS LOOP -->
-                <div class="client-slide">
-                    <div class="product-card" data-product="Financial Cooperatives Partner">
-   
-                        <div class="product-icon-wrapper">
-                            <img src="bmslogo.png" alt="Financial Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Financial Cooperatives</h3>
-   
-                    </div>
-                </div>
-
-                <div class="client-slide">
-                    <div class="product-card" data-product="Agricultural Cooperatives Partner">
-  
-                        <div class="product-icon-wrapper">
-                            <img src="bmslogo.png" alt="Agricultural Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Agricultural Cooperatives</h3>
-   
-                    </div>
-                </div>
-
-                <div class="client-slide">
-                    <div class="product-card" data-product="Transport Cooperatives Partner">
-  
-                        <div class="product-icon-wrapper">
-                            <img src="bmslogo.png" alt="Transport Cooperatives Logo" class="client-logo">
-                        </div>
-                        <h3 class="product-title">Transport Cooperatives</h3>
-   
-                    </div>
-                </div>
-
-            </div>
+            <div class="section-divider"></div>
         </div>
 
-        <div class="more-container">
-            <a href="Clients.html" target="_self" class="btn-more">View Extensive Directory</a>
+        <div class="products-grid">
+            
+            <div class="product-card" data-product="Financial Cooperatives Partner">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/>
+                    </svg>
+                </div>
+                <h3 class="product-name">Financial Cooperatives</h3>
+                <p class="product-desc">Utilizing specialized accounting systems to track microloans, equity balances, automated tracking ledgers, and secure auditable accounting profiles.</p>
+                <div class="product-actions">
+                    <button class="btn-card-action btn-features">Features</button>
+                    <button class="btn-card-action btn-inquiry">Inquiry</button>
+                </div>
+                <div class="features-dropdown">
+                    <ul>
+                        <li>🛡️ Auditable Transaction Tracking & Ledger Controls</li>
+                        <li>📊 Automated Balance Sheets & General Journals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="Enterprise Infrastructure Partner">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,11A3,3 0 0,0 9,14A3,3 0 0,0 12,17A3,3 0 0,0 15,14A3,3 0 0,0 12,11M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/>
+                    </svg>
+                </div>
+                <h3 class="product-name">Enterprise Infrastructure Links</h3>
+                <p class="product-desc">Deploying localized biometric timekeeping systems and real-time personnel matrix integrations across multiple corporate branches.</p>
+                <div class="product-actions">
+                    <button class="btn-card-action btn-features">Features</button>
+                    <button class="btn-card-action btn-inquiry">Inquiry</button>
+                </div>
+                <div class="features-dropdown">
+                    <ul>
+                        <li>⏱️ Biometric Integration with Real-Time Timekeeping</li>
+                        <li>📅 Unified Employee Profile & Matrix Directories</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="Microfinance Institution Partner">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                    </svg>
+                </div>
+                <h3 class="product-name">Microfinance Institutions</h3>
+                <p class="product-desc">Empowering regional micro-lending offices with real-time trial balances, secure cloud record-keeping, and automated member deposit tracking.</p>
+                <div class="product-actions">
+                    <button class="btn-card-action btn-features">Features</button>
+                    <button class="btn-card-action btn-inquiry">Inquiry</button>
+                </div>
+                <div class="features-dropdown">
+                    <ul>
+                        <li>📈 Comprehensive Credit & Savings Ledger Management</li>
+                        <li>📦 Real-Time Stock Tracking & Reorder Point Alerts</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    
-    <!-- ========================================== -->
-    <!-- CONTACT SECTION                            -->
-    <!-- ========================================== -->
+    <section id="about" class="contact-section">
+        <div class="section-container">
+            <div class="about-split">
+                <div class="about-image-container">
+                    <img class="about-image" src="about1.jpg" alt="BMS Team Collaboration">
+                    <div class="about-image-overlay"></div>
+                </div>
+
+                <div class="about-text">
+                    <span class="section-tag">Who We Are</span>
+                    <h3 class="section-title">BROTHERS MEGAWORK SYSTEMS</h3>
+                    <div class="section-divider" style="margin: 15px 0 25px 0;"></div>
+                    <p>At Brothers Megawork Systems Corporation, we bridge the gap between technical complexity and business growth. Founded on solid engineering principals, we provide robust, high-performance systems integrated natively into your workflows.</p>
+                    <p>Our dedicated team works around the clock keeping your networks, customized business software, and enterprise resources running efficiently, safely, and infinitely scalable.</p>
+                    <button class="btn btn-primary" onclick="scrollToSec('contact')" style="margin-top: 15px;">Discover Partnership</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="section-container">
         <div class="section-header">
             <span class="section-tag">Start Your Journey</span>
@@ -330,7 +504,6 @@
                     </div>
                 </div>
 
-
                 <div class="contact-item">
                     <div class="contact-circle">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -343,15 +516,12 @@
                     </div>
                 </div>
 
-
                 <div class="contact-item">
                     <div class="contact-circle">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,8L12,13L4,8V6L12,11L20,6V8Z"/>
                         </svg>
                     </div>
-
-
                     <div class="contact-detail">
                         <h4>Support & Business Desk</h4>
                         <a href="#" id="smart-email-link" title="Contact Business Desk">
@@ -360,7 +530,6 @@
                     </div>
                 </div>
             </div>
-
 
             <form class="contact-form" id="consultationForm">
                 <div class="form-row">
@@ -374,28 +543,20 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label class="form-label" for="email">Business Email</label>
                     <input type="email" id="email" class="form-input" placeholder="juan.delacruz@company.com" required>
                 </div>
-
 
                 <div class="form-group">
                     <label class="form-label" for="message">Your Business Requirements</label>
                     <textarea id="message" class="form-textarea" placeholder="Describe the scale and targets of your tech request..." required></textarea>
                 </div>
 
-
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
             </form>
         </div>
     </section>
-
-
-    <!-- ========================================== -->
-    <!-- FOOTER AREA                                -->
-    <!-- ========================================== -->
 
     <footer>
         <div class="footer-logo-block">
@@ -405,155 +566,129 @@
             </div>
         </div>
 
-
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
-
-
             <a href="#" id="smart-footer-email-link" class="social-icon" title="Email Us">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>
-
-
             <a href="https://www.facebook.com/profile.php?id=61573913107560" target="_blank" class="social-icon" title="Facebook">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
             </a>
-
-
         </div>
 
-        
-        <p class="footer-copyright">&copy; 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
+        <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
 
-    <!-- Toast Notification Message -->
-    <div class="toast-message" id="toast">Action completed successfully!</div>
-
-    <!-- Interactive UI Message Center Toast -->
-    <div class="toast-message" id="toast">Action completed successfully!</div>
-
-    <!-- Link to separated JS file -->
-    <div class="toast-message" id="toast">Action completed successfully!</div>
-
-    <script src="script.js"></script>
-
-    <div class="chatbot-widget-container">
-    <button class="chatbot-launcher-btn" id="chatbotLauncher" aria-label="Open Chat Support">
-        <svg class="chat-icon-open" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2m-2 12H6v-2h12v2m0-3H6V9h12v2m0-3H6V6h12v2Z"/>
+    <div class="chatbot-launcher" id="chatbot-launcher" title="Chat with BMS Support">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2A10 10 0 0 0 2 12c0 2.34.8 4.5 2.14 6.22L3 21l2.89-1.12c1.7.96 3.66 1.5 5.75 1.5a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
         </svg>
-        <svg class="chat-icon-close hidden" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/>
-        </svg>
-    </button>
+    </div>
 
-    <div class="chatbot-portal-card" id="chatbotPortal">
-        <div class="chatbot-header">
-            <div class="chatbot-profile-info">
-                <div class="chatbot-avatar-indicator">
-                    <img src="bmslogo.png" alt="BMS Assistant" onerror="this.style.display='none'">
-                    <span class="status-dot-pulse"></span>
-                </div>
-                <div>
-                    <h4 class="chatbot-core-title">BMS Assistant</h4>
-                    <p class="chatbot-core-status">Online • Ready to Help</p>
-                </div>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <h4>BMS Support Architect</h4>
+                <span>Always Online</span>
+            </div>
+            <button class="chat-close-btn" id="chat-close-btn" title="Minimize Chat">×</button>
+        </div>
+
+        <div class="chat-messages-container" id="chat-messages-container">
+            <div class="chat-msg system">
+                Hello! Welcome to Brothers Megawork Systems Corporation. How can I assist you with our enterprise solutions today?
             </div>
         </div>
 
-        <div class="chatbot-message-stream" id="chatbotMessageStream">
-            <div class="chat-message system-msg">
-                <div class="message-bubble">
-                    Welcome to Brothers Megawork Systems Corporation! 🚀 How can I help you navigate our Enterprise Core solutions today?
-                </div>
-            </div>
-        </div>
-
-        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
-            <button class="quick-reply-btn" data-reply="Products">Explore Products</button>
-            <button class="quick-reply-btn" data-reply="Contact">Get Consultation</button>
+        <div class="chat-quick-replies-tray" id="chat-quick-replies-tray">
+            <button class="quick-reply-btn" data-reply="Products">Products Spec</button>
+            <button class="quick-reply-btn" data-reply="Contact">Contact Sales</button>
             <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
         </div>
 
-        <form class="chatbot-input-console" id="chatbotInputConsole">
-            <input type="text" id="chatbotInputField" placeholder="Type a message..." autocomplete="off" required>
-            <button type="submit" class="chatbot-send-btn" aria-label="Send Message">
-                <svg viewBox="0 0 24 24" fill="currentColor">
+        <form class="chat-input-bar" id="chat-input-form">
+            <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
+            <button type="submit" class="chat-send-submit" title="Send Message">
+                <svg viewBox="0 0 24 24">
                     <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                 </svg>
             </button>
         </form>
     </div>
-</div>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const launcher = document.getElementById("chatbotLauncher");
-    const portal = document.getElementById("chatbotPortal");
-    const inputConsole = document.getElementById("chatbotInputConsole");
-    const inputField = document.getElementById("chatbotInputField");
-    const stream = document.getElementById("chatbotMessageStream");
-    const quickReplies = document.getElementById("chatbotQuickReplies");
+    <div class="toast-message" id="toast">Action completed successfully!</div>
+    
+    <script src="script.js"></script>
 
-    if (launcher && portal && inputConsole && inputField && stream) {
-        const iconOpen = launcher.querySelector(".chat-icon-open");
-        const iconClose = launcher.querySelector(".chat-icon-close");
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const launcher = document.getElementById("chatbot-launcher");
+        const windowBox = document.getElementById("chatbot-window");
+        const closeBtn = document.getElementById("chat-close-btn");
+        const inputForm = document.getElementById("chat-input-form");
+        const inputField = document.getElementById("chat-input-field");
+        const messagesContainer = document.getElementById("chat-messages-container");
+        const quickTray = document.getElementById("chat-quick-replies-tray");
 
-        // Toggle Open/Closed View Layouts
-        launcher.addEventListener("click", () => {
-            const isOpen = portal.classList.toggle("open");
-            if (isOpen) {
-                iconOpen.classList.add("hidden");
-                iconClose.classList.remove("hidden");
-                inputField.focus();
-            } else {
-                iconOpen.classList.remove("hidden");
-                iconClose.classList.add("hidden");
-            }
-        });
+        if (launcher && windowBox && closeBtn) {
+            // Toggle chatbot display window logic
+            launcher.addEventListener("click", () => {
+                windowBox.classList.toggle("open");
+                scrollToLatestMessage();
+            });
 
-        function appendMessage(text, side) {
-            const messageWrapper = document.createElement("div");
-            messageWrapper.classList.add("chat-message", side === "user" ? "user-msg" : "system-msg");
-            
-            const bubble = document.createElement("div");
-            bubble.classList.add("message-bubble");
-            bubble.innerText = text;
-            
-            messageWrapper.appendChild(bubble);
-            stream.appendChild(messageWrapper);
-            stream.scrollTop = stream.scrollHeight;
+            closeBtn.addEventListener("click", () => {
+                windowBox.classList.remove("open");
+            });
         }
 
-        function processAutomatedReply(userInput) {
-            const query = userInput.toLowerCase();
+        // Helper macro function to automatically pull down viewport view to show fresh statements
+        function scrollToLatestMessage() {
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        function appendMessage(text, senderType) {
+            if (!messagesContainer) return;
+            const bubble = document.createElement("div");
+            bubble.className = `chat-msg ${senderType}`;
+            bubble.textContent = text;
+            messagesContainer.appendChild(bubble);
+            scrollToLatestMessage();
+        }
+
+        function processAutomatedReply(triggerText) {
+            const cleanText = triggerText.toLowerCase();
             setTimeout(() => {
-                if (query.includes("product") || query.includes("bcsas") || query.includes("hris") || query.includes("aims")) {
-                    appendMessage("Our primary suites are:\n• BCSAS (Credit & Savings Ledger Utilities)\n• B-HRIS-PTMS (Human Resource, Biometrics & Payroll Engine)\n• B-AIMS (Accounting & Inventory Supply Management).\n\nWould you like me to take you to the Products page?", "system");
-                } else if (query.includes("contact") || query.includes("consult") || query.includes("inquiry")) {
-                    appendMessage("You can submit a formal technical request directly on our Consultation Form located at the footer of the home page, or drop an inquiry email to brothersmsc.sales@gmail.com.", "system");
-                } else if (query.includes("portal") || query.includes("login")) {
-                    appendMessage("Authorized enterprise personnel can securely log in via the Client Portal button located on the topmost corner of the global navigation menu header navigation.", "system");
+                if (cleanText.includes("products") || cleanText === "products") {
+                    appendMessage("We specialize in core B2B modules: BCSAS (Credit/Savings Ledgers), B-HRIS-PTMS (Payroll & Biometric Timekeeping), and B-AIMS (Accounting & Inventory Management System). You can view deeper code features on our standalone 'Products' tab up top!", "system");
+                } else if (cleanText.includes("contact") || cleanText === "contact") {
+                    appendMessage("You can reach out to our enterprise desk at brothersmsc.sales@gmail.com, call us directly at +632-5310-5085, or drop details in the consultation form behind this window.", "system");
+                } else if (cleanText.includes("portal") || cleanText === "portal") {
+                    appendMessage("Our corporate Client Portal can be reached using the secure authorization options on our top bar profile link icon or navigating directly to your assigned enterprise web subdomain dashboard.", "system");
                 } else {
-                    appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been routed to our technical consultants. Feel free to explore our product lines using the quick layout buttons below!", "system");
+                    appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been noted. For active system deployment discussions, please consider using our Consultation Form details container.", "system");
                 }
             }, 600);
         }
 
-        inputConsole.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const text = inputField.value.trim();
-            if (!text) return;
+        if (inputForm) {
+            inputForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const text = inputField.value.trim();
+                if (!text) return;
 
-            appendMessage(text, "user");
-            inputField.value = "";
-            processAutomatedReply(text);
-        });
+                appendMessage(text, "user");
+                inputField.value = "";
+                processAutomatedReply(text);
+            });
+        }
 
-        if (quickReplies) {
-            quickReplies.querySelectorAll(".quick-reply-btn").forEach(btn => {
+        if (quickTray) {
+            quickTray.querySelectorAll(".quick-reply-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     const replyVal = btn.getAttribute("data-reply");
                     if (replyVal === "Products") {
@@ -569,8 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
         }
-    }
-});
-</script>
+    });
+    </script>
 </body>
 </html>
