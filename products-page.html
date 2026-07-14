@@ -5,35 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products & Services | BMS</title>
    
-    <!--Website Icon (Fixed paths for GitHub Pages subfolder hosting)-->
     <link rel="icon" type="image/png" sizes="32x32" href="bmslogo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="bmslogo.png">
     <link rel="icon" sizes="180x180" href="bmslogo.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
    
-    <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .chatbot-launcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--brand-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1500;
+            transition: all 0.3s ease;
+        }
+        .chatbot-launcher:hover {
+            transform: scale(1.05);
+            background-color: var(--brand-blue-hover);
+        }
+        .chatbot-launcher svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+        .chatbot-window {
+            position: fixed;
+            bottom: 105px;
+            right: 30px;
+            width: 380px;
+            height: 520px;
+            background-color: #161b22;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: none; 
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1500;
+        }
+        .chatbot-window.open {
+            display: flex;
+        }
+        .chat-header {
+            background-color: #0c0f14;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .chat-header-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+        }
+        .chat-header-info span {
+            font-size: 11px;
+            color: #4cd137;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .chat-header-info span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #4cd137;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+        .chat-close-btn:hover {
+            color: white;
+        }
+        .chat-messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: #11151c;
+        }
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .chat-msg.system {
+            background-color: #1d2430;
+            color: #e2e8f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+        .chat-msg.user {
+            background-color: var(--brand-blue);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+        .chat-quick-replies-tray {
+            background-color: #0c0f14;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .chat-quick-replies-tray::-webkit-scrollbar {
+            height: 4px;
+        }
+        .chat-quick-replies-tray::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+        .quick-reply-btn {
+            background-color: #1d2430;
+            color: var(--brand-blue);
+            border: 1px solid rgba(0, 118, 223, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        .quick-reply-btn:hover {
+            background-color: var(--brand-blue);
+            color: white;
+            border-color: var(--brand-blue);
+        }
+        .chat-input-bar {
+            background-color: #0c0f14;
+            padding: 12px 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .chat-input-bar input {
+            flex: 1;
+            background-color: #161b22;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 13px;
+        }
+        .chat-input-bar input:focus {
+            border-color: var(--brand-blue);
+        }
+        .chat-send-submit {
+            background-color: var(--brand-blue);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .chat-send-submit:hover {
+            background-color: var(--brand-blue-hover);
+        }
+        .chat-send-submit svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 95px;
+                height: 460px;
+            }
+            .chatbot-launcher {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-
-    <!-- ========================================== -->
-    <!-- HEADER / NAVIGATION                        -->
-    <!-- ========================================== -->
-    <header id="main-header" class="scrolled"> <!-- Kept 'scrolled' class forced so background is solid on this subpage -->
+    <header id="main-header" class="scrolled">
         <div class="nav-container">
-            <!-- Points back to the main homepage root inside the same tab -->
             <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>  
 
-
-            <!-- Nav links bounce back to the main page anchors in the same tab -->
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item" data-sec="home"><a href="index.html#home">Home</a></li>
                 <li class="nav-item active" data-sec="products"><a href="products-page.html">Products</a></li>
@@ -42,17 +235,19 @@
                 <li class="nav-item" data-sec="contact"><a href="index.html#contact">Contact</a></li>
             </ul>
 
-
-            <!-- Navigation Action Icons -->
             <div class="nav-actions">
-                <!-- INTEGRATED: Passing parameter string query to index root for auto-scroll mapping -->
                 <a href="index.html?scroll=contact" class="nav-icon" id="call-action-btn" title="Call Us">
-                    <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.93 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6.62,10.79C8.06,13.62 10.38,15.93 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
+                    </svg>
                 </a>
-                <!-- INTEGRATED: Replaced tag wrapper with native anchor tracking linked to corporate system domain -->
+               
                 <a href="login.html" target="_self" class="nav-icon" id="profile-action-btn" title="Client Portal">
-                    <svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
                 </a>
+
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -64,27 +259,14 @@
         </div>
     </header>
 
+    <main class="section-container" style="margin-top: 80px;">
+        <div class="section-header">
+            <span class="section-tag">Enterprise Ecosystem</span>
+            <h1 class="section-title">Our Products & Services</h1>
+            <div class="section-divider"></div>
+        </div>
 
-    <!-- ========================================== -->
-    <!-- BREADCRUMB HERO TITLE                      -->
-    <!-- ========================================== -->
-    <section class="section-container" style="padding-top: 140px; padding-bottom: 40px; text-align: center;">
-        <span class="section-tag">Enterprise Catalog</span>
-        <h1 class="section-title" style="font-size: 2.8rem;">Our Products & Deep Specs</h1>
-        <div class="section-divider"></div>
-        <p style="color: var(--text-gray); margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Explore our professional enterprise infrastructure modules, specialized financial ecosystems, and localized enterprise tracking configurations.
-        </p>
-    </section>
-
-
-    <!-- ========================================== -->
-    <!-- EXPANDED PRODUCTS SHOWCASE DISPLAY         -->
-    <!-- ========================================== -->
-    <section class="section-container" style="padding-top: 20px;">
         <div class="products-grid">
-           
-            <!-- Product Card 1: BCSAS -->
             <div class="product-card" data-product="BCSAS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18H8V16H10V12H9V10H13V16H15V18H12Z"/></svg>
@@ -104,12 +286,9 @@
                 </div>
             </div>
 
-            <!-- Product Card 2: B-HRIS-PTMS -->
             <div class="product-card" data-product="B-HRIS-PTMS">
                 <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                 </div>
                 <h3 class="product-name">B-HRIS-PTMS</h3>
                 <p class="product-desc">BASIC Human Resource Information System with Payroll and Time-Keeping System. An all-in-one suite tracking personnel metrics, multi-tier biometric shift scheduling, compensation rules, and automated tax calculations.</p>
@@ -126,8 +305,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 3: B-AIMS -->
             <div class="product-card" data-product="B-AIMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,15.39L8.24,11.63L9.66,10.22L12,12.56L14.34,10.22L15.76,11.63L12,15.39M19,3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/></svg>
@@ -141,178 +318,20 @@
                 <div class="features-dropdown">
                     <ul>
                         <li>📊 Double-Entry General Ledger Integration</li>
-                        <br>
                         <li>📦 Real-Time Stock Tracking & Reorder Point Alerts</li>
                         <li>📝 Asset Value, Depreciation & Profit-Loss Calculations</li>
                     </ul>
                 </div>
             </div>
-
-
-            <!-- Product Card 4: POS-IMS -->
-            <div class="product-card" data-product="POS-IMS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V7H19V19M6,9H10V11H6V9M6,13H10V15H6V13M12,9H18V15H12V9Z"/></svg>
-                </div>
-                <h3 class="product-name">POS-IMS</h3>
-                <p class="product-desc">Point of Sale with Inventory Management System. Designed for front-facing checkout configurations, handling high-volume standard sales operations, immediate digital invoice generation, and material cost depletion parameters.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>⚡ High-Velocity Point-of-Sale Checkout Interface</li>
-                        <li>🧾 Instant Invoicing, Tax Categorization & Receipt Logging</li>
-                        <li>🔄 Dynamic Multi-Branch Inventory Level Adjustments</li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <!-- Product Card 5: B-AS -->
-            <div class="product-card" data-product="B-AS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                </div>
-                <h3 class="product-name">B-AS</h3>
-                <p class="product-desc">BASIC Accounting System. Standalone organizational financial ledger module built specifically to audit double-entry journals, balance configurations, and standard corporate voucher streams securely.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>📑 Core General Ledger & Balance Sheet Compilation</li>
-                        <li>💸 Account Payables & Receivables Tracking Matrix</li>
-                        <li>🔍 Standard Corporate Voucher Validation Trails</li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <!-- Product Card 6: B-IMS -->
-            <div class="product-card" data-product="B-IMS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 6.07V13H20V7.07L12 11.5L4 7.07V16.93L11 20.82V23L3 18.56V5.44L12 10.44L21 5.44M12 2L22 7.56L12 13.11L2 7.56L12 2M17 15V18H14V20H17V23H19V20H22V18H19V15H17Z"/></svg>
-                </div>
-                <h3 class="product-name">B-IMS</h3>
-                <p class="product-desc">BASIC Inventory Management System. A standalone deployment asset engineered for tracking dynamic stock quantities, reorder points, warehouse storage alerts, and catalog allocations.</p>
-                <br>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>📦 Real-Time SKU Stock Level & Asset Location Controls</li>
-                        <li>⚠️ Automated Low-Stock Alert & Reorder Parameters</li>
-                        <li>📈 Item Cost Profiling and Category Group Management</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Product Card 7: B-VS -->
-            <div class="product-card" data-product="B-VS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg>
-                </div>
-                <h3 class="product-name">B-VS</h3>
-                <p class="product-desc">BASIC Voting System. Secure client-side polling architectures designed for institutional elections, tracking unique member tokens, multi-tier candidacies, and tamper-resistant total aggregations.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>🛡️ Secure, Tamper-Resistant Digital Ballot Mechanisms</li>
-                        <li>🔑 Unique Token-Based Voter Authentication</li>
-                        <br>
-                        <li>📊 Instant Poll Results aggregation and Reporting Charts</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Product Card 8: B-MIS -->
-            <div class="product-card" data-product="B-MIS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 15.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm1.5-4.5c-.83 0-1.5-.67-1.5-1.5v-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3c0 .83-.67 1.5-1.5 1.5z"/></svg>
-                </div>
-                <h3 class="product-name">B-MIS</h3>
-                <p class="product-desc">BASIC Micro-Insurance System. Specialized sub-ledger environment tailored to manage individual contributor risk pools, premium scheduling routines, benefit logs, and payout balances.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>📋 Contributor Premium Contribution Tracking Ledger</li>
-                        <li>📉 Risk Pool Capital Valuations and Allocations</li>
-                        <li>💸 Automated Benefit Processing and Claim Verification</li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <!-- Product Card 9: B-WS -->
-            <div class="product-card" data-product="B-WS">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <h3 class="product-name">B-WS</h3>
-                <p class="product-desc">BASIC Warehousing System. Specialized operational control system covering high-capacity pallet tracking layouts, itemized zone allocations, delivery manifesting, and fulfillment workflows.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>📍 Bin & Pallet Location Zone Tracking Maps</li>
-                        <br>
-                        <li>🚚 Logistic Manifest Compilation & Batch Pick Lists</li>
-                        <li>🔄 Structural Stock Reconciliations and Auditing</li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <!-- Product Card 10: WEB APP -->
-            <div class="product-card" data-product="WEB APP">
-                <div class="product-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.11-.9-2-2-2m0 14H4V8h16v10z"/></svg>
-                </div>
-                <h3 class="product-name">WEB APP</h3>
-                <p class="product-desc">Website Application development frameworks. Tailored full-stack static and dynamic online portals built natively to scale secure customer engagement platforms for digital operations.</p>
-                <div class="product-actions">
-                    <button class="btn-card-action btn-features">Features</button>
-                    <button class="btn-card-action btn-inquiry">Inquiry</button>
-                </div>
-                <div class="features-dropdown">
-                    <ul>
-                        <li>🌐 High-Performance Responsive Full-Stack Core Layouts</li>
-                        <li>🔒 Embedded Client Authentication and API Bridges</li>
-                        <li>⚡ Cloud Ecosystem Deployments Engineered to Scale</li>
-                    </ul>
-                </div>
-            </div>
-
-
         </div>
-    </section>
+    </main>
 
-
-    <!-- ========================================== -->
-    <!-- FOOTER AREA                                -->
-    <!-- ========================================== -->
     <footer>
         <div class="footer-logo-block">
             <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                 <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
-                <div class="nav-brand-text"></div>
             </div>
         </div>
-
-
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -324,17 +343,137 @@
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
             </a>
         </div>
-
-
-        <p class="footer-copyright">&copy; 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
+        <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
 
+    <div class="chatbot-launcher" id="chatbot-launcher" title="Chat with BMS Support">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2A10 10 0 0 0 2 12c0 2.34.8 4.5 2.14 6.22L3 21l2.89-1.12c1.7.96 3.66 1.5 5.75 1.5a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+        </svg>
+    </div>
 
-    <!-- Interactive UI Message Center Toast Box -->
-    <div class="toast-message" id="toast">Action completed successfully!</div>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <h4>BMS Support Architect</h4>
+                <span>Always Online</span>
+            </div>
+            <button class="chat-close-btn" id="chat-close-btn" title="Minimize Chat">×</button>
+        </div>
+        <div class="chat-messages-container" id="chat-messages-container">
+            <div class="chat-msg system">
+                Hello! Welcome to Brothers Megawork Systems Corporation. How can I assist you with our enterprise solutions today?
+            </div>
+        </div>
+        <div class="chat-quick-replies-tray" id="chat-quick-replies-tray">
+            <button class="quick-reply-btn" data-reply="Products">Products Spec</button>
+            <button class="quick-reply-btn" data-reply="Contact">Contact Sales</button>
+            <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
+        </div>
+        <form class="chat-input-bar" id="chat-input-form">
+            <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
+            <button type="submit" class="chat-send-submit" title="Send Message">
+                <svg viewBox="0 0 24 24"><path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/></svg>
+            </button>
+        </form>
+    </div>
 
-
-    <!-- Reusing your unified JavaScript controller logic -->
     <script src="script.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const launcher = document.getElementById("chatbot-launcher");
+        const windowBox = document.getElementById("chatbot-window");
+        const closeBtn = document.getElementById("chat-close-btn");
+        const inputForm = document.getElementById("chat-input-form");
+        const inputField = document.getElementById("chat-input-field");
+        const messagesContainer = document.getElementById("chat-messages-container");
+        const quickTray = document.getElementById("chat-quick-replies-tray");
+
+        if (launcher && windowBox && closeBtn) {
+            launcher.addEventListener("click", () => {
+                windowBox.classList.toggle("open");
+                scrollToLatestMessage();
+            });
+            closeBtn.addEventListener("click", () => {
+                windowBox.classList.remove("open");
+            });
+        }
+
+        function scrollToLatestMessage() {
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        function appendMessage(text, senderType) {
+            if (!messagesContainer) return;
+            const bubble = document.createElement("div");
+            bubble.className = `chat-msg ${senderType}`;
+            bubble.textContent = text;
+            messagesContainer.appendChild(bubble);
+            scrollToLatestMessage();
+        }
+
+        async function fetchLiveAIResponse(userPrompt) {
+            const loadingBubble = document.createElement("div");
+            loadingBubble.className = "chat-msg system";
+            loadingBubble.textContent = "Architect is typing...";
+            messagesContainer.appendChild(loadingBubble);
+            scrollToLatestMessage();
+
+            try {
+                const response = await fetch('https://bms-chatbot-backend.onrender.com/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userPrompt })
+                });
+
+                const data = await response.json();
+                loadingBubble.remove();
+
+                if (data.reply) {
+                    appendMessage(data.reply, "system");
+                } else {
+                    appendMessage("I couldn't process that reply. Please try again.", "system");
+                }
+            } catch (error) {
+                console.error("Proxy failure: ", error);
+                loadingBubble.remove();
+                appendMessage("The support system is taking longer than usual to respond. Please try again shortly.", "system");
+            }
+        }
+
+        if (inputForm) {
+            inputForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const text = inputField.value.trim();
+                if (!text) return;
+
+                appendMessage(text, "user");
+                inputField.value = "";
+                fetchLiveAIResponse(text);
+            });
+        }
+
+        if (quickTray) {
+            quickTray.querySelectorAll(".quick-reply-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const replyVal = btn.getAttribute("data-reply");
+                    if (replyVal === "Products") {
+                        appendMessage("Tell me about your software products.", "user");
+                        fetchLiveAIResponse("Tell me about your software products.");
+                    } else if (replyVal === "Contact") {
+                        appendMessage("How can I contact sales for an inquiry?", "user");
+                        fetchLiveAIResponse("How can I contact sales for an inquiry?");
+                    } else if (replyVal === "Portal") {
+                        appendMessage("Where is the client login portal?", "user");
+                        fetchLiveAIResponse("Where is the client login portal?");
+                    }
+                });
+            });
+        }
+    });
+    </script>
 </body>
 </html>
