@@ -343,7 +343,7 @@ header.scrolled {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    align-items: stretch;
+    align-items: stretch; /* Forces all elements in a single row to share a uniform maximum height threshold */
 }
 
 .product-card {
@@ -356,7 +356,7 @@ header.scrolled {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100%; /* Dynamically fits the box to match the height of the tallest expanded item in the row */
 }
 
 .product-card::before {
@@ -409,7 +409,7 @@ header.scrolled {
     color: var(--text-gray);
     font-size: 15px;
     line-height: 1.6;
-    flex-grow: 1;
+    flex-grow: 1; /* Automatically absorbs remaining dead space to cleanly pin the buttons to the bottom row */
     margin-bottom: 20px;
 }
 
@@ -417,7 +417,7 @@ header.scrolled {
     display: flex;
     gap: 12px;
     padding-top: 15px;
-    margin-top: auto;
+    margin-top: auto; /* Guarantees layout tracking remains perfectly aligned across unexpanded items */
 }
 
 .btn-card-action {
@@ -1105,6 +1105,7 @@ footer {
     padding: 30px 0;
 }
 
+/* Linear infinitely loops leftward */
 .client-slider-track {
     display: flex;
     gap: 30px;
@@ -1112,15 +1113,17 @@ footer {
     animation: scrollLeft 50s linear infinite;
 }
 
+/* Pause the auto slider when users mouse over cards */
 .client-slider-container:hover .client-slider-track {
     animation-play-state: paused;
 }
 
 .client-slide {
     flex: 0 0 300px; 
-    display: flex; 
+    display: flex; /* Ensures child elements can reliably take full height */
 }
 
+/* THE MISSING KEYFRAME ANIMATION */
 @keyframes scrollLeft {
     0% {
         transform: translateX(0);
@@ -1130,36 +1133,40 @@ footer {
     }
 }
 
+/* Overrides global cards to force absolute uniformity */
 .client-slide .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between; /* Evenly distributes logo top, text bottom */
     text-align: center;
     padding: 24px 16px; 
-    width: 100%; 
-    height: 220px !important; 
+    width: 100%; /* Forces card to strictly match the 300px slide width */
+    height: 220px !important; /* Bumped slightly to comfortably house 125px logo + text */
     min-height: 220px !important; 
     box-sizing: border-box;
 }
 
+/* Uniform, centered box specifically for holding the image */
 .client-logo-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 125px; 
+    height: 125px; /* Matches the target image height */
     margin-bottom: 12px;
 }
 
+/* Enlarged logo styling */
 .client-logo {
     width: 100%;
-    max-width: 140px; 
+    max-width: 140px; /* Controls max width so it doesn't distort */
     height: 100%;
     object-fit: contain;
     display: block;
 }
 
+/* Forces the caption text to stack perfectly underneath */
 .client-slide .product-card h4, 
 .client-slide .product-card p,
 .client-slide .product-card span {
@@ -1167,9 +1174,8 @@ footer {
     font-weight: 600;
     margin: 0;
     color: var(--text-white);
-    white-space: nowrap; 
+    white-space: nowrap; /* Prevents text wrapping from changing box shapes */
 }
-
 /* ==========================================================================
    9. CUSTOM INTEGRATED CHATBOT INTERACTION MATRIX
    ========================================================================== */
@@ -1181,6 +1187,7 @@ footer {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+/* Floating Action Launcher Button CSS */
 .chatbot-launcher-btn {
     width: 60px;
     height: 60px;
@@ -1212,6 +1219,7 @@ footer {
     display: none;
 }
 
+/* Main Portal Window Architecture Box */
 .chatbot-portal-card {
     position: absolute;
     bottom: 75px;
@@ -1237,6 +1245,7 @@ footer {
     pointer-events: auto;
 }
 
+/* Header Interface Panel */
 .chatbot-header {
     background-color: #0c0f14;
     padding: 16px 20px;
@@ -1289,6 +1298,7 @@ footer {
     color: var(--text-gray);
 }
 
+/* Message Box Stream Display Screen Area */
 .chatbot-message-stream {
     flex-grow: 1;
     padding: 20px;
@@ -1299,19 +1309,18 @@ footer {
     background-color: #0d1117;
 }
 
+/* Chat Bubbles Component Styling Modules */
 .chat-message {
     display: flex;
     max-width: 82%;
 }
 
-/* 🚀 FIX INTEGRATION: Renders explicit paragraph loops and spacing rules */
 .chat-message .message-bubble {
     padding: 11px 15px;
     border-radius: 12px;
     font-size: 13.5px;
     line-height: 1.5;
     word-break: break-word;
-    white-space: pre-line; 
 }
 
 .chat-message.system-msg {
@@ -1335,6 +1344,7 @@ footer {
     border-top-right-radius: 2px;
 }
 
+/* Instant Navigation Quick-Reply Controls */
 .chatbot-quick-replies {
     padding: 8px 16px;
     display: flex;
@@ -1366,6 +1376,7 @@ footer {
     border-color: var(--brand-blue);
 }
 
+/* Input Form Console Layout Components */
 .chatbot-input-console {
     display: flex;
     align-items: center;
@@ -1410,6 +1421,7 @@ footer {
     height: 20px;
 }
 
+/* Adaptive Media Optimization Boundaries */
 @media (max-width: 480px) {
     .chatbot-widget-container {
         bottom: 16px;
