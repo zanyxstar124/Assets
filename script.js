@@ -241,7 +241,7 @@ window.scrollToSec = function(sectionId) {
 };
 
 // ==========================================
-// 8. DYNAMIC CLIENT CAROUSEL AUTO-DUPLICATION
+// 10. DYNAMIC CLIENT CAROUSEL AUTO-DUPLICATION
 // ==========================================
 const sliderTrack = document.querySelector('.client-slider-track');
 if (sliderTrack) {
@@ -252,3 +252,93 @@ if (sliderTrack) {
         sliderTrack.appendChild(clone);
     });
 }
+
+// ==========================================
+    // 11. INTEGRATED MODULAR ECOSYSTEM AI CHATBOT CONTROLLER
+    // ==========================================
+    const launcher = document.getElementById("chatbotLauncher");
+    const portal = document.getElementById("chatbotPortal");
+    const inputConsole = document.getElementById("chatbotInputConsole");
+    const inputField = document.getElementById("chatbotInputField");
+    const stream = document.getElementById("chatbotMessageStream");
+    const quickReplies = document.getElementById("chatbotQuickReplies");
+
+    if (launcher && portal && inputConsole && inputField && stream) {
+        const iconOpen = launcher.querySelector(".chat-icon-open");
+        const iconClose = launcher.querySelector(".chat-icon-close");
+
+        // Action 1: Toggle Portal Modal Window State Bounds
+        launcher.addEventListener("click", () => {
+            const isOpen = portal.classList.toggle("open");
+            if (isOpen) {
+                iconOpen.classList.add("hidden");
+                iconClose.classList.remove("hidden");
+                inputField.focus();
+            } else {
+                iconOpen.classList.remove("hidden");
+                iconClose.classList.add("hidden");
+            }
+        });
+
+        // Action 2: Core Append Message Logic String
+        function appendMessage(text, side) {
+            const messageWrapper = document.createElement("div");
+            messageWrapper.classList.add("chat-message", side === "user" ? "user-msg" : "system-msg");
+            
+            const bubble = document.createElement("div");
+            bubble.classList.add("message-bubble");
+            bubble.innerText = text;
+            
+            messageWrapper.appendChild(bubble);
+            stream.appendChild(messageWrapper);
+            
+            // Instantly fluid scan to bottom view limits
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        // Action 3: Automated Logic Engine Core System Mock
+        function processAutomatedReply(userInput) {
+            const query = userInput.toLowerCase();
+            setTimeout(() => {
+                if (query.includes("product") || query.includes("bcsas") || query.includes("hris") || query.includes("aims")) {
+                    appendMessage("Our primary suites are:\n• BCSAS (Credit & Savings Ledger Utilities)\n• B-HRIS-PTMS (Human Resource, Biometrics & Payroll Engine)\n• B-AIMS (Accounting & Inventory Supply Management).\n\nWould you like me to take you to the Products page?", "system");
+                } else if (query.includes("contact") || query.includes("consult") || query.includes("inquiry")) {
+                    appendMessage("You can submit a formal technical request directly on our Consultation Form located at the footer of the home page, or drop an inquiry email to brothersmsc.sales@gmail.com.", "system");
+                } else if (query.includes("portal") || query.includes("login")) {
+                    appendMessage("Authorized enterprise personnel can securely log in via the Client Portal button located on the topmost corner of the global navigation menu header navigation.", "system");
+                } else {
+                    appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been routed to our technical consultants. Feel free to explore our product lines using the quick layout buttons below!", "system");
+                }
+            }, 600);
+        }
+
+        // Action 4: Form Submit Trigger Bounds Intercept
+        inputConsole.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const text = inputField.value.trim();
+            if (!text) return;
+
+            appendMessage(text, "user");
+            inputField.value = "";
+            processAutomatedReply(text);
+        });
+
+        // Action 5: Quick Preset Automation Setup Click Event Triggers
+        if (quickReplies) {
+            quickReplies.querySelectorAll(".quick-reply-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const replyVal = btn.getAttribute("data-reply");
+                    if (replyVal === "Products") {
+                        appendMessage("Tell me about your software products.", "user");
+                        processAutomatedReply("products");
+                    } else if (replyVal === "Contact") {
+                        appendMessage("How can I contact sales for an inquiry?", "user");
+                        processAutomatedReply("contact");
+                    } else if (replyVal === "Portal") {
+                        appendMessage("Where is the client login portal?", "user");
+                        processAutomatedReply("portal");
+                    }
+                });
+            });
+        }
+    }

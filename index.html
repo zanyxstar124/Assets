@@ -34,7 +34,6 @@
             </a>  
 
             <!-- Desktop Menu Structure inside index.html -->
-             
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item active" data-sec="home"><a href="#home">Home</a></li>
                 <li class="nav-item" data-sec="products"><a href="products-page.html">Products</a></li>
@@ -52,7 +51,6 @@
             <div class="nav-actions">
 
                 <!-- Phone / Action -->
-
             <div class="nav-actions">
 
                 <a href="#contact" class="nav-icon" id="call-action-btn" title="Call Us">
@@ -69,7 +67,6 @@
 
 
                 <!-- Mobile Menu Hamburger Icon -->
-
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -122,11 +119,12 @@
     <!-- PRODUCTS SECTION                           -->
     <!-- ========================================== -->
     <section id="products" class="section-container">
+        
         <div class="section-header">
             <span class="section-tag">Premium Innovation</span>
             <h2 class="section-title">Our Key Products & Services</h2>
             <div class="section-divider"></div>
-        </div>
+
 
         <div class="products-grid">
            
@@ -197,7 +195,6 @@
                         <li>📊 Double-Entry General Ledger Integration</li>
                         <li>📦 Real-Time Stock Tracking & Reorder Point Alerts</li>
                         <li>📝 Asset Value, Depreciation & Profit-Loss Calculations</li>
-                        <br>
                     </ul>
                 </div>
             </div>
@@ -210,11 +207,13 @@
     <!-- ========================================== -->
     <!-- CLIENTS SECTION                            -->
     <!-- ========================================== -->
-<section id="clients" class="section-container">
+
+    <section id="clients" class="section-container">
         <div class="section-header">
             <span class="section-tag">Enterprise Ecosystem</span>
             <h2 class="section-title">Our Valued Clients</h2>
-        
+           
+  
         <!-- The viewport container that crops the overflow -->
         <div class="client-slider-container">
             <!-- The moving track -->
@@ -299,31 +298,7 @@
         </div>
     </section>
 
-
-    <!-- ========================================== -->
-    <!-- ABOUT US SECTION                           -->
-    <!-- ========================================== -->
-    <section id="about" class="contact-section">
-        <div class="section-container">
-            <div class="about-split">
-                <div class="about-image-container">
-                    <img class="about-image" src="about1.jpg" alt="BMS Team Collaboration">
-                    <div class="about-image-overlay"></div>
-                </div>
-
-                <div class="about-text">
-                    <span class="section-tag">Who We Are</span>
-                    <h3 class="section-title">BROTHERS MEGAWORK SYSTEMS</h3>
-                    <div class="section-divider" style="margin: 15px 0 25px 0;"></div>
-                    <p>At <span class="highlight-accent">Brothers Megawork Systems Corporation</span>, we bridge the gap between technical complexity and business growth. Founded on solid engineering principals, we provide robust, high-performance systems integrated natively into your workflows.</p>
-                    <p>Our dedicated team works around the clock keeping your networks, customized business software, and enterprise resources running efficiently, safely, and infinitely scalable.</p>
-                    <button class="btn btn-primary" onclick="scrollToSec('contact')" style="margin-top: 15px;">Discover Partnership</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
+    
     <!-- ========================================== -->
     <!-- CONTACT SECTION                            -->
     <!-- ========================================== -->
@@ -463,5 +438,139 @@
     <div class="toast-message" id="toast">Action completed successfully!</div>
 
     <script src="script.js"></script>
+
+    <div class="chatbot-widget-container">
+    <button class="chatbot-launcher-btn" id="chatbotLauncher" aria-label="Open Chat Support">
+        <svg class="chat-icon-open" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2m-2 12H6v-2h12v2m0-3H6V9h12v2m0-3H6V6h12v2Z"/>
+        </svg>
+        <svg class="chat-icon-close hidden" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/>
+        </svg>
+    </button>
+
+    <div class="chatbot-portal-card" id="chatbotPortal">
+        <div class="chatbot-header">
+            <div class="chatbot-profile-info">
+                <div class="chatbot-avatar-indicator">
+                    <img src="bmslogo.png" alt="BMS Assistant" onerror="this.style.display='none'">
+                    <span class="status-dot-pulse"></span>
+                </div>
+                <div>
+                    <h4 class="chatbot-core-title">BMS Assistant</h4>
+                    <p class="chatbot-core-status">Online • Ready to Help</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chatbot-message-stream" id="chatbotMessageStream">
+            <div class="chat-message system-msg">
+                <div class="message-bubble">
+                    Welcome to Brothers Megawork Systems Corporation! 🚀 How can I help you navigate our Enterprise Core solutions today?
+                </div>
+            </div>
+        </div>
+
+        <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+            <button class="quick-reply-btn" data-reply="Products">Explore Products</button>
+            <button class="quick-reply-btn" data-reply="Contact">Get Consultation</button>
+            <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
+        </div>
+
+        <form class="chatbot-input-console" id="chatbotInputConsole">
+            <input type="text" id="chatbotInputField" placeholder="Type a message..." autocomplete="off" required>
+            <button type="submit" class="chatbot-send-btn" aria-label="Send Message">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const launcher = document.getElementById("chatbotLauncher");
+    const portal = document.getElementById("chatbotPortal");
+    const inputConsole = document.getElementById("chatbotInputConsole");
+    const inputField = document.getElementById("chatbotInputField");
+    const stream = document.getElementById("chatbotMessageStream");
+    const quickReplies = document.getElementById("chatbotQuickReplies");
+
+    if (launcher && portal && inputConsole && inputField && stream) {
+        const iconOpen = launcher.querySelector(".chat-icon-open");
+        const iconClose = launcher.querySelector(".chat-icon-close");
+
+        // Toggle Open/Closed View Layouts
+        launcher.addEventListener("click", () => {
+            const isOpen = portal.classList.toggle("open");
+            if (isOpen) {
+                iconOpen.classList.add("hidden");
+                iconClose.classList.remove("hidden");
+                inputField.focus();
+            } else {
+                iconOpen.classList.remove("hidden");
+                iconClose.classList.add("hidden");
+            }
+        });
+
+        function appendMessage(text, side) {
+            const messageWrapper = document.createElement("div");
+            messageWrapper.classList.add("chat-message", side === "user" ? "user-msg" : "system-msg");
+            
+            const bubble = document.createElement("div");
+            bubble.classList.add("message-bubble");
+            bubble.innerText = text;
+            
+            messageWrapper.appendChild(bubble);
+            stream.appendChild(messageWrapper);
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function processAutomatedReply(userInput) {
+            const query = userInput.toLowerCase();
+            setTimeout(() => {
+                if (query.includes("product") || query.includes("bcsas") || query.includes("hris") || query.includes("aims")) {
+                    appendMessage("Our primary suites are:\n• BCSAS (Credit & Savings Ledger Utilities)\n• B-HRIS-PTMS (Human Resource, Biometrics & Payroll Engine)\n• B-AIMS (Accounting & Inventory Supply Management).\n\nWould you like me to take you to the Products page?", "system");
+                } else if (query.includes("contact") || query.includes("consult") || query.includes("inquiry")) {
+                    appendMessage("You can submit a formal technical request directly on our Consultation Form located at the footer of the home page, or drop an inquiry email to brothersmsc.sales@gmail.com.", "system");
+                } else if (query.includes("portal") || query.includes("login")) {
+                    appendMessage("Authorized enterprise personnel can securely log in via the Client Portal button located on the topmost corner of the global navigation menu header navigation.", "system");
+                } else {
+                    appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been routed to our technical consultants. Feel free to explore our product lines using the quick layout buttons below!", "system");
+                }
+            }, 600);
+        }
+
+        inputConsole.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const text = inputField.value.trim();
+            if (!text) return;
+
+            appendMessage(text, "user");
+            inputField.value = "";
+            processAutomatedReply(text);
+        });
+
+        if (quickReplies) {
+            quickReplies.querySelectorAll(".quick-reply-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const replyVal = btn.getAttribute("data-reply");
+                    if (replyVal === "Products") {
+                        appendMessage("Tell me about your software products.", "user");
+                        processAutomatedReply("products");
+                    } else if (replyVal === "Contact") {
+                        appendMessage("How can I contact sales for an inquiry?", "user");
+                        processAutomatedReply("contact");
+                    } else if (replyVal === "Portal") {
+                        appendMessage("Where is the client login portal?", "user");
+                        processAutomatedReply("portal");
+                    }
+                });
+            });
+        }
+    }
+});
+</script>
 </body>
 </html>

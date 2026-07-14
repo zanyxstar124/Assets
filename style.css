@@ -1095,9 +1095,9 @@ footer {
     }
 }
 
-/* ==========================================================================
-   INFINITE AUTOMATIC CLIENT SLIDER (MARQUEE EFFECT)
-   ========================================================================== */
+/* =====================================================
+   INFINITE AUTOMATIC CLIENT SLIDER (FIXED & EVEN)
+   ===================================================== */
 .client-slider-container {
     overflow: hidden;
     width: 100%;
@@ -1109,17 +1109,18 @@ footer {
 .client-slider-track {
     display: flex;
     gap: 30px;
-    width: max-content; /* Dynamically sizes to fit all original + cloned slides */
-    animation: scrollLeft 80s linear infinite;
+    width: max-content; 
+    animation: scrollLeft 50s linear infinite;
 }
 
-/* Pause the auto slider when users mouse over cards to read features */
+/* Pause the auto slider when users mouse over cards */
 .client-slider-container:hover .client-slider-track {
     animation-play-state: paused;
 }
 
 .client-slide {
-    flex: 0 0 300px; /* Gives each client card a stable, fixed width while sliding */
+    flex: 0 0 300px; 
+    display: flex; /* Ensures child elements can reliably take full height */
 }
 
 /* THE MISSING KEYFRAME ANIMATION */
@@ -1128,28 +1129,306 @@ footer {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%); /* Moves exactly halfway (hiding the original set, showing the clone set) */
+        transform: translateX(-50%); 
     }
 }
 
-/* Overrides your global text-heavy product-card heights */
+/* Overrides global cards to force absolute uniformity */
 .client-slide .product-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Evenly distributes logo top, text bottom */
     text-align: center;
-    padding: 15px; /* Slightly tighter padding to give the logo more room */
-    height: 180px !important; 
-    min-height: auto !important; 
+    padding: 24px 16px; 
+    width: 100%; /* Forces card to strictly match the 300px slide width */
+    height: 220px !important; /* Bumped slightly to comfortably house 125px logo + text */
+    min-height: 220px !important; 
+    box-sizing: border-box;
+}
+
+/* Uniform, centered box specifically for holding the image */
+.client-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 125px; /* Matches the target image height */
+    margin-bottom: 12px;
 }
 
 /* Enlarged logo styling */
 .client-logo {
-    width: auto;
-    max-width: 120%; /* Allows the image to span wider across the box */
-    height: 125px; /* Increased from 65px to make the logo significantly larger */
+    width: 100%;
+    max-width: 140px; /* Controls max width so it doesn't distort */
+    height: 100%;
     object-fit: contain;
-    margin-bottom: 6px; /* Reduced to balance the larger logo size inside the box */
     display: block;
+}
+
+/* Forces the caption text to stack perfectly underneath */
+.client-slide .product-card h4, 
+.client-slide .product-card p,
+.client-slide .product-card span {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-white);
+    white-space: nowrap; /* Prevents text wrapping from changing box shapes */
+}
+/* ==========================================================================
+   9. CUSTOM INTEGRATED CHATBOT INTERACTION MATRIX
+   ========================================================================== */
+.chatbot-widget-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Floating Action Launcher Button CSS */
+.chatbot-launcher-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--brand-blue);
+    color: var(--text-white);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0, 118, 223, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.chatbot-launcher-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    background-color: var(--brand-blue-hover);
+    box-shadow: 0 8px 28px rgba(0, 118, 223, 0.5);
+}
+
+.chatbot-launcher-btn svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.3s ease;
+}
+
+.chatbot-launcher-btn .hidden {
+    display: none;
+}
+
+/* Main Portal Window Architecture Box */
+.chatbot-portal-card {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 360px;
+    height: 500px;
+    background-color: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chatbot-portal-card.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Header Interface Panel */
+.chatbot-header {
+    background-color: #0c0f14;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chatbot-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chatbot-avatar-indicator {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0, 118, 223, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 118, 223, 0.2);
+}
+
+.chatbot-avatar-indicator img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.status-dot-pulse {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border: 2px solid var(--bg-card);
+    border-radius: 50%;
+}
+
+.chatbot-core-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.chatbot-core-status {
+    font-size: 11px;
+    color: var(--text-gray);
+}
+
+/* Message Box Stream Display Screen Area */
+.chatbot-message-stream {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background-color: #0d1117;
+}
+
+/* Chat Bubbles Component Styling Modules */
+.chat-message {
+    display: flex;
+    max-width: 82%;
+}
+
+.chat-message .message-bubble {
+    padding: 11px 15px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.chat-message.system-msg {
+    align-self: flex-start;
+}
+
+.chat-message.system-msg .message-bubble {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #e2e8f0;
+    border-top-left-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.chat-message.user-msg {
+    align-self: flex-end;
+}
+
+.chat-message.user-msg .message-bubble {
+    background-color: var(--brand-blue);
+    color: var(--text-white);
+    border-top-right-radius: 2px;
+}
+
+/* Instant Navigation Quick-Reply Controls */
+.chatbot-quick-replies {
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    background-color: #0d1117;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    scrollbar-width: none;
+}
+.chatbot-quick-replies::-webkit-scrollbar {
+    display: none;
+}
+
+.quick-reply-btn {
+    padding: 6px 12px;
+    font-size: 11.5px;
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--brand-blue);
+    border: 1px solid rgba(0, 118, 223, 0.3);
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.quick-reply-btn:hover {
+    background-color: rgba(0, 118, 223, 0.1);
+    border-color: var(--brand-blue);
+}
+
+/* Input Form Console Layout Components */
+.chatbot-input-console {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #0c0f14;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chatbot-input-console input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-white);
+    font-size: 13.5px;
+    padding: 8px 0;
+    outline: none;
+}
+
+.chatbot-input-console input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.chatbot-send-btn {
+    background: transparent;
+    border: none;
+    color: var(--brand-blue);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.chatbot-send-btn:hover {
+    color: var(--brand-blue-hover);
+    transform: scale(1.1);
+}
+
+.chatbot-send-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Adaptive Media Optimization Boundaries */
+@media (max-width: 480px) {
+    .chatbot-widget-container {
+        bottom: 16px;
+        right: 16px;
+    }
+    .chatbot-portal-card {
+        width: calc(100vw - 32px);
+        height: 440px;
+    }
 }
