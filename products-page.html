@@ -5,36 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products & Services | BMS</title>
    
-    <!--Website Icon (Fixed paths for GitHub Pages subfolder hosting)-->
     <link rel="icon" type="image/png" sizes="32x32" href="bmslogo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="bmslogo.png">
     <link rel="icon" sizes="180x180" href="bmslogo.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
    
-    <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
-    <!-- Reusing your exact corporate stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
-    <!-- ========================================== -->
-    <!-- HEADER / NAVIGATION                        -->
-    <!-- ========================================== -->
-    <header id="main-header" class="scrolled"> <!-- Kept 'scrolled' class forced so background is solid on this subpage -->
-        <div class="nav-container">
-            <!-- Points back to the main homepage root inside the same tab -->
+    <header id="main-header" class="scrolled"> <div class="nav-container">
             <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>  
 
-
-            <!-- Nav links bounce back to the main page anchors in the same tab -->
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item" data-sec="home"><a href="index.html#home">Home</a></li>
                 <li class="nav-item active" data-sec="products"><a href="products-page.html">Products</a></li>
@@ -43,14 +31,10 @@
                 <li class="nav-item" data-sec="contact"><a href="index.html#contact">Contact</a></li>
             </ul>
 
-
-            <!-- Navigation Action Icons -->
             <div class="nav-actions">
-                <!-- INTEGRATED: Passing parameter string query to index root for auto-scroll mapping -->
                 <a href="index.html?scroll=contact" class="nav-icon" id="call-action-btn" title="Call Us">
                     <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.93 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
                 </a>
-                <!-- INTEGRATED: Replaced tag wrapper with native anchor tracking linked to corporate system domain -->
                 <a href="login.html" target="_self" class="nav-icon" id="profile-action-btn" title="Client Portal">
                     <svg viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
                 </a>
@@ -65,10 +49,6 @@
         </div>
     </header>
 
-
-    <!-- ========================================== -->
-    <!-- BREADCRUMB HERO TITLE                      -->
-    <!-- ========================================== -->
     <section class="section-container" style="padding-top: 140px; padding-bottom: 40px; text-align: center;">
         <span class="section-tag">Enterprise Catalog</span>
         <h1 class="section-title" style="font-size: 2.8rem;">Our Products & Deep Specs</h1>
@@ -78,14 +58,9 @@
         </p>
     </section>
 
-
-    <!-- ========================================== -->
-    <!-- EXPANDED PRODUCTS SHOWCASE DISPLAY         -->
-    <!-- ========================================== -->
     <section class="section-container" style="padding-top: 20px;">
         <div class="products-grid">
            
-            <!-- Product Card 1: BCSAS -->
             <div class="product-card" data-product="BCSAS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18H8V16H10V12H9V10H13V16H15V18H12Z"/></svg>
@@ -105,7 +80,6 @@
                 </div>
             </div>
 
-            <!-- Product Card 2: B-HRIS-PTMS -->
             <div class="product-card" data-product="B-HRIS-PTMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -127,8 +101,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 3: B-AIMS -->
             <div class="product-card" data-product="B-AIMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,15.39L8.24,11.63L9.66,10.22L12,12.56L14.34,10.22L15.76,11.63L12,15.39M19,3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/></svg>
@@ -149,8 +121,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 4: POS-IMS -->
             <div class="product-card" data-product="POS-IMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V7H19V19M6,9H10V11H6V9M6,13H10V15H6V13M12,9H18V15H12V9Z"/></svg>
@@ -170,15 +140,12 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 5: B-AS -->
             <div class="product-card" data-product="B-AS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                 </div>
                 <h3 class="product-name">B-AS</h3>
                 <p class="product-desc">BASIC Accounting System. Standalone organizational financial ledger module built specifically to audit double-entry journals, balance configurations, and standard corporate voucher streams securely.</p>
-                <br>
                 <div class="product-actions">
                     <button class="btn-card-action btn-features">Features</button>
                     <button class="btn-card-action btn-inquiry">Inquiry</button>
@@ -192,8 +159,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 6: B-IMS -->
             <div class="product-card" data-product="B-IMS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 6.07V13H20V7.07L12 11.5L4 7.07V16.93L11 20.82V23L3 18.56V5.44L12 10.44L21 5.44M12 2L22 7.56L12 13.11L2 7.56L12 2M17 15V18H14V20H17V23H19V20H22V18H19V15H17Z"/></svg>
@@ -214,7 +179,6 @@
                 </div>
             </div>
 
-            <!-- Product Card 7: B-VS -->
             <div class="product-card" data-product="B-VS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-8 14H7v-2h4v2zm4-4H7v-2h8v2zm0-4H7V7h8v2z"/></svg>
@@ -235,7 +199,6 @@
                 </div>
             </div>
 
-            <!-- Product Card 8: B-MIS -->
             <div class="product-card" data-product="B-MIS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 15.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5zm1.5-4.5c-.83 0-1.5-.67-1.5-1.5v-3c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v3c0 .83-.67 1.5-1.5 1.5z"/></svg>
@@ -255,8 +218,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 9: B-WS -->
             <div class="product-card" data-product="B-WS">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -277,8 +238,6 @@
                 </div>
             </div>
 
-
-            <!-- Product Card 10: WEB APP -->
             <div class="product-card" data-product="WEB APP">
                 <div class="product-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.11-.9-2-2-2m0 14H4V8h16v10z"/></svg>
@@ -297,15 +256,9 @@
                     </ul>
                 </div>
             </div>
-
-
         </div>
     </section>
 
-
-    <!-- ========================================== -->
-    <!-- FOOTER AREA                                -->
-    <!-- ========================================== -->
     <footer>
         <div class="footer-logo-block">
             <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
@@ -314,10 +267,9 @@
             </div>
         </div>
 
-
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68(1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             </a>
             <a href="#" id="smart-footer-email-link" class="social-icon" title="Email Us">
                 <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -327,16 +279,58 @@
             </a>
         </div>
 
-
-        <p class="footer-copyright">&copy; 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
+        <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
 
-
-    <!-- Interactive UI Message Center Toast Box -->
     <div class="toast-message" id="toast">Action completed successfully!</div>
 
+    <div class="chatbot-widget-container">
+        <button class="chatbot-launcher-btn" id="chatbotLauncher" aria-label="Open Chat Support">
+            <svg class="chat-icon-open" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2m-2 12H6v-2h12v2m0-3H6V9h12v2m0-3H6V6h12v2Z"/>
+            </svg>
+            <svg class="chat-icon-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/>
+            </svg>
+        </button>
 
-    <!-- Reusing your unified JavaScript controller logic -->
+        <div class="chatbot-portal-card" id="chatbotPortal">
+            <div class="chatbot-header">
+                <div class="chatbot-profile-info">
+                    <div class="chatbot-avatar-indicator">
+                        <img src="bmslogo.png" alt="BMS Assistant" onerror="this.style.display='none'">
+                        <span class="status-dot-pulse"></span>
+                    </div>
+                    <div>
+                        <h4 class="chatbot-core-title">BMS Assistant</h4>
+                        <p class="chatbot-core-status">Online • Ready to Help</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chatbot-message-stream" id="chatbotMessageStream">
+                <div class="chat-message system-msg">
+                    <div class="message-bubble">Welcome to Brothers Megawork Systems Corporation! 🚀 How can I help you navigate our Enterprise Core solutions today?</div>
+                </div>
+            </div>
+
+            <div class="chatbot-quick-replies" id="chatbotQuickReplies">
+                <button class="quick-reply-btn" data-reply="Products">Explore Products</button>
+                <button class="quick-reply-btn" data-reply="Contact">Get Consultation</button>
+                <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
+            </div>
+
+            <form class="chatbot-input-console" id="chatbotInputConsole">
+                <input type="text" id="chatbotInputField" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit" class="chatbot-send-btn" aria-label="Send Message">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
