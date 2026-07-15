@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkScroll() {
         if (!mainHeader) return;
 
+
         // Keep background solid if explicitly forced on standalone subpages
         if (mainHeader.classList.contains("scrolled") &&
             (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
@@ -24,11 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", checkScroll);
     checkScroll(); // Initial load check
 
+
     // ==========================================
     // 2. MOBILE HAMBURGER MENU TOGGLE
     // ==========================================
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
+
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
@@ -39,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menuToggle.setAttribute("aria-expanded", isOpen);
         });
 
+
         // Close menu automatically when a link is clicked (Mobile UX)
         document.querySelectorAll(".nav-item a").forEach(link => {
             link.addEventListener("click", () => {
@@ -47,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 3. CROSS-PAGE AUTO-SCROLL PARAMETER MAPPING
     // ==========================================
     const urlParams = new URLSearchParams(window.location.search);
     const scrollTarget = urlParams.get("scroll");
+
 
     if (scrollTarget) {
         // Wait briefly for elements to render completely before scanning layout dimensions
@@ -62,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
                 const offsetPosition = elementPosition - headerOffset;
 
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -70,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
+
     // ==========================================
     // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS (CRASH-PROOF)
     // ==========================================
@@ -77,10 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const featureBtn = card.querySelector(".btn-features");
         const dropdown = card.querySelector(".features-dropdown");
 
+
         // CRASH-PROOF GUARDRAIL: Only execute logic if both elements exist inside this specific card
         if (featureBtn && dropdown) {
             featureBtn.addEventListener("click", (e) => {
                 e.stopPropagation(); // Prevents grid layout events from clashing
+
 
                 // Toggle local target class state
                 const isOpen = dropdown.classList.toggle("open");
@@ -90,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
 
     // ==========================================
     // 5. INTERACTIVE INQUIRY REDIRECT ROUTING
@@ -101,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
            
             // Locate local contact form message text box instance
             const messageInput = document.getElementById("message");
+
 
             if (messageInput) {
                 // If on homepage, pre-fill text box and focus view
@@ -114,22 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     // ==========================================
     // 6. CONTACT CONSULTATION FORM VALIDATION & TOAST INTERACTIVES
     // ==========================================
     const consultationForm = document.getElementById("consultationForm");
     const toastBox = document.getElementById("toast");
 
+
     if (consultationForm && toastBox) {
         consultationForm.addEventListener("submit", (e) => {
             e.preventDefault(); // Suspend default browser reload sequences
+
 
             // Show confirmation system feedback toast notice
             toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
             toastBox.classList.add("show");
 
+
             // Clear input metrics securely
             consultationForm.reset();
+
 
             // Diminish tracking banner visibility automatically after time delay limits
             setTimeout(() => {
@@ -138,11 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK
     // ==========================================
     const businessEmail = "brothersmsc.sales@gmail.com";
     const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
+
 
     emailSelectors.forEach(selector => {
         const emailLink = document.querySelector(selector);
@@ -154,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+
     // ==========================================
     // 8. TOP BAR PHONE CALL ICON ANIMATION ROUTER
     // ==========================================
@@ -161,15 +181,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (callActionBtn) {
         callActionBtn.addEventListener("click", (e) => {
             const contactSection = document.getElementById("contact");
-            
+           
             // If the contact section exists right on the current page (Homepage)
             if (contactSection) {
                 e.preventDefault();
                 window.scrollToSec("contact");
-            } 
+            }
             // Otherwise, let the anchor redirect cleanly to index.html?scroll=contact on subpages
         });
     }
+
 
     // ==========================================
     // 9. LIVE NAVBAR SCROLL SPY & SUBPAGE MAPPER (RED LINE TRACKER)
@@ -177,9 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.querySelectorAll(".nav-menu .nav-item");
     const currentPath = window.location.pathname;
 
+
     // Check if the user is on a standalone subpage file
     const isProductsPage = currentPath.includes("products-page.html");
     const isClientsPage = currentPath.includes("Clients.html");
+
 
     if (isProductsPage || isClientsPage) {
         // Subpage Execution: Lock highlight line to the explicit active tab
@@ -196,19 +219,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const sectionIds = ["home", "products", "clients", "about", "contact"];
         const sections = sectionIds.map(id => document.getElementById(sectionId = id)).filter(el => el !== null);
 
+
         const observerOptions = {
             root: null,
             rootMargin: "-40% 0px -50% 0px", // Focus area set to center of display viewport
             threshold: 0
         };
 
+
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entries.some(e => e.isIntersecting)) { 
+                if (entries.some(e => e.isIntersecting)) {
                     // Process only if a transition state occurs
                     if (entry.isIntersecting) {
                         const activeId = entry.target.id;
-                        
+                       
                         navItems.forEach(item => {
                             if (item.getAttribute("data-sec") === activeId) {
                                 item.classList.add("active");
@@ -221,9 +246,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, observerOptions);
 
+
         sections.forEach(section => sectionObserver.observe(section));
     }
 });
+
 
 // Native globally scoped helper macro for standard interactive click events
 window.scrollToSec = function(sectionId) {
@@ -233,12 +260,14 @@ window.scrollToSec = function(sectionId) {
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
 
+
         window.scrollTo({
             top: offsetPosition,
             behavior: "smooth"
         });
     }
 };
+
 
 // ==========================================
 // 10. DYNAMIC CLIENT CAROUSEL AUTO-DUPLICATION
@@ -253,6 +282,7 @@ if (sliderTrack) {
     });
 }
 
+
 // ==========================================
     // 11. INTEGRATED MODULAR ECOSYSTEM AI CHATBOT CONTROLLER
     // ==========================================
@@ -263,9 +293,11 @@ if (sliderTrack) {
     const stream = document.getElementById("chatbotMessageStream");
     const quickReplies = document.getElementById("chatbotQuickReplies");
 
+
     if (launcher && portal && inputConsole && inputField && stream) {
         const iconOpen = launcher.querySelector(".chat-icon-open");
         const iconClose = launcher.querySelector(".chat-icon-close");
+
 
         // Action 1: Toggle Portal Modal Window State Bounds
         launcher.addEventListener("click", () => {
@@ -280,21 +312,23 @@ if (sliderTrack) {
             }
         });
 
+
         // Action 2: Core Append Message Logic String
         function appendMessage(text, side) {
             const messageWrapper = document.createElement("div");
             messageWrapper.classList.add("chat-message", side === "user" ? "user-msg" : "system-msg");
-            
+           
             const bubble = document.createElement("div");
             bubble.classList.add("message-bubble");
             bubble.innerText = text;
-            
+           
             messageWrapper.appendChild(bubble);
             stream.appendChild(messageWrapper);
-            
+           
             // Instantly fluid scan to bottom view limits
             stream.scrollTop = stream.scrollHeight;
         }
+
 
         // Action 3: Automated Logic Engine Core System Mock
         function processAutomatedReply(userInput) {
@@ -312,16 +346,19 @@ if (sliderTrack) {
             }, 600);
         }
 
+
         // Action 4: Form Submit Trigger Bounds Intercept
         inputConsole.addEventListener("submit", (e) => {
             e.preventDefault();
             const text = inputField.value.trim();
             if (!text) return;
 
+
             appendMessage(text, "user");
             inputField.value = "";
             processAutomatedReply(text);
         });
+
 
         // Action 5: Quick Preset Automation Setup Click Event Triggers
         if (quickReplies) {
