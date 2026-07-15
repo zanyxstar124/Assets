@@ -14,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,7 +32,6 @@
                 <li class="nav-item" data-sec="contact"><a href="index.html#contact">Contact</a></li>
             </ul>
 
-
             <div class="nav-actions">
 
                 <a href="index.html?scroll=contact" class="nav-icon" id="call-action-btn" title="Call Us">
@@ -47,7 +45,6 @@
                 </a>
             </div>
 
-
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -59,14 +56,12 @@
         </div>
     </header>
 
-
-<main style="padding-top: 120px; padding-bottom: 60px; max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px;">
+    <main style="padding-top: 120px; padding-bottom: 60px; max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px;">
         <section class="clients-section">
             <div class="section-header" style="text-align: center; margin-bottom: 50px;">
                 <h2 class="section-title" style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 15px;">Our Trusted Partners</h2>
                 <p class="section-subtitle" style="color: var(--text-gray); max-width: 60px; margin: 0 auto;"></p>
             </div>
-
 
             <div class="client-grid" style="gap: 24px;">
                
@@ -253,14 +248,12 @@
         </section>
     </main>
 
-
     <footer>
         <div class="footer-logo-block">
             <div class="nav-logo-group" style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                 <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
             </div>
         </div>
-
 
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
@@ -274,10 +267,53 @@
             </a>
         </div>
 
-
         <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
 
+<!-- ========================================== -->
+    <!-- CHATBOT ARCHITECTURE CONTAINER INTERFACE   -->
+    <!-- ========================================== -->
+    <div class="chatbot-widget-container">
+        <button class="chatbot-launcher-btn" id="chatbot-launcher" title="Chat with BMS Support">
+            <!-- Updated SVG structure colored cleanly in matching corporate white -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px;">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+
+        <div class="chatbot-portal-card" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-profile-info">
+                    <div class="chatbot-avatar-indicator">
+                        <img src="bmslogo.png" alt="Avatar" style="width:22px; height:22px; object-fit:contain;">
+                        <div class="status-dot-pulse"></div>
+                    </div>
+                    <div>
+                        <div class="chatbot-core-title">BMS Support Architect</div>
+                        <div class="chatbot-core-status">Always Online</div>
+                    </div>
+                </div>
+                <button class="chat-close-btn" id="chat-close-btn" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:18px; position:absolute; right:20px; top:20px;" title="Minimize Chat">×</button>
+            </div>
+
+            <div class="chatbot-message-stream" id="chat-messages-container"></div>
+
+            <div class="chatbot-quick-replies" id="chat-quick-replies-tray">
+                <button class="quick-reply-btn" data-reply="Products">Products Spec</button>
+                <button class="quick-reply-btn" data-reply="Contact">Contact Sales</button>
+                <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
+            </div>
+
+            <form class="chatbot-input-console" id="chat-input-form">
+                <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
+                <button type="submit" class="chatbot-send-btn" title="Send Message">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px;">
+                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <div class="toast-message" id="toast">Action completed successfully!</div>
     <script src="script.js"></script>
