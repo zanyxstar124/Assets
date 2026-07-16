@@ -371,6 +371,8 @@ window.scrollToSec = function(sectionId) {
         window.scrollTo({
             top: offsetPosition,
             behavior: "smooth"
+
+
         });
     }
 };
