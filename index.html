@@ -11,25 +11,31 @@
     <link src="logo.png" sizes="180x180" href="bmslogo.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
 
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="html" href="Clients-page.html">
+    
 </head>
 <body>
+
 
     <!-- ========================================== -->
     <!-- FRONT PAGE                                 -->
     <!-- ========================================== -->
     <header id="main-header">
+            
         <div class="nav-container">
             <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
             </a>  
+            
 
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item active" data-sec="home"><a href="#home">Home</a></li>
@@ -38,6 +44,7 @@
                 <li class="nav-item" data-sec="about"><a href="#about">About Us</a></li>
                 <li class="nav-item" data-sec="contact"><a href="#contact">Contact</a></li>
             </ul>
+
 
             <div class="nav-actions">
                 <div class="nav-icon" id="call-action-btn" title="Call Us">
@@ -52,6 +59,15 @@
                     </svg>
                 </a>
 
+                <div class="nav-actions">
+    <button class="nav-icon" id="theme-toggle-btn" title="Toggle Light/Dark Mode" style="background:none; border:none; padding:0;">
+        <svg viewBox="0 0 24 24" class="theme-icon-dark" style="display: block;">
+            <path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
+        </svg>
+    </button>
+    
+    <div class="nav-icon" id="call-action-btn" title="Call Us">
+
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -63,18 +79,22 @@
         </div>
     </header>
 
+
     <section class="hero-section" id="home">
         <video autoplay loop muted playsinline class="bg-video">
             <source src="bgfile1.mp4" type="video/mp4">
         </video>
+
 
         <div class="hero-content">
             <div class="hero-logo-container">
                 <img src="bmsclogo.png" alt="Brothers Megawork Systems Corporation Logo" class="hero-logo-img" onerror="this.style.display='none'">
             </div>
 
+
             <h1 class="hero-title">Brothers Megawork Systems Corporation</h1>
             <p class="hero-subtitle">Serving Business Solutions and Empowering Innovation.</p>
+
 
             <div class="hero-buttons">
                 <button class="btn btn-primary" onclick="scrollToSec('products')">Explore Products</button>
@@ -82,6 +102,7 @@
             </div>
    
         </div>
+
 
         <div class="scroll-down" onclick="scrollToSec('products')">
             <span>Scroll Down</span>
@@ -92,15 +113,17 @@
         </div>
     </section>
 
+
     <!-- ========================================== -->
     <!-- PRODUCTS SECTION                           -->
     <!-- ========================================== -->
     <section id="products" class="section-container">
-        
+       
         <div class="section-header">
             <span class="section-tag">Premium Innovation</span>
             <h2 class="section-title">Our Key Products & Services</h2>
             <div class="section-divider"></div>
+
 
         <div class="products-grid">
            
@@ -110,6 +133,7 @@
                         <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18H8V16H10V12H9V10H13V16H15V18H12Z"/>
                     </svg>
                 </div>
+
 
                 <h3 class="product-name">BCSAS</h3>
                 <p class="product-desc">BASIC Credit and Savings with Accounting System. Tailored financial ledger utilities developed specifically for tracking institutional microloans, member deposits, equity accounts, and automated trial balance sheets.</p>
@@ -126,6 +150,7 @@
                     </ul>
                 </div>
             </div>
+
 
             <div class="product-card" data-product="B-HRIS-PTMS">
                 <div class="product-icon">
@@ -148,6 +173,7 @@
                     </ul>
                 </div>
             </div>
+
 
             <div class="product-card" data-product="B-AIMS">
                 <div class="product-icon">
@@ -176,6 +202,7 @@
         </div>
     </section>
 
+
     <!-- ========================================== -->
     <!-- CLIENT SECTION                             -->
     <!-- ========================================== -->
@@ -186,33 +213,39 @@
             <div class="section-divider"></div>
         </div>
 
+
         <!-- The viewport container that crops the overflow -->
         <div class="client-slider-container">
             <!-- The moving track -->
             <div class="client-slider-track">
-                
+               
                 <!-- ==================== SET 1: ORIGINAL LOGOS ==================== -->
                 <div class="client-slide">
                     <div class="product-card" data-product="Financial Cooperatives Partner">
                         <div class="product-icon-wrapper">
+   
                             <img src="bmslogo.png" alt="Financial Cooperatives Logo" class="client-logo">
                         </div>
                         <h3 class="product-title">Financial Cooperatives</h3>
                     </div>
                 </div>
 
+
                 <div class="client-slide">
                     <div class="product-card" data-product="Agricultural Cooperatives Partner">
                         <div class="product-icon-wrapper">
+
                             <img src="bmslogo.png" alt="Agricultural Cooperatives Logo" class="client-logo">
                         </div>
                         <h3 class="product-title">Agricultural Cooperatives</h3>
                     </div>
                 </div>
 
+
                 <div class="client-slide">
                     <div class="product-card" data-product="Transport Cooperatives Partner">
                         <div class="product-icon-wrapper">
+  
                             <img src="bmslogo.png" alt="Transport Cooperatives Logo" class="client-logo">
                         </div>
                         <h3 class="product-title">Transport Cooperatives</h3>
@@ -247,13 +280,16 @@
                     </div>
                 </div>
 
+
             </div>
         </div>
+
 
         <div class="more-container">
             <a href="Clients.html" target="_self" class="btn-more">View Extensive Directory</a>
         </div>
     </section>
+
 
     <!-- ========================================== -->
     <!-- ABOUT SECTION                           -->
@@ -265,6 +301,7 @@
                     <img class="about-image" src="about1.jpg" alt="BMS Team Collaboration">
                     <div class="about-image-overlay"></div>
                 </div>
+
 
                 <div class="about-text">
                     <span class="section-tag">Who We Are</span>
@@ -278,6 +315,7 @@
  
     </section>
 
+
     <!-- ========================================== -->
     <!-- INQUIRY SECTION                            -->
     <!-- ========================================== -->
@@ -288,10 +326,12 @@
             <div class="section-divider"></div>
         </div>
 
+
         <div class="contact-grid">
             <div class="contact-info-block">
                 <h3>Let's build something scalable together.</h3>
                 <p style="color: var(--text-gray);">Get in touch with our tech architects to tailor the ideal hardware, cloud resource pool, or software build for your venture.</p>
+
 
                 <div class="contact-item">
                     <div class="contact-circle">
@@ -309,6 +349,7 @@
                     </div>
                 </div>
 
+
                 <div class="contact-item">
                     <div class="contact-circle">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -320,6 +361,7 @@
                         <p>+632-5310-5085<br>+63 919-5356-897</p>
                     </div>
                 </div>
+
 
                 <div class="contact-item">
                     <div class="contact-circle">
@@ -337,6 +379,7 @@
                 </div>
             </div>
 
+
             <form class="contact-form" id="consultationForm">
                 <div class="form-row">
                     <div>
@@ -349,20 +392,24 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <label class="form-label" for="email">Business Email</label>
                     <input type="email" id="email" class="form-input" placeholder="juan.delacruz@company.com" required>
                 </div>
+
 
                 <div class="form-group">
                     <label class="form-label" for="message">Your Business Requirements</label>
                     <textarea id="message" class="form-textarea" placeholder="Describe the scale and targets of your tech request..." required></textarea>
                 </div>
 
+
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
             </form>
         </div>
     </section>
+
 
     <!-- ========================================== -->
     <!-- FOOTER SECTION                             -->
@@ -374,6 +421,7 @@
                 <div class="nav-brand-text"></div>
             </div>
         </div>
+
 
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
@@ -390,8 +438,10 @@
        
         </div>
 
+
         <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
+
 
     <!-- ========================================== -->
     <!-- CHATBOT ARCHITECTURE CONTAINER INTERFACE   -->
@@ -403,6 +453,7 @@
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
         </button>
+
 
         <div class="chatbot-portal-card" id="chatbot-window">
             <div class="chatbot-header">
@@ -419,13 +470,16 @@
                 <button class="chat-close-btn" id="chat-close-btn" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:18px; position:absolute; right:20px; top:20px;" title="Minimize Chat">×</button>
             </div>
 
+
             <div class="chatbot-message-stream" id="chat-messages-container"></div>
+
 
             <div class="chatbot-quick-replies" id="chat-quick-replies-tray">
                 <button class="quick-reply-btn" data-reply="Products">Products Spec</button>
                 <button class="quick-reply-btn" data-reply="Contact">Contact Sales</button>
                 <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
             </div>
+
 
             <form class="chatbot-input-console" id="chat-input-form">
                 <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
@@ -438,8 +492,15 @@
         </div>
     </div>
 
+
     <div class="toast-message" id="toast">Action completed successfully!</div>
    
     <script src="script.js"></script>
+
+
+
 </body>
 </html>
+
+
+

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkScroll() {
         if (!mainHeader) return;
 
+
         // Keep background solid if explicitly forced on standalone subpages
         if (mainHeader.classList.contains("scrolled") &&
             (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
@@ -24,11 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", checkScroll);
     checkScroll(); // Initial load check
 
+
     // ==========================================
     // 2. MOBILE HAMBURGER MENU TOGGLE
     // ==========================================
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
+
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
@@ -39,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menuToggle.setAttribute("aria-expanded", isOpen);
         });
 
+
         // Close menu automatically when a link is clicked (Mobile UX)
         document.querySelectorAll(".nav-item a").forEach(link => {
             link.addEventListener("click", () => {
@@ -47,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 3. CROSS-PAGE AUTO-SCROLL PARAMETER MAPPING
     // ==========================================
     const urlParams = new URLSearchParams(window.location.search);
     const scrollTarget = urlParams.get("scroll");
+
 
     if (scrollTarget) {
         // Wait briefly for elements to render completely before scanning layout dimensions
@@ -62,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
                 const offsetPosition = elementPosition - headerOffset;
 
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -70,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
+
     // ==========================================
     // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS (CRASH-PROOF)
     // ==========================================
@@ -77,10 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const featureBtn = card.querySelector(".btn-features");
         const dropdown = card.querySelector(".features-dropdown");
 
+
         // CRASH-PROOF GUARDRAIL: Only execute logic if both elements exist inside this specific card
         if (featureBtn && dropdown) {
             featureBtn.addEventListener("click", (e) => {
                 e.stopPropagation(); // Prevents grid layout events from clashing
+
 
                 // Toggle local target class state
                 const isOpen = dropdown.classList.toggle("open");
@@ -90,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
 
     // ==========================================
     // 5. INTERACTIVE INQUIRY REDIRECT ROUTING
@@ -101,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
            
             // Locate local contact form message text box instance
             const messageInput = document.getElementById("message");
+
 
             if (messageInput) {
                 // If on homepage, pre-fill text box and focus view
@@ -114,22 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+
     // ==========================================
     // 6. CONTACT CONSULTATION FORM VALIDATION & TOAST INTERACTIVES
     // ==========================================
     const consultationForm = document.getElementById("consultationForm");
     const toastBox = document.getElementById("toast");
 
+
     if (consultationForm && toastBox) {
         consultationForm.addEventListener("submit", (e) => {
             e.preventDefault(); // Suspend default browser reload sequences
+
 
             // Show confirmation system feedback toast notice
             toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
             toastBox.classList.add("show");
 
+
             // Clear input metrics securely
             consultationForm.reset();
+
 
             // Diminish tracking banner visibility automatically after time delay limits
             setTimeout(() => {
@@ -138,11 +155,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK
     // ==========================================
     const businessEmail = "brothersmsc.sales@gmail.com";
     const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
+
 
     emailSelectors.forEach(selector => {
         const emailLink = document.querySelector(selector);
@@ -153,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
 
     // ==========================================
     // 8. TOP BAR PHONE CALL ICON ANIMATION ROUTER
@@ -171,15 +191,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 9. LIVE NAVBAR SCROLL SPY & SUBPAGE MAPPER (RED LINE TRACKER)
     // ==========================================
     const navItems = document.querySelectorAll(".nav-menu .nav-item");
     const currentPath = window.location.pathname;
 
+
     // Check if the user is on a standalone subpage file
     const isProductsPage = currentPath.includes("products-page.html");
     const isClientsPage = currentPath.includes("Clients.html");
+
 
     if (isProductsPage || isClientsPage) {
         // Subpage Execution: Lock highlight line to the explicit active tab
@@ -196,11 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const sectionIds = ["home", "products", "clients", "about", "contact"];
         const sections = sectionIds.map(id => document.getElementById(id)).filter(el => el !== null);
 
+
         const observerOptions = {
             root: null,
             rootMargin: "-40% 0px -50% 0px", // Focus area set to center of display viewport
             threshold: 0
         };
+
 
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -221,8 +246,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, observerOptions);
 
+
         sections.forEach(section => sectionObserver.observe(section));
     }
+
 
     // ==========================================
     // 10. DYNAMIC CLIENT CAROUSEL AUTO-DUPLICATION
@@ -237,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     // ==========================================
     // 11. INTEGRATED MODULAR ECOSYSTEM AI CHATBOT CONTROLLER (WITH CACHE RETENTION)
     // ==========================================
@@ -248,54 +276,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const messagesContainer = document.getElementById("chat-messages-container");
     const quickTray = document.getElementById("chat-quick-replies-tray");
 
+
     if (launcher && windowBox && messagesContainer) {
-        
+       
         // Load saved state log context metric array or establish fallback initial block
         const defaultWelcome = "Hello! Welcome to Brothers Megawork Systems Corporation. How can I assist you with our enterprise solutions today?";
         let storedHistory = JSON.parse(sessionStorage.getItem("bms_chat_history")) || [
             { text: defaultWelcome, sender: "system" }
         ];
 
+
         // Maintain view visibility state flags matching transitions across page shifts
         if (sessionStorage.getItem("bms_chat_open") === "true") {
             windowBox.classList.add("open");
         }
+
 
         function renderSavedHistory() {
             messagesContainer.innerHTML = "";
             storedHistory.forEach(msg => {
                 const bubble = document.createElement("div");
                 bubble.className = `chat-message ${msg.sender === 'user' ? 'user-msg' : 'system-msg'}`;
-                
+               
                 const innerBubble = document.createElement("div");
                 innerBubble.className = "message-bubble";
                 innerBubble.textContent = msg.text;
-                
+               
                 bubble.appendChild(innerBubble);
                 messagesContainer.appendChild(bubble);
             });
             scrollToLatestMessage();
         }
 
+
         function scrollToLatestMessage() {
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+
         function appendMessage(text, senderType) {
             storedHistory.push({ text: text, sender: senderType });
             sessionStorage.setItem("bms_chat_history", JSON.stringify(storedHistory));
-            
+           
             const bubble = document.createElement("div");
             bubble.className = `chat-message ${senderType === 'user' ? 'user-msg' : 'system-msg'}`;
-            
+           
             const innerBubble = document.createElement("div");
             innerBubble.className = "message-bubble";
             innerBubble.textContent = text;
-            
+           
             bubble.appendChild(innerBubble);
             messagesContainer.appendChild(bubble);
             scrollToLatestMessage();
         }
+
 
         function processAutomatedReply(triggerText) {
             const cleanText = triggerText.toLowerCase();
@@ -312,11 +346,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 600);
         }
 
+
         launcher.addEventListener("click", () => {
             const isOpen = windowBox.classList.toggle("open");
             sessionStorage.setItem("bms_chat_open", isOpen);
             scrollToLatestMessage();
         });
+
 
         if (closeBtn) {
             closeBtn.addEventListener("click", () => {
@@ -325,17 +361,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+
         if (inputForm) {
             inputForm.addEventListener("submit", (e) => {
                 e.preventDefault();
                 const text = inputField.value.trim();
                 if (!text) return;
 
+
                 appendMessage(text, "user");
                 inputField.value = "";
                 processAutomatedReply(text);
             });
         }
+
 
         if (quickTray) {
             quickTray.querySelectorAll(".quick-reply-btn").forEach(btn => {
@@ -355,10 +394,45 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+
         // Boot system memory processing loops
         renderSavedHistory();
     }
+
+
+    // ==========================================
+    // 12. PERSISTENT LIGHT/DARK THEME SWITCHER
+    // ==========================================
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
+    
+    if (themeToggleBtn) {
+        // Query current stored cache state from local disk memory
+        const activeTheme = localStorage.getItem("bms_site_theme");
+
+        // Sync visual UI on initialization
+        if (activeTheme === "light") {
+            document.body.classList.add("light-theme");
+            updateThemeIcon(true);
+        } else {
+            document.body.classList.remove("light-theme");
+            updateThemeIcon(false);
+        }
+
+        themeToggleBtn.addEventListener("click", () => {
+            const isLight = document.body.classList.toggle("light-theme");
+            localStorage.setItem("bms_site_theme", isLight ? "light" : "dark");
+            updateThemeIcon(isLight);
+        });
+
+        // Helper macro to transition SVG layouts
+        function updateThemeIcon(isLight) {
+            themeToggleBtn.innerHTML = isLight 
+                ? `<svg viewBox="0 0 24 24" class="theme-icon-light" style="display: block; width: 22px; height: 22px; fill: currentColor;"><path d="M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,2A1,1 0 0,1 13,3V5A1,1 0 0,1 12,6A1,1 0 0,1 11,5V3A1,1 0 0,1 12,2M12,18A1,1 0 0,1 13,19V21A1,1 0 0,1 12,22A1,1 0 0,1 11,21V19A1,1 0 0,1 12,18M20,12A1,1 0 0,1 21,13H23A1,1 0 0,1 24,12A1,1 0 0,1 23,11H21A1,1 0 0,1 20,12M2,12A1,1 0 0,1 3,11H5A1,1 0 0,1 6,12A1,1 0 0,1 5,13H3A1,1 0 0,1 2,12M19.78,4.8C20.17,5.19 20.17,5.82 19.78,6.21L18.36,7.63C17.97,8.02 17.34,8.02 16.95,7.63C16.56,7.24 16.56,6.61 16.95,6.22L18.37,4.8C18.76,4.41 19.39,4.41 19.78,4.8M5.64,18.36C6.03,18.75 6.03,19.38 5.64,19.77L4.22,21.19C3.83,21.58 3.2,21.58 2.81,21.19C2.42,20.8 2.42,20.17 2.81,19.78L4.23,18.36C4.62,17.97 5.25,17.97 5.64,18.36M19.78,19.2C20.17,18.81 20.17,18.18 19.78,17.79L18.36,16.37C17.97,15.98 17.34,15.98 16.95,16.37C16.56,16.76 16.56,17.39 16.95,17.78L18.37,19.2C18.76,19.59 19.39,19.59 19.78,19.2M5.64,5.64C6.03,5.25 6.03,4.62 5.64,4.23L4.22,2.81C3.83,2.42 3.2,2.42 2.81,2.81C2.42,3.2 2.42,3.83 2.81,4.22L4.23,5.64C4.62,6.03 5.25,6.03 5.64,5.64Z"/></svg>`
+                : `<svg viewBox="0 0 24 24" class="theme-icon-dark" style="display: block; width: 22px; height: 22px; fill: currentColor;"><path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/></svg>`;
+        }
+    }
 });
+
 
 // Native globally scoped helper macro for standard interactive click events
 window.scrollToSec = function(sectionId) {
@@ -368,11 +442,10 @@ window.scrollToSec = function(sectionId) {
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = elementPosition - headerOffset;
 
+
         window.scrollTo({
             top: offsetPosition,
             behavior: "smooth"
-
-
         });
     }
 };

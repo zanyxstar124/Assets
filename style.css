@@ -8,6 +8,17 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
+
+/* ==========================================================================
+   1. RESET, BASELINE & VARIABLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
 :root {
     --bg-dark: #0c0f14;
     --bg-card: #161b22;
@@ -20,6 +31,28 @@
     --transition: all 0.3s ease;
 }
 
+/* ADD THIS LIGHT THEME OVERRIDE BLOCK HERE: */
+body.light-theme {
+    --bg-dark: #f7fafc;          /* Light off-white background */
+    --bg-card: #ffffff;          /* Clean white card background */
+    --text-white: #1a202c;       /* Dark charcoal gray text for legibility */
+    --text-gray: #4a5568;        /* Slate gray for secondary text */
+    --nav-bg: rgba(247, 250, 252, 0.95); /* Light navigation bar background */
+}
+
+:root {
+    --bg-dark: #0c0f14;
+    --bg-card: #161b22;
+    --text-white: #ffffff;
+    --text-gray: #a0aec0;
+    --brand-blue: #0076df;
+    --brand-blue-hover: #005bb5;
+    --brand-red: #e53e3e;
+    --nav-bg: rgba(12, 15, 20, 0.85);
+    --transition: all 0.3s ease;
+}
+
+
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
@@ -27,10 +60,12 @@ body {
     overflow-x: hidden;
 }
 
+
 a {
     text-decoration: none;
     color: inherit;
 }
+
 
 /* ==========================================================================
    2. HEADER & NAVIGATION ARCHITECTURE
@@ -48,10 +83,12 @@ header {
     transition: var(--transition);
 }
 
+
 header.scrolled {
     background-color: #0c0f14;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
+
 
 .nav-container {
     max-width: 1200px;
@@ -62,11 +99,13 @@ header.scrolled {
     justify-content: space-between;
 }
 
+
 .nav-logo-link {
     display: flex;
     align-items: center;
     height: 44px;
 }
+
 
 .nav-left-logo {
     height: 100%;
@@ -75,15 +114,18 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .nav-logo-link:hover .nav-left-logo {
     transform: scale(1.05);
 }
+
 
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 40px;
 }
+
 
 .nav-item a {
     font-size: 14px;
@@ -96,13 +138,16 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .nav-item a:hover {
     color: var(--text-white);
 }
 
+
 .nav-item.active a {
     color: var(--text-white);
 }
+
 
 .nav-item.active a::after {
     content: '';
@@ -115,11 +160,13 @@ header.scrolled {
     border-radius: 2px;
 }
 
+
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 25px;
 }
+
 
 .nav-icon {
     display: flex;
@@ -130,16 +177,19 @@ header.scrolled {
     cursor: pointer;
 }
 
+
 .nav-icon:hover {
     color: var(--text-white);
     transform: scale(1.1);
 }
+
 
 .nav-icon svg {
     width: 22px;
     height: 22px;
     fill: currentColor;
 }
+
 
 .menu-toggle {
     display: none;
@@ -148,6 +198,7 @@ header.scrolled {
     color: var(--text-white);
     cursor: pointer;
 }
+
 
 /* ==========================================================================
    3. HERO BANNER ENVIRONMENT
@@ -163,6 +214,7 @@ header.scrolled {
     background-color: #0b0f19;
 }
 
+
 .bg-video {
     position: absolute;
     top: 0;
@@ -172,6 +224,7 @@ header.scrolled {
     object-fit: cover;
     z-index: 1;
 }
+
 
 .hero-content {
     position: absolute;
@@ -188,12 +241,14 @@ header.scrolled {
     padding: 20px;
 }
 
+
 .hero-logo-container {
     margin-bottom: 30px;    
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .hero-logo-img {
     max-width: 470px;
@@ -204,10 +259,12 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .hero-logo-img:hover {
     transform: translateY(-2px);
     filter: drop-shadow(0 12px 30px rgba(0, 118, 223, 0.45));
 }
+
 
 .hero-title {
     font-family: 'Montserrat', sans-serif;
@@ -221,6 +278,7 @@ header.scrolled {
     text-align: center;
 }
 
+
 .hero-subtitle {
     font-size: 1.35rem;
     font-weight: 400;
@@ -231,6 +289,7 @@ header.scrolled {
     text-align: center;
 }
 
+
 .hero-buttons {
     margin-top: 25px;
     display: flex;
@@ -238,6 +297,7 @@ header.scrolled {
     justify-content: center;
     flex-wrap: wrap;
 }
+
 
 .scroll-down {
     position: absolute;
@@ -259,6 +319,7 @@ header.scrolled {
     animation: bounce 2s infinite;
 }
 
+
 /* ==========================================================================
    4. LAYOUT COMPONENTS & GLOBAL CORE SECTIONS
    ========================================================================== */
@@ -268,10 +329,12 @@ header.scrolled {
     padding: 100px 24px;
 }
 
+
 .section-header {
     text-align: center;
     margin-bottom: 60px;
 }
+
 
 .section-tag {
     color: var(--brand-blue);
@@ -283,6 +346,7 @@ header.scrolled {
     margin-bottom: 10px;
 }
 
+
 .section-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.2rem;
@@ -291,6 +355,7 @@ header.scrolled {
     letter-spacing: 1px;
 }
 
+
 .section-divider {
     width: 60px;
     height: 4px;
@@ -298,6 +363,7 @@ header.scrolled {
     margin: 15px auto 0 auto;
     border-radius: 2px;
 }
+
 
 /* Global Buttons UI */
 .btn {
@@ -312,11 +378,13 @@ header.scrolled {
     border: none;
 }
 
+
 .btn-primary {
     background-color: var(--brand-blue);
     color: var(--text-white);
     box-shadow: 0 4px 15px rgba(0, 118, 223, 0.4);
 }
+
 
 .btn-primary:hover {
     background-color: var(--brand-blue-hover);
@@ -324,17 +392,20 @@ header.scrolled {
     box-shadow: 0 6px 20px rgba(0, 118, 223, 0.5);
 }
 
+
 .btn-outline {
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: var(--text-white);
 }
 
+
 .btn-outline:hover {
     background-color: rgba(255, 255, 255, 0.08);
     border-color: var(--text-white);
     transform: translateY(-2px);
 }
+
 
 /* ==========================================================================
    5. INTERACTIVE PRODUCT & CATALOG SHOWCASE
@@ -345,6 +416,7 @@ header.scrolled {
     gap: 30px;
     align-items: stretch;
 }
+
 
 .product-card {
     background-color: var(--bg-card);
@@ -359,6 +431,7 @@ header.scrolled {
     height: 100%;
 }
 
+
 .product-card::before {
     content: '';
     position: absolute;
@@ -371,15 +444,18 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .product-card:hover {
     transform: translateY(-5px);
     border-color: rgba(0, 118, 223, 0.25);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+
 .product-card:hover::before {
     opacity: 1;
 }
+
 
 .product-icon {
     width: 60px;
@@ -393,10 +469,12 @@ header.scrolled {
     margin-bottom: 25px;
 }
 
+
 .product-icon svg {
     width: 30px;
     height: 30px;
 }
+
 
 .product-name {
     font-size: 1.3rem;
@@ -404,6 +482,7 @@ header.scrolled {
     margin-bottom: 15px;
     color: var(--text-white);
 }
+
 
 .product-desc {
     color: var(--text-gray);
@@ -413,12 +492,14 @@ header.scrolled {
     margin-bottom: 20px;
 }
 
+
 .product-actions {
     display: flex;
     gap: 12px;
     padding-top: 15px;
     margin-top: auto;
 }
+
 
 .btn-card-action {
     flex: 1;
@@ -432,16 +513,19 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .btn-features {
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--text-white);
 }
 
+
 .btn-features:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: var(--text-white);
 }
+
 
 .btn-inquiry {
     background-color: var(--brand-blue);
@@ -449,9 +533,11 @@ header.scrolled {
     color: var(--text-white);
 }
 
+
 .btn-inquiry:hover {
     background-color: var(--brand-blue-hover);
 }
+
 
 .features-dropdown {
     max-height: 0;
@@ -460,6 +546,7 @@ header.scrolled {
     margin-top: 0;
 }
 
+
 .features-dropdown.open {
     max-height: 400px;
     margin-top: 20px;
@@ -467,11 +554,13 @@ header.scrolled {
     padding-top: 15px;
 }
 
+
 .features-dropdown ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 
 .features-dropdown ul li {
     font-size: 14px;
@@ -484,12 +573,14 @@ header.scrolled {
     text-align: left;
 }
 
+
 .more-container {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 40px;
 }
+
 
 .btn-more {
     display: inline-block;
@@ -505,10 +596,12 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .btn-more:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #ffffff;
 }
+
 
 .product-grid, .products-grid {
     display: grid;
@@ -517,6 +610,7 @@ header.scrolled {
     align-items: start;
 }
 
+
 .product-card {
     display: flex;
     flex-direction: column;
@@ -524,15 +618,18 @@ header.scrolled {
     min-height: 440px;
 }
 
+
 .product-desc {
     flex-grow: 0;
     margin-bottom: 20px;
 }
 
+
 .product-actions {
     margin-top: auto;
     padding-top: 15px;
 }
+
 
 /* ========================================== -->
    6. RESPONSIVE PARTNERS / CLIENTS SHEET
@@ -543,6 +640,7 @@ header.scrolled {
     align-items: stretch;
 }
 
+
 .client-card {
     display: flex;
     flex-direction: column;
@@ -551,11 +649,13 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .client-card:hover {
     transform: translateY(-3px);
     border-color: var(--brand-blue) !important;
     box-shadow: 0 8px 20px rgba(0, 118, 223, 0.2);
 }
+
 
 .client-card img {
     width: 100%;
@@ -563,6 +663,7 @@ header.scrolled {
     height: auto;
     object-fit: contain;
 }
+
 
 /* ==========================================================================
    7. ABOUT US STRUCTURAL GRIDS
@@ -574,12 +675,14 @@ header.scrolled {
     align-items: center;
 }
 
+
 .about-image-container {
     position: relative;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
+
 
 .about-image {
     width: 100%;
@@ -590,9 +693,11 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .about-image-container:hover .about-image {
     transform: scale(1.03);
 }
+
 
 .about-image-overlay {
     position: absolute;
@@ -604,11 +709,13 @@ header.scrolled {
     pointer-events: none;
 }
 
+
 .about-text h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     font-weight: 700;
 }
+
 
 .about-text p {
     color: var(--text-gray);
@@ -616,10 +723,12 @@ header.scrolled {
     font-size: 16px;
 }
 
+
 .highlight-accent {
     color: var(--brand-blue);
     font-weight: 600;
 }
+
 
 /* ==========================================================================
    8. CONSULTATION FORM & CONTACT DESIGN
@@ -629,11 +738,13 @@ header.scrolled {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 60px;
 }
+
 
 .contact-info-block {
     display: flex;
@@ -641,11 +752,13 @@ header.scrolled {
     gap: 30px;
 }
 
+
 .contact-item {
     display: flex;
     gap: 20px;
     align-items: flex-start;
 }
+
 
 .contact-circle {
     width: 50px;
@@ -660,10 +773,12 @@ header.scrolled {
     flex-shrink: 0;
 }
 
+
 .contact-circle svg {
     width: 22px;
     height: 22px;
 }
+
 
 .contact-detail h4 {
     font-size: 16px;
@@ -671,15 +786,18 @@ header.scrolled {
     margin-bottom: 5px;
 }
 
+
 .contact-detail p, .contact-detail a {
     color: var(--text-gray);
     font-size: 15px;
     transition: var(--transition);
 }
 
+
 .contact-detail a:hover {
     color: var(--text-white);
 }
+
 
 .contact-form {
     background-color: var(--bg-card);
@@ -688,6 +806,7 @@ header.scrolled {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -695,9 +814,11 @@ header.scrolled {
     margin-bottom: 20px;
 }
 
+
 .form-group {
     margin-bottom: 20px;
 }
+
 
 .form-label {
     display: block;
@@ -706,6 +827,7 @@ header.scrolled {
     color: #cbd5e1;
     margin-bottom: 8px;
 }
+
 
 .form-input, .form-textarea {
     width: 100%;
@@ -718,15 +840,18 @@ header.scrolled {
     transition: var(--transition);
 }
 
+
 .form-input:focus, .form-textarea:focus {
     border-color: var(--brand-blue);
     box-shadow: 0 0 10px rgba(0, 118, 223, 0.2);
 }
 
+
 .form-textarea {
     resize: vertical;
     min-height: 120px;
 }
+
 
 /* ==========================================================================
    9. FOOTER LAYER BUILD & MASTER WIDGET MATRIX
@@ -738,9 +863,11 @@ footer {
     text-align: center;
 }
 
+
 .footer-logo-block {
     margin-bottom: 20px;
 }
+
 
 .footer-socials {
     display: flex;
@@ -748,6 +875,7 @@ footer {
     gap: 20px;
     margin-bottom: 25px;
 }
+
 
 .social-icon {
     width: 40px;
@@ -762,16 +890,19 @@ footer {
     transition: var(--transition);
 }
 
+
 .social-icon:hover {
     color: var(--text-white);
     background-color: var(--brand-blue);
     transform: translateY(-2px);
 }
 
+
 .footer-copyright {
     font-size: 14px;
     color: #64748b;
 }
+
 
 .toast-message {
     position: fixed;
@@ -788,9 +919,11 @@ footer {
     z-index: 2000;
 }
 
+
 .toast-message.show {
     transform: translateY(0);
 }
+
 
 /* ==========================================================================
    9. CUSTOM INTEGRATED CHATBOT INTERACTION MATRIX
@@ -805,6 +938,7 @@ footer {
     flex-direction: column;
     align-items: flex-end;
 }
+
 
 .chatbot-launcher-btn {
     width: 60px;
@@ -822,17 +956,20 @@ footer {
     flex-shrink: 0;
 }
 
+
 .chatbot-launcher-btn:hover {
     transform: scale(1.08) translateY(-2px);
     background-color: var(--brand-blue-hover);
     box-shadow: 0 8px 28px rgba(0, 118, 223, 0.5);
 }
 
+
 .chatbot-launcher-btn svg {
     width: 26px;
     height: 26px;
     transition: transform 0.3s ease;
 }
+
 
 .chatbot-portal-card,
 .chatbot-window {
@@ -851,10 +988,12 @@ footer {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
 .chatbot-portal-card.open,
 .chatbot-window.open {
     display: flex;
 }
+
 
 .chatbot-header,
 .chat-header {
@@ -864,11 +1003,13 @@ footer {
     flex-shrink: 0 !important;
 }
 
+
 .chatbot-profile-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
+
 
 .chatbot-avatar-indicator {
     position: relative;
@@ -882,6 +1023,7 @@ footer {
     border: 1px solid rgba(0, 118, 223, 0.2);
 }
 
+
 .status-dot-pulse {
     position: absolute;
     bottom: -1px;
@@ -893,16 +1035,19 @@ footer {
     border-radius: 50%;
 }
 
+
 .chatbot-core-title {
     font-size: 14px;
     font-weight: 700;
     color: var(--text-white);
 }
 
+
 .chatbot-core-status {
     font-size: 11px;
     color: var(--text-gray);
 }
+
 
 .chatbot-message-stream,
 .chat-messages-container {
@@ -915,11 +1060,13 @@ footer {
     background-color: #0d1117;
 }
 
+
 .chat-message,
 .chat-msg {
     display: flex;
     max-width: 82%;
 }
+
 
 .chat-message .message-bubble,
 .chat-msg .message-bubble {
@@ -930,10 +1077,12 @@ footer {
     word-break: break-word;
 }
 
+
 .chat-message.system-msg,
 .chat-msg.system {
     align-self: flex-start;
 }
+
 
 .chat-message.system-msg .message-bubble,
 .chat-msg.system .message-bubble {
@@ -943,10 +1092,12 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
+
 .chat-message.user-msg,
 .chat-msg.user {
     align-self: flex-end;
 }
+
 
 .chat-message.user-msg .message-bubble,
 .chat-msg.user .message-bubble {
@@ -954,6 +1105,7 @@ footer {
     color: var(--text-white);
     border-top-right-radius: 2px;
 }
+
 
 .chatbot-quick-replies,
 .chat-quick-replies-tray,
@@ -968,9 +1120,11 @@ footer {
     flex-shrink: 0 !important;
 }
 
+
 .chatbot-quick-replies::-webkit-scrollbar {
     display: none;
 }
+
 
 .quick-reply-btn {
     padding: 6px 12px;
@@ -985,10 +1139,12 @@ footer {
     transition: var(--transition);
 }
 
+
 .quick-reply-btn:hover {
     background-color: rgba(0, 118, 223, 0.1);
     border-color: var(--brand-blue);
 }
+
 
 .chatbot-input-console,
 .chat-input-bar,
@@ -1001,6 +1157,7 @@ footer {
     flex-shrink: 0 !important;
 }
 
+
 .chatbot-input-console input,
 .chat-input-bar input {
     flex-grow: 1;
@@ -1012,9 +1169,11 @@ footer {
     outline: none;
 }
 
+
 .chatbot-input-console input::placeholder {
     color: rgba(255, 255, 255, 0.3);
 }
+
 
 .chatbot-send-btn,
 .chat-send-submit {
@@ -1029,10 +1188,12 @@ footer {
     transition: var(--transition);
 }
 
+
 .chatbot-send-btn:hover: {
     color: var(--brand-blue-hover);
     transform: scale(1.1);
 }
+
 
 /* ==========================================================================
    10. MEDIA QUERIES & RESPONSIVE SYSTEMS
@@ -1042,6 +1203,7 @@ footer {
         grid-template-columns: repeat(6, 1fr);
     }
 }
+
 
 @media (max-width: 968px) {
     .nav-menu {
@@ -1058,32 +1220,39 @@ footer {
         box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
+
     .nav-menu.open {
         display: flex;
     }
+
 
     .nav-item.active a::after {
         bottom: -4px;
         height: 2px;
     }
 
+
     .menu-toggle {
         display: block;
     }
+
 
     .about-split, .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
+
     .hero-title {
         font-size: 2rem;
     }
+
 
     .hero-subtitle {
         font-size: 1.1rem;
     }
 }
+
 
 @media (max-width: 576px) {
     .form-row {
@@ -1098,11 +1267,13 @@ footer {
     }
 }
 
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
     40% { transform: translateY(-10px) translateX(-50%); }
     60% { transform: translateY(-5px) translateX(-50%); }
 }
+
 
 /* ==========================================================================
    11. LOGIN STRUCTURAL INTERFACES WITH SKYLINE ENVIRONMENT MAP
@@ -1116,10 +1287,12 @@ footer {
     display: inline-block;
 }
 
+
 .btn-login-nav:hover {
     background-color: var(--brand-blue-hover);
     transform: translateY(-1px);
 }
+
 
 .login-page-body {
     display: flex;
@@ -1132,11 +1305,13 @@ footer {
     position: relative;
 }
 
+
 .back-home-container {
     position: absolute;
     top: 30px;
     left: 30px;
 }
+
 
 .back-home-btn {
     color: var(--text-gray);
@@ -1147,15 +1322,18 @@ footer {
     align-items: center;
 }
 
+
 .back-home-btn:hover {
     color: var(--text-white);
 }
+
 
 .login-container {
     width: 100%;
     max-width: 450px;
     animation: fadeInLogin 0.5s ease-out;
 }
+
 
 .login-card {
     background-color: rgba(22, 27, 34, 0.88);
@@ -1167,16 +1345,19 @@ footer {
     -webkit-backdrop-filter: blur(12px);
 }
 
+
 .login-header {
     text-align: center;
     margin-bottom: 30px;
 }
+
 
 .login-logo {
     height: 50px;
     margin-bottom: 15px;
     object-fit: contain;
 }
+
 
 .login-header h2 {
     font-family: 'Montserrat', sans-serif;
@@ -1186,10 +1367,12 @@ footer {
     margin-bottom: 8px;
 }
 
+
 .login-header p {
     color: var(--text-gray);
     font-size: 0.9rem;
 }
+
 
 .login-form {
     display: flex;
@@ -1197,11 +1380,13 @@ footer {
     gap: 20px;
 }
 
+
 .form-group-login {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
+
 
 .form-group-login label {
     font-size: 0.85rem;
@@ -1211,11 +1396,13 @@ footer {
     letter-spacing: 0.5px;
 }
 
+
 .label-row-login {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .forgot-pass-link {
     font-size: 0.8rem;
@@ -1223,10 +1410,12 @@ footer {
     transition: var(--transition);
 }
 
+
 .forgot-pass-link:hover {
     text-decoration: underline;
     color: var(--brand-blue-hover);
 }
+
 
 .form-group-login input[type="email"],
 .form-group-login input[type="password"] {
@@ -1241,11 +1430,13 @@ footer {
     transition: var(--transition);
 }
 
+
 .form-group-login input:focus {
     outline: none;
     border-color: var(--brand-blue);
     box-shadow: 0 0 0 3px rgba(0, 118, 223, 0.15);
 }
+
 
 .remember-me-container {
     display: flex;
@@ -1254,6 +1445,7 @@ footer {
     margin-top: 2px;
 }
 
+
 .remember-me-container input[type="checkbox"] {
     accent-color: var(--brand-blue);
     cursor: pointer;
@@ -1261,12 +1453,14 @@ footer {
     height: 15px;
 }
 
+
 .remember-me-container label {
     font-size: 0.85rem;
     color: var(--text-gray);
     cursor: pointer;
     user-select: none;
 }
+
 
 .btn-login-submit {
     background-color: var(--brand-blue);
@@ -1281,14 +1475,17 @@ footer {
     margin-top: 10px;
 }
 
+
 .btn-login-submit:hover {
     background-color: var(--brand-blue-hover);
     transform: translateY(-1px);
 }
 
+
 .btn-login-submit:active {
     transform: translateY(1px);
 }
+
 
 .login-footer {
     text-align: center;
@@ -1299,24 +1496,29 @@ footer {
     color: var(--text-gray);
 }
 
+
 .login-footer a {
     color: var(--brand-blue);
     font-weight: 500;
 }
 
+
 .login-footer a:hover {
     text-decoration: underline;
 }
+
 
 @keyframes fadeInLogin {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+
 @media (max-width: 576px) {
     .login-card { padding: 30px 20px; }
     .back-home-container { top: 15px; left: 15px; }
 }
+
 
 /* =====================================================
    INFINITE AUTOMATIC CLIENT SLIDER (FIXED & EVEN)
@@ -1328,6 +1530,8 @@ footer {
     padding: 30px 0;
 }
 
+
+
 .client-slider-track {
     display: flex;
     gap: 30px;
@@ -1335,19 +1539,26 @@ footer {
     animation: scrollLeft 50s linear infinite;
 }
 
+
+
 .client-slider-container:hover .client-slider-track {
     animation-play-state: paused;
 }
+
 
 .client-slide {
     flex: 0 0 300px;
     display: flex;
 }
 
+
+
 @keyframes scrollLeft {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+
+
 
 .client-slide .product-card {
     display: flex;
@@ -1362,6 +1573,8 @@ footer {
     box-sizing: border-box;
 }
 
+
+
 .client-logo-wrapper {
     display: flex;
     align-items: center;
@@ -1371,6 +1584,8 @@ footer {
     margin-bottom: 12px;
 }
 
+
+
 .client-logo {
     width: 100%;
     max-width: 140px;
@@ -1379,6 +1594,8 @@ footer {
     display: block;
 }
 
+
+
 .client-slide .product-card h4,
 .client-slide .product-card p,
 .client-slide .product-card span {
@@ -1386,11 +1603,15 @@ footer {
     font-weight: 600;
     margin: 0;
     color: var(--text-white);
+
     white-space: nowrap;
 }
+
+
 
 @media (max-width: 480px) {
     .chatbot-widget-container { bottom: 16px; right: 16px; }
     .chatbot-portal-card,
     .chatbot-window { width: calc(100vw - 32px); height: 440px; }
 }
+
