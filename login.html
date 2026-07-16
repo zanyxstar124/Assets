@@ -17,6 +17,7 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
 
+
 </head>
 <body class="login-page-body">
 
@@ -67,6 +68,21 @@
             </div>
         </div>
     </div>
+<button id="theme-toggle-btn" aria-label="Toggle Theme" style="background: none; border: none; cursor: pointer; padding: 8px; color: inherit; display: inline-flex; align-items: center; justify-content: center;">
+  </button>
+      <script>
+  // Instant, non-blocking check to apply theme before document rendering starts
+  (function() {
+      const activeTheme = localStorage.getItem("bms_site_theme");
+      if (activeTheme === "light") {
+          document.documentElement.classList.add("light-theme");
+          document.body.classList.add("light-theme");
+      } else {
+          document.documentElement.classList.remove("light-theme");
+          document.body.classList.remove("light-theme");
+      }
+  })();
 
+</script>
 </body>
 </html>
