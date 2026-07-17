@@ -157,21 +157,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK
+    // 7. UNIFIED EMAIL MAPPING CONTROLLER LINK (SMART LAPTOP FALLBACK LOGIC)
     // ==========================================
     const businessEmail = "brothersmsc.sales@gmail.com";
+    const systemConcernsEmail = "brothersms.systemconcerns@gmail.com";
     const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
 
+    // Browser parsing test to see if laptop environment bounds are present
+    const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     emailSelectors.forEach(selector => {
         const emailLink = document.querySelector(selector);
         if (emailLink) {
             emailLink.addEventListener("click", (e) => {
                 e.preventDefault();
-                window.location.href = `mailto:${businessEmail}?subject=BMS Enterprise Consultation Inquiry&body=Describe your system scaling targets here...`;
+                const subject = "BMS Enterprise Consultation Inquiry";
+                const body = "Describe your system scaling targets here...";
+                
+                if (isMobileDevice()) {
+                    window.location.href = `mailto:${businessEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                } else {
+                    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${businessEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.open(gmailWebUrl, "_blank");
+                }
             });
         }
     });
+
+    // Integrated Secondary Technical Systems Concerns Mapping Fallback Loop
+    const systemEmailLink = document.querySelector("#smart-system-email-link");
+    if (systemEmailLink) {
+        systemEmailLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            const subject = "BMS System Concern Support Inquiry";
+            const body = "Describe the technical issue or system adjustments required here...";
+            
+            if (isMobileDevice()) {
+                window.location.href = `mailto:${systemConcernsEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            } else {
+                const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${systemConcernsEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.open(gmailWebUrl, "_blank");
+            }
+        });
+    }
 
 
     // ==========================================
