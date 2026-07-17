@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        /* INJECTED INSTANTLY BEFORE BROWSER RENDERS ELEMENT INFRASTRUCTURE TO PREVENT FLASHING */
+        (function() {
+            if (localStorage.getItem("bms_site_theme") === "light") {
+                document.documentElement.classList.add("light-theme");
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.body.classList.add("light-theme");
+                });
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Clients - My BMS</title>
@@ -11,20 +22,16 @@
     <link rel="icon" sizes="180x180" href="bmslogo.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.icon">
 
-
     <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <header id="main-header" class="scrolled">
-
         <div class="nav-container">
             <a href="index.html#home" class="nav-logo-link">
                 <img src="logo.png" alt="BMS Logo" class="nav-left-logo">
@@ -38,9 +45,7 @@
                 <li class="nav-item" data-sec="contact"><a href="index.html#contact">Contact</a></li>
             </ul>
 
-
             <div class="nav-actions">
-
                 <a href="index.html?scroll=contact" class="nav-icon" id="call-action-btn" title="Call Us">
                     <svg viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.93 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
                 </a>
@@ -50,15 +55,11 @@
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
                 </a>
-                                <div class="nav-actions">
-    <button class="nav-icon" id="theme-toggle-btn" title="Toggle Light/Dark Mode" style="background:none; border:none; padding:0;">
-        <svg viewBox="0 0 24 24" class="theme-icon-dark" style="display: block;">
-            <path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
-        </svg>
-    </button>
-            </div>
-
-
+                <button class="nav-icon" id="theme-toggle-btn" title="Toggle Light/Dark Mode" style="background:none; border:none; padding:0;">
+                    <svg viewBox="0 0 24 24" class="theme-icon-dark" style="display: block;">
+                        <path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z" />
+                    </svg>
+                </button>
                 <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -70,14 +71,12 @@
         </div>
     </header>
 
-
     <main style="padding-top: 120px; padding-bottom: 60px; max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px;">
         <section class="clients-section">
             <div class="section-header" style="text-align: center; margin-bottom: 50px;">
                 <h2 class="section-title" style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 15px;">Our Trusted Partners</h2>
                 <p class="section-subtitle" style="color: var(--text-gray); max-width: 60px; margin: 0 auto;"></p>
             </div>
-
 
             <div class="client-grid" style="gap: 24px;">
                
@@ -86,220 +85,63 @@
                     <h4>Client Card 1</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 2</h4>
                 </div>
-
 
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 3</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 4</h4>
                 </div>
-
 
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 5</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 6</h4>
                 </div>
-
  
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 7</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 8</h4>
                 </div>
-
 
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 9</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 10</h4>
                 </div>
-
 
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 11</h4>
                 </div>
 
-
                 <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
                     <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
                     <h4>Client Card 12</h4>
                 </div>
-
-<!--
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 13</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 14</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 15</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 16</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 17</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 18</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 19</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 20</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 21</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 22</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 23</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 24</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 25</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 26</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 27</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 28</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 29</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 30</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 31</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 32</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 33</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 34</h4>
-                </div>
-
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 35</h4>
-                </div>
-            
-
-                <div class="client-card" style="background-color: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
-                    <img src="bmslogo.png" alt="Client Logo" style="max-width: 80px; margin-bottom: 15px;">
-                    <h4>Client Card 36</h4>
-                    -->
-                </div>
             </div>
         </section>
     </main>
-
 
     <footer>
         <div class="footer-logo-block">
@@ -307,7 +149,6 @@
                 <img src="bmsclogo.png" alt="BMS Logo Footer" style="max-height: 40px; width: auto;">
             </div>
         </div>
-
 
         <div class="footer-socials">
             <a href="https://ph.linkedin.com/in/marjorie-orillano-0356aaa2" target="_blank" class="social-icon" title="LinkedIn">
@@ -321,52 +162,39 @@
             </a>
         </div>
 
-
         <p class="footer-copyright">© 2026 Brothers Megawork Systems Corporation. All rights reserved.</p>
     </footer>
-
 
     <!-- ========================================== -->
     <!-- CHATBOT ARCHITECTURE CONTAINER INTERFACE   -->
     <!-- ========================================== -->
     <div class="chatbot-widget-container">
         <button class="chatbot-launcher-btn" id="chatbot-launcher" title="Chat with BMS Support">
-            <!-- Updated SVG structure colored cleanly in matching corporate white -->
             <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px;">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
         </button>
 
-
-        <div class="chatbot-portal-card" id="chatbot-window">
-            <div class="chatbot-header">
-                <div class="chatbot-profile-info">
-                    <div class="chatbot-avatar-indicator">
-                        <img src="bmslogo.png" alt="Avatar" style="width:22px; height:22px; object-fit:contain;">
-                        <div class="status-dot-pulse"></div>
-                    </div>
-                    <div>
-                        <div class="chatbot-core-title">BMS Support Architect</div>
-                        <div class="chatbot-core-status">Always Online</div>
-                    </div>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <h4>BMS Support Architect</h4>
+                    <span>Always Online</span>
                 </div>
                 <button class="chat-close-btn" id="chat-close-btn" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:18px; position:absolute; right:20px; top:20px;" title="Minimize Chat">×</button>
             </div>
 
+            <div class="chat-messages-container" id="chat-messages-container"></div>
 
-            <div class="chatbot-message-stream" id="chat-messages-container"></div>
-
-
-            <div class="chatbot-quick-replies" id="chat-quick-replies-tray">
+            <div class="chat-quick-replies-tray" id="chat-quick-replies-tray">
                 <button class="quick-reply-btn" data-reply="Products">Products Spec</button>
                 <button class="quick-reply-btn" data-reply="Contact">Contact Sales</button>
                 <button class="quick-reply-btn" data-reply="Portal">Client Portal</button>
             </div>
 
-
-            <form class="chatbot-input-console" id="chat-input-form">
+            <form class="chat-input-bar" id="chat-input-form">
                 <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
-                <button type="submit" class="chatbot-send-btn" title="Send Message">
+                <button type="submit" class="chat-send-submit" title="Send Message">
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px;">
                         <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                     </svg>
@@ -379,4 +207,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

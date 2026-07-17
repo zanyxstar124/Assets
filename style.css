@@ -1647,6 +1647,11 @@ body.light-theme {
     color: var(--text-white);
 }
 
+/* Explicitly force all primary blue buttons to maintain white text in light mode */
+body.light-theme .btn-primary {
+    color: #ffffff !important;
+}
+
 /* Header & Nav in Light Mode */
 body.light-theme header {
     background-color: var(--nav-bg);
@@ -1667,9 +1672,6 @@ body.light-theme .nav-item.active a {
     color: var(--text-white);
 }
 
-/* === CRITICAL: PRESERVE HERO VIDEO TEXT AND BACKGROUND COLORS === */
-/* This ensures the home page video section styles, text overlays, and elements 
-   maintain dark-background contrast even when light-theme is active on the body. */
 body.light-theme .hero-section {
     background-color: #0b0f19; /* Force dark background */
 }
@@ -1801,16 +1803,18 @@ body.light-theme .chat-msg.system .message-bubble {
     border-color: rgba(0, 0, 0, 0.05);
 }
 
+/* FIX: Scoped correctly with body.light-theme preceding the ID selectors */
 body.light-theme .chatbot-quick-replies,
 body.light-theme .chat-quick-replies-tray,
-#chat-quick-replies-tray {
+body.light-theme #chat-quick-replies-tray {
     background-color: #f7fafc;
     border-top-color: rgba(0, 0, 0, 0.03);
 }
 
+/* FIX: Scoped correctly with body.light-theme preceding the ID selectors */
 body.light-theme .chatbot-input-console,
 body.light-theme .chat-input-bar,
-#chat-input-form {
+body.light-theme #chat-input-form {
     background-color: #f0f4f8;
     border-top-color: rgba(0, 0, 0, 0.08);
 }
@@ -1868,7 +1872,8 @@ body.light-theme .login-footer {
    LIGHT & DARK MODE TOGGLE DEFINITIONS
    ========================================================================== */
 
-/* 1. Light Theme Variable Overrides */
+/* Light Theme Overrides - Updated to target document element root to kill page flash */
+html.light-theme,
 body.light-theme {
     --bg-dark: #f0f4f8;          /* Soft light background */
     --bg-card: #ffffff;          /* Clean white card backgrounds */
@@ -1996,3 +2001,20 @@ body.light-theme footer a {
 body.light-theme footer a:hover {
     color: var(--brand-blue) !important;
 }
+
+
+/* ==========================================================================
+   STRICT LIGHT MODE BUTTON CONTRAST OVERRIDES
+   ========================================================================== */
+   body.light-theme .btn-inquiry,
+   body.light-theme .btn-primary {
+       color: #ffffff !important;
+   }
+
+   /* ==========================================================================
+   STRICT LIGHT MODE USER CHAT TEXT CONTRAST OVERRIDE
+   ========================================================================== */
+body.light-theme .chat-message.user-msg .message-bubble,
+body.light-theme .chat-msg.user .message-bubble {
+    color: #ffffff !important;
+} 
