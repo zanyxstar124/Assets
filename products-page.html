@@ -334,7 +334,7 @@
     <!-- Interactive UI Message Center Toast Box -->
     <div class="toast-message" id="toast">Action completed successfully!</div>
 
-    <!-- ========================================== -->
+<!-- ========================================== -->
     <!-- CHATBOT ARCHITECTURE CONTAINER INTERFACE   -->
     <!-- ========================================== -->
     <div class="chatbot-widget-container">
@@ -347,10 +347,18 @@
         <div class="chatbot-window" id="chatbot-window">
             <div class="chat-header">
                 <div class="chat-header-info">
-                    <h4>BMS Support Architect</h4>
-                    <span>Always Online</span>
+                    <div class="chatbot-profile-info" style="display: flex; align-items: center; gap: 12px;">
+                        <div class="chatbot-avatar-indicator" style="position: relative; width: 36px; height: 36px; border-radius: 50%; background-color: rgba(0, 118, 223, 0.1); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(0, 118, 223, 0.2);">
+                            <img src="bmslogo.png" alt="Avatar" style="width:22px; height:22px; object-fit:contain;">
+                            <div class="status-dot-pulse" style="position: absolute; bottom: -1px; right: -1px; width: 10px; height: 10px; background-color: #22c55e; border: 2px solid var(--bg-card); border-radius: 50%;"></div>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 14px; font-weight: 700; color: inherit;">BMS Support Architect</h4>
+                            <span style="font-size: 11px; color: var(--text-gray);">Always Online</span>
+                        </div>
+                    </div>
                 </div>
-                <button class="chat-close-btn" id="chat-close-btn" title="Minimize Chat">×</button>
+                <button class="chat-close-btn" id="chat-close-btn" style="background:none; border:none; color:var(--text-gray); cursor:pointer; font-size:18px; position:absolute; right:20px; top:20px;" title="Minimize Chat">×</button>
             </div>
 
             <div class="chat-messages-container" id="chat-messages-container">
@@ -366,7 +374,7 @@
             <form class="chat-input-bar" id="chat-input-form">
                 <input type="text" id="chat-input-field" placeholder="Type your message here..." autocomplete="off" required>
                 <button type="submit" class="chat-send-submit" title="Send Message">
-                    <svg viewBox="0 0 24 24">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px; height:20px;">
                         <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                     </svg>
                 </button>
