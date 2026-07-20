@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkScroll() {
         if (!mainHeader) return;
 
-
         // Keep background solid if explicitly forced on standalone subpages
         if (mainHeader.classList.contains("scrolled") &&
             (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
@@ -444,15 +443,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Sync visual UI on initialization
         if (activeTheme === "light") {
+            document.documentElement.classList.add("light-theme");
             document.body.classList.add("light-theme");
             updateThemeIcon(true);
         } else {
+            document.documentElement.classList.remove("light-theme");
             document.body.classList.remove("light-theme");
             updateThemeIcon(false);
         }
 
         themeToggleBtn.addEventListener("click", () => {
             const isLight = document.body.classList.toggle("light-theme");
+            if (isLight) {
+                document.documentElement.classList.add("light-theme");
+            } else {
+                document.documentElement.classList.remove("light-theme");
+            }
             localStorage.setItem("bms_site_theme", isLight ? "light" : "dark");
             updateThemeIcon(isLight);
         });
