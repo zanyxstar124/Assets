@@ -363,11 +363,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const cleanText = triggerText.toLowerCase();
             setTimeout(() => {
                 if (cleanText.includes("product") || cleanText.includes("bcsas") || cleanText.includes("hris") || cleanText.includes("aims")) {
-                    appendMessage("We specialize in core B2B modules: BCSAS (Credit/Savings Ledgers), B-HRIS-PTMS (Payroll & Biometric Timekeeping), and B-AIMS (Accounting & Inventory Management System). You can view deeper code features on our standalone 'Products' tab up top!", "system");
+                    appendMessage("We specialize in core B2B modules:\nBCSAS (Credit/Savings Ledgers),\nB-HRIS-PTMS (Payroll & Biometric Timekeeping),and\nB-AIMS (Accounting & Inventory Management System).\n\nYou can view deeper code features on our standalone 'Products' tab up top!", "system");
                 } else if (cleanText.includes("contact") || cleanText.includes("consult") || cleanText.includes("inquiry")) {
-                    appendMessage("You can reach out to our enterprise desk at brothersmsc.sales@gmail.com, call us directly at +632-5310-5085, or drop details in the consultation form behind this window.", "system");
+                    appendMessage("You can reach out to our Support & Business Desk at\nbrothersmsc.sales@gmail.com\nbrothersms.systemconcerns\n@gmail.com\n\nCall us directly at\n+632-5310-5085\n\nor drop details in the consultation form behind this window.", "system");
                 } else if (cleanText.includes("portal") || cleanText.includes("login")) {
                     appendMessage("Our corporate Client Portal can be reached using the secure authorization options on our top bar profile link icon or navigating directly to your assigned enterprise web subdomain dashboard.", "system");
+                } else if (cleanText.includes("support") || cleanText.includes("systems support")) {
+                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersmsc.sales@gmail.com\n\nPlease quote your assigned Company ID and software suite variant (BCSAS, B-HRIS, or B-AIMS) when initiating ticket queues.", "system");
                 } else {
                     appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been noted. For active system deployment discussions, please consider using our Consultation Form details container.", "system");
                 }
@@ -412,11 +414,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         appendMessage("Tell me about your software products.", "user");
                         processAutomatedReply("products");
                     } else if (replyVal === "Contact") {
-                        appendMessage("How can I contact sales for an inquiry?", "user");
+                        appendMessage("How can I contact you?", "user");
                         processAutomatedReply("contact");
                     } else if (replyVal === "Portal") {
                         appendMessage("Where is the client login portal?", "user");
                         processAutomatedReply("portal");
+                    } else if (replyVal === "Support") {
+                        appendMessage("I need systems support assistance.", "user");
+                        processAutomatedReply("support");
                     }
                 });
             });
