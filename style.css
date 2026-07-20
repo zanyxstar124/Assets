@@ -1970,7 +1970,6 @@ body.light-theme .chatbot-input-console input {
    SAFEGUARD RULES: KEEP HERO VIDEO TEXT & FOOTER COMPLETELY DARK
    ========================================================================== */
 
-/* Force original styles on the hero section so the video overlay text is untouched */
 body.light-theme .hero-section,
 body.light-theme .hero-content,
 body.light-theme .hero-title,
@@ -1981,12 +1980,10 @@ body.light-theme .scroll-down {
     color: #ffffff !important;
 }
 
-/* Fallback for the video dark overlay cover to stay dark */
 body.light-theme .hero-content {
     background: rgba(0, 0, 0, 0.4) !important;
 }
 
-/* STRICT RULE: Protect the entire footer from light-mode inheritance */
 body.light-theme footer,
 body.light-theme footer * {
     background-color: #0c0f14 !important;
@@ -2039,4 +2036,3 @@ body.light-theme .chat-msg.user .message-bubble {
         word-break: break-word;
         overflow-wrap: break-word;
     }
-
