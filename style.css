@@ -1306,32 +1306,12 @@ footer {
 }
 
 
-.back-home-container {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-}
-
-
-.back-home-btn {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-}
-
-
-.back-home-btn:hover {
-    color: var(--text-white);
-}
-
-
 .login-container {
     width: 100%;
     max-width: 450px;
     animation: fadeInLogin 0.5s ease-out;
+    position: fixed;
+    bottom: -25px;            /* Distance from the bottom */
 }
 
 
