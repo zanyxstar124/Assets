@@ -1301,17 +1301,18 @@ footer {
     min-height: 100vh;
     background: linear-gradient(rgba(12, 15, 20, 0.78), rgba(12, 15, 20, 0.88)), url('background.jpg') no-repeat center center fixed;
     background-size: cover;
-    padding: 20px;
+    padding: 30px;
     position: relative;
 }
 
 
 .login-container {
+    margin-top: 50px;
     width: 100%;
-    max-width: 450px;
+    min-height: 75vh;
+    max-width: 500px;
     animation: fadeInLogin 0.5s ease-out;
-    position: fixed;
-    bottom: -25px;            /* Distance from the bottom */
+    bottom: -24px;            /* Distance from the bottom */
 }
 
 
@@ -1319,7 +1320,7 @@ footer {
     background-color: rgba(22, 27, 34, 0.88);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    padding: 40px 35px;
+    padding: 30px 30px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1333,8 +1334,8 @@ footer {
 
 
 .login-logo {
-    height: 50px;
-    margin-bottom: 15px;
+    height: 80px;
+    margin-bottom: 10px;
     object-fit: contain;
 }
 
@@ -1452,7 +1453,7 @@ footer {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    margin-top: 10px;
+    margin-top: 3px;
 }
 
 
@@ -1469,8 +1470,8 @@ footer {
 
 .login-footer {
     text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.8rem;
     color: var(--text-gray);
