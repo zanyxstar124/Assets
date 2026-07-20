@@ -2017,3 +2017,25 @@ body.light-theme .chat-message.user-msg .message-bubble,
 body.light-theme .chat-msg.user .message-bubble {
     color: #ffffff !important;
 } 
+
+/* ==========================================
+   MOBILE FIXES ONLY
+   ========================================== */
+@media (max-width: 576px) {
+
+    /* CONTACT / CONSULTATION */
+    .contact-item{
+        align-items: flex-start;
+    }
+
+    .contact-detail{
+        flex: 1;
+        min-width: 0;
+        padding-right: 16px; /* adds right margin */
+    }
+
+    .contact-detail p,
+    .contact-detail a{
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
