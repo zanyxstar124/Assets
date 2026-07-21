@@ -51,30 +51,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+ // ==========================================
+    // 3. SMART CROSS-PAGE & IN-PAGE HASH SCROLL CONTROLLER
     // ==========================================
-    // 3. CROSS-PAGE AUTO-SCROLL PARAMETER MAPPING
-    // ==========================================
-    const urlParams = new URLSearchParams(window.location.search);
-    const scrollTarget = urlParams.get("scroll");
+    function smoothScrollToElement(targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const headerOffset = 80; // Offset for fixed navbar height
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - headerOffset;
 
-
-    if (scrollTarget) {
-        // Wait briefly for elements to render completely before scanning layout dimensions
-        setTimeout(() => {
-            const targetElement = document.getElementById(scrollTarget);
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - headerOffset;
-
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        }, 300);
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
     }
+
+    // Handle initial page load with a hash in URL (e.g. arriving from a subpage via ../#contact)
+    if (window.location.hash) {
+        const cleanHash = window.location.hash.substring(1);
+        setTimeout(() => {
+            smoothScrollToElement(cleanHash);
+        }, 200);
+    }
+
+    // Intercept clicks on links pointing to homepage sections (#about, #contact, etc.)
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+            const href = this.getAttribute("href");
+            const hashIndex = href.indexOf("#");
+            
+            if (hashIndex !== -1) {
+                const targetId = href.substring(hashIndex + 1);
+                
+                // Check if user is already on the homepage
+                const isHomepage = window.location.pathname === "/" || 
+                                   window.location.pathname.endsWith("index.html") || 
+                                   window.location.pathname === "";
+
+                if (isHomepage && targetId) {
+                    e.preventDefault(); // Stop full reload / url jump
+                    history.pushState(null, null, `#${targetId}`); // Update URL cleanly
+                    smoothScrollToElement(targetId); // Smooth scroll instantly
+                }
+            }
+        });
+    });
 
 
     // ==========================================
@@ -101,29 +124,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // ==========================================
+// ==========================================
     // 5. INTERACTIVE INQUIRY REDIRECT ROUTING
     // ==========================================
     document.querySelectorAll(".btn-inquiry").forEach(btn => {
         btn.addEventListener("click", () => {
             const card = btn.closest(".product-card");
             const productName = card ? card.getAttribute("data-product") : "";
-           
+            const inquiryMessage = `I am interested in requesting an enterprise consultation regarding your product: ${productName || "Solutions Ecosystem"}. Please provide additional technical specifications.`;
+
             // Locate local contact form message text box instance
             const messageInput = document.getElementById("message");
 
-
             if (messageInput) {
-                // If on homepage, pre-fill text box and focus view
-                messageInput.value = `I am interested in requesting an enterprise consultation regarding your product: ${productName || "Solutions Ecosystem"}. Please provide additional technical specifications.`;
+                // If already on the homepage, pre-fill text box and focus view
+                messageInput.value = inquiryMessage;
                 messageInput.focus();
                 messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
             } else {
-                // If on a subpage, route down cleanly using lowercase index.html bounds
-                window.location.href = `/index.html?scroll=contact`;
+                // If on a subpage, save pre-fill message to session storage and step up to homepage
+                sessionStorage.setItem("bms_pending_inquiry", inquiryMessage);
+                window.location.href = "../#contact"; // 🚀 Fixed relative step-up path
             }
         });
     });
+
+    // Auto-fill form if user arrived from a subpage inquiry redirect
+    const pendingInquiry = sessionStorage.getItem("bms_pending_inquiry");
+    const messageInput = document.getElementById("message");
+
+    if (pendingInquiry && messageInput) {
+        messageInput.value = pendingInquiry;
+        sessionStorage.removeItem("bms_pending_inquiry"); // Clear after populating
+    }
 
 
     // ==========================================
