@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Keep background solid if explicitly forced on standalone subpages
         if (mainHeader.classList.contains("scrolled") &&
-            (window.location.pathname.includes("products-page.html") || window.location.pathname.includes("Clients.html"))) {
+            (window.location.pathname.includes("Products") || window.location.pathname.includes("Clients"))) {
             return;
         }
        
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
             } else {
                 // If on a subpage, route down cleanly using lowercase index.html bounds
-                window.location.href = `index.html?scroll=contact`;
+                window.location.href = `/index.html?scroll=contact`;
             }
         });
     });
@@ -227,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Check if the user is on a standalone subpage file
-    const isProductsPage = currentPath.includes("products-page.html");
-    const isClientsPage = currentPath.includes("Clients.html");
+    const isProductsPage = currentPath.includes("Products");
+    const isClientsPage = currentPath.includes("Clients");
 
 
     if (isProductsPage || isClientsPage) {
@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (cleanText.includes("portal") || cleanText.includes("login")) {
                     appendMessage("Our corporate Client Portal can be reached using the secure authorization options on our top bar profile link icon or navigating directly to your assigned enterprise web subdomain dashboard.", "system");
                 } else if (cleanText.includes("support") || cleanText.includes("systems support")) {
-                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersmsc.sales@gmail.com\n\nPlease quote your assigned Company ID and software suite variant (BCSAS, B-HRIS, or B-AIMS) when initiating ticket queues.", "system");
+                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersms.systemconcerns@gmail.com\n\nPlease quote your assigned Company ID and software suite variant (BCSAS, B-HRIS, or B-AIMS) when initiating ticket queues.", "system");
                 } else {
                     appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been noted. For active system deployment discussions, please consider using our Consultation Form details container.", "system");
                 }

@@ -1299,7 +1299,7 @@ footer {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(rgba(12, 15, 20, 0.78), rgba(12, 15, 20, 0.88)), url('background.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(12, 15, 20, 0.78), rgba(12, 15, 20, 0.88)), url('/Login/img/background.jpg') no-repeat center center fixed;
     background-size: cover;
     padding: 30px;
     position: relative;
@@ -1307,9 +1307,9 @@ footer {
 
 
 .login-container {
-    margin-top: 50px;
+    margin-top: 60px;
     width: 100%;
-    min-height: 75vh;
+    min-height: 5vh;
     max-width: 500px;
     animation: fadeInLogin 0.5s ease-out;
     bottom: -24px;            /* Distance from the bottom */
@@ -1320,7 +1320,7 @@ footer {
     background-color: rgba(22, 27, 34, 0.88);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    padding: 30px 30px;
+    padding: 20px 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1985,7 +1985,8 @@ body.light-theme footer a:hover {
    STRICT LIGHT MODE BUTTON CONTRAST OVERRIDES
    ========================================================================== */
    body.light-theme .btn-inquiry,
-   body.light-theme .btn-primary {
+   body.light-theme .btn-primary,
+   body.light-theme .btn-login-submit {
        color: #ffffff !important;
    }
 
