@@ -1501,6 +1501,62 @@ footer {
 }
 
 
+/* ==========================================================================
+   ULTRA-COMPACT CHATBOT QUICK INQUIRY BUTTONS
+   ========================================================================== */
+   .chatbot-quick-replies,
+   .chat-quick-replies-tray {
+       display: grid !important;
+       grid-template-columns: 1fr 1fr !important;  /* Clean 2-column layout */
+       gap: 6px !important;                       /* Reduced spacing between buttons */
+       padding: 8px 12px !important;              /* Slimmer container padding */
+       width: 100% !important;
+       box-sizing: border-box !important;
+       overflow-x: hidden !important;
+   }
+   
+   .chatbot-quick-replies .quick-reply-btn,
+   .chat-quick-replies-tray .quick-reply-btn {
+       width: 100% !important;
+       padding: 5px 6px !important;               /* Reduced vertical/horizontal padding */
+       font-size: 0.72rem !important;              /* Smaller, clean typography */
+       font-weight: 500;
+       line-height: 1.15;
+       border-radius: 5px;                        /* Slightly tighter corners */
+       border: 1px solid var(--brand-blue);
+       background-color: rgba(0, 118, 223, 0.1);
+       color: var(--text-white);
+       cursor: pointer;
+       text-align: center;
+       white-space: normal !important;
+       word-break: break-word;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       min-height: 30px !important;               /* Reduced minimum button height */
+       transition: var(--transition);
+   }
+   
+   .chatbot-quick-replies .quick-reply-btn:hover,
+   .chat-quick-replies-tray .quick-reply-btn:hover {
+       background-color: var(--brand-blue) !important;
+       color: #ffffff !important;
+   }
+   
+   /* Light Theme Contrast Support */
+   body.light-theme .chatbot-quick-replies .quick-reply-btn,
+   body.light-theme .chat-quick-replies-tray .quick-reply-btn {
+       color: #1a202c !important;
+       background-color: rgba(0, 118, 223, 0.08);
+   }
+   
+   body.light-theme .chatbot-quick-replies .quick-reply-btn:hover,
+   body.light-theme .chat-quick-replies-tray .quick-reply-btn:hover {
+       background-color: var(--brand-blue) !important;
+       color: #ffffff !important;
+   }
+
+
 /* =====================================================
    INFINITE AUTOMATIC CLIENT SLIDER (FIXED & EVEN)
    ===================================================== */
