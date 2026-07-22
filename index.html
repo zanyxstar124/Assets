@@ -379,32 +379,35 @@
                 </div>
             </div>
 
-
+            
             <form class="contact-form" id="consultationForm">
+                <input type="hidden" name="access_key" value="6419c4e1-ef7b-4db0-97b8-5edbc9098ef1">
+                <input type="hidden" name="subject" value="BMS Website - Enterprise Consultation Request">
+                <input type="hidden" name="from_name" value="BMS Web Portal">
+                
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
                 <div class="form-row">
                     <div>
                         <label class="form-label" for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="form-input" placeholder="Zaniele" required>
+                        <input type="text" id="firstName" name="first_name" class="form-input" placeholder="Zaniele" required>
                     </div>
                     <div>
                         <label class="form-label" for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="form-input" placeholder="Visitacion" required>
+                        <input type="text" id="lastName" name="last_name" class="form-input" placeholder="Visitacion" required>
                     </div>
                 </div>
-
-
+            
                 <div class="form-group">
                     <label class="form-label" for="email">Business Email</label>
-                    <input type="email" id="email" class="form-input" placeholder="zaniele.visitacion@company.com" required>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="zaniele.visitacion@company.com" required>
                 </div>
-
-
+            
                 <div class="form-group">
                     <label class="form-label" for="message">Your Business Requirements</label>
-                    <textarea id="message" class="form-textarea" placeholder="Describe the scale and targets of your tech request..." required></textarea>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Describe the scale and targets of your tech request..." required></textarea>
                 </div>
-
-
+            
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
             </form>
         </div>

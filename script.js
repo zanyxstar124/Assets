@@ -159,31 +159,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // ==========================================
-    // 6. CONTACT CONSULTATION FORM VALIDATION & TOAST INTERACTIVES
+// ==========================================
+    // 6. CONTACT CONSULTATION FORM (WEB3FORMS FETCH)
     // ==========================================
     const consultationForm = document.getElementById("consultationForm");
     const toastBox = document.getElementById("toast");
 
-
     if (consultationForm && toastBox) {
         consultationForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Suspend default browser reload sequences
+            e.preventDefault(); // Stop default browser refresh/redirect
 
+            const formData = new FormData(consultationForm);
 
-            // Show confirmation system feedback toast notice
-            toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
-            toastBox.classList.add("show");
-
-
-            // Clear input metrics securely
-            consultationForm.reset();
-
-
-            // Diminish tracking banner visibility automatically after time delay limits
-            setTimeout(() => {
-                toastBox.classList.remove("show");
-            }, 4500);
+            // Send data asynchronously to Web3Forms API
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status === 200) {
+                    toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
+                    toastBox.classList.add("show");
+                    consultationForm.reset();
+                } else {
+                    toastBox.textContent = json.message || "Submission failed. Please try again.";
+                    toastBox.classList.add("show");
+                }
+            })
+            .catch(() => {
+                toastBox.textContent = "Network error. Please check your connection and try again.";
+                toastBox.classList.add("show");
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    toastBox.classList.remove("show");
+                }, 4500);
+            });
         });
     }
 
@@ -326,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 11. INTEGRATED MODULAR ECOSYSTEM AI CHATBOT CONTROLLER (WITH CACHE RETENTION)
+    // 11. INTEGRATED CHATBOT (WITH CACHE RETENTION)
     // ==========================================
     const launcher = document.getElementById("chatbot-launcher");
     const windowBox = document.getElementById("chatbot-window");
