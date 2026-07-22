@@ -852,6 +852,57 @@ header.scrolled {
     min-height: 120px;
 }
 
+.captcha-container {
+    margin-bottom: 50px;
+  }
+
+.btn-submit {
+    margin-top: 24px;
+}
+
+/* ==========================================================================
+   CONSULTATION FORM RESPONSIVE OVERRIDE
+   ========================================================================== */
+   @media screen and (max-width: 768px) {
+    /* 1. Force Form Inputs to Stack Vertically on Mobile */
+    .form-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .contact-form,
+    #consultationForm {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 16px 14px !important; /* Prevents edge clipping on narrow viewports */
+        box-sizing: border-box !important;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Responsive Scaling for hCaptcha Widget (Prevents 304px Overflow) */
+    .h-captcha {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    /* Scales down captcha iframe slightly on ultra-narrow phones (<360px) */
+    .h-captcha iframe {
+        transform-origin: 0 0 !important;
+        max-width: 100% !important;
+    }
+}
+
 
 /* ==========================================================================
    9. FOOTER LAYER BUILD & MASTER WIDGET MATRIX

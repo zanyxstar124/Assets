@@ -160,18 +160,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================
-    // 6. CONTACT CONSULTATION FORM (WEB3FORMS FETCH)
+    // 6. CONTACT CONSULTATION FORM (WEB3FORMS FETCH + HCAPTCHA)
     // ==========================================
     const consultationForm = document.getElementById("consultationForm");
     const toastBox = document.getElementById("toast");
 
     if (consultationForm && toastBox) {
         consultationForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Stop default browser refresh/redirect
+            e.preventDefault();
+
+            // Verify if hCaptcha was completed before submitting
+            const hcaptchaResponse = consultationForm.querySelector('[name="h-captcha-response"]');
+            if (hcaptchaResponse && !hcaptchaResponse.value) {
+                toastBox.textContent = "Please complete the Captcha checkbox before submitting.";
+                toastBox.classList.add("show");
+                setTimeout(() => toastBox.classList.remove("show"), 3500);
+                return;
+            }
 
             const formData = new FormData(consultationForm);
 
-            // Send data asynchronously to Web3Forms API
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
@@ -182,8 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
                     toastBox.classList.add("show");
                     consultationForm.reset();
+                    
+                    // 🚀 Reset hCaptcha widget after successful send
+                    if (typeof hcaptcha !== "undefined") {
+                        hcaptcha.reset();
+                    }
                 } else {
-                    toastBox.textContent = json.message || "Submission failed. Please try again.";
+                    toastBox.textContent = json.message || "Submission failed. Please check the captcha and try again.";
                     toastBox.classList.add("show");
                 }
             })
@@ -413,7 +426,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (cleanText.includes("portal") || cleanText.includes("login")) {
                     appendMessage("Our corporate Client Portal can be reached using the secure authorization options on our top bar profile link icon or navigating directly to your assigned enterprise web subdomain dashboard.", "system");
                 } else if (cleanText.includes("support") || cleanText.includes("systems support")) {
-                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersms.systemconcerns@gmail.com\n\nPlease quote your assigned Company ID and software suite variant (BCSAS, B-HRIS, or B-AIMS) when initiating ticket queues.", "system");
+                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersms.systemconcerns@gmail.com\n\nPlease quote your assigned Company ID and varian when initiating ticket queues.", "system");
                 } else {
                     appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been noted. For active system deployment discussions, please consider using our Consultation Form details container.", "system");
                 }

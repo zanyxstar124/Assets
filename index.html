@@ -21,6 +21,15 @@
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="html" href="Clients">
+
+    <!--HCaptcha Verification-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brothers Megawork Systems Corporation</title>
+    
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+    
+    <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
@@ -408,7 +417,13 @@
                     <textarea id="message" name="message" class="form-textarea" placeholder="Describe the scale and targets of your tech request..." required></textarea>
                 </div>
             
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+                <div class="captcha-container">
+                    <div class="h-captcha" data-captcha="true">   
+                </div>
+
+                <div class="btn-submit">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+                </div>
             </form>
         </div>
     </section>
