@@ -100,23 +100,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // ==========================================
-    // 4. UNIVERSAL MODULAR CONTROLLER FOR PRODUCT DROPDOWNS (CRASH-PROOF)
-    // ==========================================
     document.querySelectorAll(".product-card").forEach(card => {
         const featureBtn = card.querySelector(".btn-features");
         const dropdown = card.querySelector(".features-dropdown");
-
-
+    
         // CRASH-PROOF GUARDRAIL: Only execute logic if both elements exist inside this specific card
         if (featureBtn && dropdown) {
             featureBtn.addEventListener("click", (e) => {
                 e.stopPropagation(); // Prevents grid layout events from clashing
-
-
-                // Toggle local target class state
+    
+                // Close all other dropdowns in other product cards
+                document.querySelectorAll(".features-dropdown.open").forEach(openDropdown => {
+                    if (openDropdown !== dropdown) {
+                        openDropdown.classList.remove("open");
+                        const otherFeatureBtn = openDropdown.closest(".product-card").querySelector(".btn-features");
+                        if (otherFeatureBtn) {
+                            otherFeatureBtn.textContent = "Features";
+                        }
+                    }
+                });
+    
+                // Toggle the dropdown for the current product card
                 const isOpen = dropdown.classList.toggle("open");
-               
+    
                 // Dynamically update text wording to match state change
                 featureBtn.textContent = isOpen ? "Hide Specs" : "Features";
             });
@@ -561,4 +567,4 @@ window.scrollToSec = function(sectionId) {
             behavior: "smooth"
         });
     }
-};
+}

@@ -1,17 +1,6 @@
 /* ==========================================================================
    1. RESET, BASELINE & VARIABLES
    ========================================================================== */
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-
-/* ==========================================================================
-   1. RESET, BASELINE & VARIABLES
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -42,7 +31,7 @@ body.light-theme {
 
 :root {
     --bg-dark: #0c0f14;
-    --bg-card: #161b22;
+    --bg-card: rgb(22, 27, 34);
     --text-white: #ffffff;
     --text-gray: #a0aec0;
     --brand-blue: #0076df;
@@ -413,24 +402,107 @@ header.scrolled {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    gap: 8px;
     align-items: stretch;
 }
 
+.product-card .card-image-wrapper {
+    position: absolute !important;            /* Pinned to top of card */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 270px !important;                  /* 🎛️ Image header height */
+    z-index: 1 !important;                     /* Sits in background layer */
+    overflow: hidden !important;
+}
+
+.card-image-wrapper {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+/* 3. GRADIENT OVERLAY (Sits directly on top of the image inside wrapper) */
+.product-card .card-image-wrapper::after {
+ 
+
+
+    /* 🚀 Gradient transitions from clear to card backdrop color (#0d1424) */
+
+    
+    z-index: 2 !important;
+    pointer-events: none !important;
+
+    /* 🎛️ ADJUST THIS HEIGHT TO CONTROL GRADIENT COVERAGE: */
+    height: 100px !important;           /* Only covers the bottom 70px of the image */
+
+    z-index: 11 !important;                     /* Above img, inside wrapper */
+    pointer-events: none !important;
+}
 
 .product-card {
     background-color: var(--bg-card);
     border-radius: 12px;
     padding: 40px 30px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition);
     position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end !important;
+    height: 100%;
+    justify-content: space-between !important;
+    background-color: #0d1424 !important;
+}
+
+.product-card .card-image-wrapper {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    transition: var(--transition);
+    position: absolute;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
+/* 2. Gradient layer stays behind text */
+.product-card .card-img-gradient-overlay {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1 !important;               /* Sits behind text */
+    pointer-events: none !important;
+}
+
+/* 3. Force text and headers to render ON TOP */
+.product-card .card-body,
+.product-card .card-header,
+.product-card .card-content,
+.product-card .product-name,
+.product-card .product-desc {
+    position: relative !important;
+    z-index: 10 !important;              /* 🚀 Guarantees text sits above image overlays */
+}
+
+/* 4. Anchor Buttons strictly at the bottom with spacing */
+.product-card .card-actions {
+    margin-top: auto !important; /* Pushes buttons to card bottom */
+    padding: 12px 20px 20px 20px !important; /* Clean bottom/side margin */
+    display: flex !important;
+    gap: 10px !important;
+}
+
+.product-card .btn-features,
+.product-card .btn-inquiry {
+    position: relative !important;
+    z-index: 15 !important; /* 🚀 Guarantees buttons are clickable */
+    cursor: pointer !important;
+}
 
 .product-card::before {
     content: '';
@@ -458,21 +530,24 @@ header.scrolled {
 
 
 .product-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    background-color: rgba(0, 118, 223, 0.1);
-    color: var(--brand-blue);
     display: flex;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgba(15, 23, 42, 0.75) !important;
+    color: var(--text-gray);
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin: 120px 0px 0px -17px;
+    z-index: 10 !important; 
 }
 
 
 .product-icon svg {
     width: 30px;
     height: 30px;
+    margin: 0px 0px 0px 0px;
 }
 
 
@@ -538,6 +613,10 @@ header.scrolled {
     background-color: var(--brand-blue-hover);
 }
 
+.features-dropdown {
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease-in-out;
+}
 
 .features-dropdown {
     max-height: 0;
@@ -546,6 +625,9 @@ header.scrolled {
     margin-top: 0;
 }
 
+.features-dropdown.open {
+    display: block; /* Show when the 'open' class is added */
+}
 
 .features-dropdown.open {
     max-height: 400px;
@@ -602,23 +684,6 @@ header.scrolled {
     border-color: #ffffff;
 }
 
-
-.product-grid, .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    align-items: start;
-}
-
-
-.product-card {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 440px;
-}
-
-
 .product-desc {
     flex-grow: 0;
     margin-bottom: 20px;
@@ -630,6 +695,15 @@ header.scrolled {
     padding-top: 15px;
 }
 
+/* Hide features list by default for all product cards */
+.product-card .product-features {
+    display: none !important;
+}
+
+/* Reveal features ONLY when the specific parent card has the show-features class */
+.product-card.show-features .product-features {
+    display: block !important;
+}
 
 /* ========================================== -->
    6. RESPONSIVE PARTNERS / CLIENTS SHEET
@@ -1956,6 +2030,78 @@ body.light-theme .login-footer {
     border-top-color: rgba(0, 0, 0, 0.05);
     color: var(--text-gray);
 }
+
+/* 1. Default (Dark Mode) Gradient Overlay */
+.product-card .card-img-gradient-overlay,
+.product-card .card-image-wrapper::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    
+    /* Dark Mode Transition: Fades into Dark Card Backdrop (#0d1424) */
+    background: linear-gradient(
+        to bottom,
+        rgba(13, 20, 36, 0) 0%,
+        rgba(13, 20, 36, 0.4) 50%,
+        rgba(13, 20, 36, 0.9) 85%,
+        #0d1424 100%
+    ) !important;
+    
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* 2. Light Mode Override (Triggers when body has .light-theme or [data-theme="light"]) */
+body.light-theme .product-card,
+[data-theme="light"] .product-card {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+}
+
+body.light-theme .product-card .card-img-gradient-overlay,
+body.light-theme .product-card .card-image-wrapper::after,
+[data-theme="light"] .product-card .card-img-gradient-overlay,
+[data-theme="light"] .product-card .card-image-wrapper::after {
+    /* Light Mode Transition: Fades into Clean White (#ffffff) */
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.9) 85%,
+        #ffffff 100%
+    ) !important;
+}
+
+/* 3. Light Mode Text & Button Contrast Adjustments */
+body.light-theme .product-card .product-title,
+[data-theme="light"] .product-card .product-title {
+    color: #1a202c !important;
+}
+
+body.light-theme .product-card .product-desc,
+[data-theme="light"] .product-card .product-desc {
+    color: #4a5568 !important;
+}
+
+body.light-theme .product-card .product-features li,
+[data-theme="light"] .product-card .product-features li {
+    color: #2d3748 !important;
+}
+
+body.light-theme .product-card .btn-features,
+[data-theme="light"] .product-card .btn-features {
+    border-color: #cbd5e0 !important;
+    color: #2d3748 !important;
+}
+
+body.light-theme .product-card .btn-features:hover,
+[data-theme="light"] .product-card .btn-features:hover {
+    background-color: #edf2f7 !important;
+}
+
 /* ==========================================================================
    LIGHT & DARK MODE TOGGLE DEFINITIONS
    ========================================================================== */
@@ -2097,6 +2243,9 @@ body.light-theme footer a:hover {
        color: #ffffff !important;
    }
 
+   body.light-theme .product-icon {
+        color: #a0aec0 !important;
+   }
    /* ==========================================================================
    STRICT LIGHT MODE USER CHAT TEXT CONTRAST OVERRIDE
    ========================================================================== */
@@ -2126,4 +2275,30 @@ body.light-theme .chat-msg.user .message-bubble {
         word-break: break-word;
         overflow-wrap: break-word;
     }
+}
+
+/* Ensure product grid items align to the top on PC, preventing height-stretching */
+.products-grid, 
+.product-grid-container {
+    display: grid !important;
+    align-items: start !important; /* 🚀 CRITICAL: Stops PC grid items from stretching together */
+}
+
+/* Ensure individual cards maintain independent stacking contexts */
+.product-card {
+    height: auto !important;
+    align-self: start !important;
+}
+
+/* Safe dropdown visibility mapping for both classes */
+.product-card .features-dropdown,
+.product-card .product-features {
+    display: none !important;
+}
+
+.product-card.show-features .features-dropdown,
+.product-card.show-features .product-features,
+.product-card .features-dropdown.open,
+.product-card .product-features.open {
+    display: block !important;
 }
