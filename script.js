@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(async (response) => {
                 let json = await response.json();
                 if (response.status === 200) {
-                    toastBox.textContent = "Request submitted successfully! Our tech architects will contact you within 24 hours.";
+                    toastBox.textContent = "Request submitted successfully! Our consultants will contact you within 24 hours.";
                     toastBox.classList.add("show");
                     consultationForm.reset();
                     
@@ -218,17 +218,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     const businessEmail = "brothersmsc.sales@gmail.com";
     const systemConcernsEmail = "brothersms.systemconcerns@gmail.com";
+    const careersEmail = "brothersms.careers@gmail.com";
     const emailSelectors = ["#smart-email-link", "#smart-footer-email-link"];
 
     // Browser parsing test to see if laptop environment bounds are present
     const isMobileDevice = () => /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     emailSelectors.forEach(selector => {
-        const emailLink = document.querySelector(selector);
+        const emailLink = document.querySelector("#smart-email-link");
         if (emailLink) {
             emailLink.addEventListener("click", (e) => {
                 e.preventDefault();
-                const subject = "BMS Enterprise Consultation Inquiry";
+                const subject = "BMSC Consultation Inquiry";
                 const body = "Describe your system scaling targets here...";
                 
                 if (isMobileDevice()) {
@@ -242,11 +243,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Integrated Secondary Technical Systems Concerns Mapping Fallback Loop
-    const systemEmailLink = document.querySelector("#smart-system-email-link");
+    const systemEmailLink = document.querySelector("#system-email-link");
     if (systemEmailLink) {
         systemEmailLink.addEventListener("click", (e) => {
             e.preventDefault();
-            const subject = "BMS System Concern Support Inquiry";
+            const subject = "BMSC System Concern Support Inquiry";
             const body = "Describe the technical issue or system adjustments required here...";
             
             if (isMobileDevice()) {
@@ -258,6 +259,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const careersEmailLink = document.querySelector("#careers-email-link");
+    if (careersEmailLink) {
+        careersEmailLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            const subject = "BMSC Careers Application Inquiry";
+            const body = "Add your resume and cover letter details here for submission...";
+            
+            if (isMobileDevice()) {
+                window.location.href = `mailto:${careersEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            } else {
+                const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${careersEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.open(gmailWebUrl, "_blank");
+            }
+        });
+    }
 
     // ==========================================
     // 8. TOP BAR PHONE CALL ICON ANIMATION ROUTER
@@ -365,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (launcher && windowBox && messagesContainer) {
        
         // Load saved state log context metric array or establish fallback initial block
-        const defaultWelcome = "Hello! Welcome to Brothers Megawork Systems Corporation. How can I assist you with our enterprise solutions today?";
+        const defaultWelcome = "Hello! Welcome to Brothers Megawork Systems Corporation. How can I assist you today?";
         let storedHistory = JSON.parse(sessionStorage.getItem("bms_chat_history")) || [
             { text: defaultWelcome, sender: "system" }
         ];
@@ -421,12 +437,12 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 if (cleanText.includes("product") || cleanText.includes("bcsas") || cleanText.includes("hris") || cleanText.includes("aims")) {
                     appendMessage("We specialize in core B2B modules:\nBCSAS (Credit/Savings Ledgers),\nB-HRIS-PTMS (Payroll & Biometric Timekeeping),and\nB-AIMS (Accounting & Inventory Management System).\n\nYou can view deeper code features on our standalone 'Products' tab up top!", "system");
-                } else if (cleanText.includes("contact") || cleanText.includes("consult") || cleanText.includes("inquiry")) {
+                } else if (cleanText.includes("contact") || cleanText.includes("consult") || cleanText.includes("inquiry") || cleanText.includes("call") || cleanText.includes("email")){
                     appendMessage("You can reach out to our Support & Business Desk at\nbrothersmsc.sales@gmail.com\nbrothersms.systemconcerns\n@gmail.com\n\nCall us directly at\n+632-5310-5085\n\nor drop details in the consultation form behind this window.", "system");
-                } else if (cleanText.includes("portal") || cleanText.includes("login")) {
+                } else if (cleanText.includes("portal") || cleanText.includes("login") || cleanText.includes("client")) {
                     appendMessage("Our corporate Client Portal can be reached using the secure authorization options on our top bar profile link icon or navigating directly to your assigned enterprise web subdomain dashboard.", "system");
-                } else if (cleanText.includes("support") || cleanText.includes("systems support")) {
-                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersms.systemconcerns@gmail.com\n\nPlease quote your assigned Company ID and varian when initiating ticket queues.", "system");
+                } else if (cleanText.includes("support") || cleanText.includes("systems support") || cleanText.includes("help")) {
+                    appendMessage("For active system down alerts, patch requests, database synchronization drops, or biometric terminal mapping assistance, please reach our helpdesk engineers immediately:\n\nDirect Desk: +632-5310-5085\nTechnical Mail: brothersms.systemconcerns@gmail.com\n\nPlease quote your assigned Company ID and software variant when initiating ticket queues.", "system");
                 } else {
                     appendMessage("Thank you for reaching out to Brothers Megawork Systems Corporation. Your message has been noted. For active system deployment discussions, please consider using our Consultation Form details container.", "system");
                 }
